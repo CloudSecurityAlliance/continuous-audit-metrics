@@ -18,7 +18,7 @@ metrics:
         the scope of the Information Security Program defined in the GRC-05 control objective.
   expression:
     result: "Percentage of compliant code"
-    fomula: "100 * A/B"
+    formula: "100 * A/B"
     variables:
       - name: A
         description: Total number of pieces of production code that have an associated verification step
