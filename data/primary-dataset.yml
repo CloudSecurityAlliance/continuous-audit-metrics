@@ -1,0 +1,109 @@
+---
+name: Continuous Audit Metrics Catalog 
+version: 1.0.0
+url: https://cloudsecurityalliance.org/artifacts/the-continuous-audit-metrics-catalog/
+ccm_version: 4.0.5
+metrics:
+- id: AIS-06-M1
+  description: >-
+    This metric measures the percentage of running production code that can be directly traced 
+    back to automated security and quality tests that verify the compliance of each build. 
+  primary_control_id: AIS-06
+  related_control_ids: 
+    - DCS-06
+    - GRC-05
+  rules: 
+    - >-
+        "Production code" is code deployed to the production runtime environment(s) within 
+        the scope of the Information Security Program defined in the GRC-05 control objective.
+  expression:
+    result: "Percentage of compliant code"
+    fomula: "100 * A/B"
+    variables:
+      - name: A
+        description: Total number of pieces of production code that have an associated verification step
+      - name: B
+        description: Total number of pieces of production code
+    notes: 
+  slo_recommentation: 
+    target: 95%
+    notes: 
+  implementation_guidelines: >-
+    There must be a software inventory of deployed production code (see DCS-06 for more information). 
+    Production code must be quantified based on the organization’s definition of deployed code running 
+    in production (e.g., microservices, builds, releases, packages, libraries, serverless functions, 
+    etc.).
+
+    This should be the same number used to measure AIS-07.
+
+    The definition of “deployed production code” used for the software inventory should be aligned with 
+    application security scanning, testing, and/or reporting methods where possible to simplify
+    measurement.
+    
+    The likelihood of standardized deployments can decrease as the number of different deployment systems 
+    increases. If the software deployment pipeline has multiple stages where change could be introduced 
+    and end-to-end validation cannot be performed, then this metric may be more suitable for an 
+    organization:
+    
+    0%<=Percentage of steps in the software deployment pipeline that have an associated verification 
+    step<=100%
+    There should be a mechanism to identity deviations and, if deviations from the standard are approved,
+    then the system should account for (and manage) the exception as approved.
+    
+    This metric should at least be aligned with an organization’s development or release cycle to 
+    provide timely input for correction in the next deployment or release. For example, if an organization
+    uses an Agile development methodology with two-week sprints, then the metric should be measured at 
+    least every two weeks to provide data for review at sprint retros.
+- id: AIS-07-M3
+  description: >-
+    This metric measures the coverage for application vulnerability remediation across the production code.
+  primary_control_id: AIS-07
+  related_control_ids: 
+    - DCS-06
+    - GRC-05
+  rules: 
+    - Production Application = Applications tracked within the software inventory established in DCS-06
+    - >-
+      Acceptable level of risk from application security vulnerabilities: Vulnera- bilities categorized 
+      as medium or low risk as well as critical or high vulnera- bilities marked or identified as 
+      “Accepted” (i.e., remediation not required). Examples of accepted vulnerabilities can be false 
+      positives or vulnerabilities with compensating controls that make the residual risk of exploitation 
+      acceptable.
+  expression:
+    result: Percentage
+    formula: "100 * A/B"
+    variables:
+      - name: A
+        description: >-
+          Number of deployed production applications with acceptable level of risk from application 
+          security vulnerabilities
+      - name: B
+        description: Total number of deployed production applications
+    notes:
+  slo_recommentation: 
+    target: 80%
+    notes: >-
+      Rationale: The 2020 Application Security Observability Report from Contrast Labs found 26% of 
+      applications had at least one serious vulner- ability, with 79% of those vulnerabilities remediated 
+      within 30 days. That leaves 20% of applications with serious vulnerabilities after 30 days, so the 
+      SLO to have 80% of production code with acceptable level of risk from application security 
+      vulnerabilities should be achievable for the average organization.
+  implementation_guidelines: >-
+      There must be a software inventory of deployed production code (see DCS-06 for more information). 
+      Production code must be quantified based on the organization’s definition of deployed code running in 
+      production (e.g., microservices, builds, releases, packages, libraries, serverless functions, etc.). 
+      This should be the same number used to measure AIS-06.
+
+      The definition of “deployed production application” used for the software inventory should be aligned 
+      with application security scanning, testing, and/or reporting methods where possible to simplify 
+      measurement.
+
+      “Acceptable Level of Risk” should be defined by the organizations vulnerability management guidelines 
+      (e.g., only “critical” and “high” vulnerabilities, or “medium vulnerabilities and higher,” etc.). 
+      Classification of vulnerabilities as “high” or “critical” risk, etc., should be defined in the 
+      vulnerability management tool based on an industry-accepted scoring system, such as the Common 
+      Vulnerability Scoring System (CVSS).8 For instance, vulnerabilities with a CVSS score of nine or higher 
+      are “critical,” and vulnerabilities with CVSS scores between seven and nine could be defined as “high” 
+      risk.
+
+
