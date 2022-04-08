@@ -1,109 +1,1270 @@
 ---
-name: Continuous Audit Metrics Catalog 
+name: Continuous Audit Metrics Catalog
 version: 1.0.0
 url: https://cloudsecurityalliance.org/artifacts/the-continuous-audit-metrics-catalog/
 ccm_version: 4.0.5
 metrics:
 - id: AIS-06-M1
-  description: >-
-    This metric measures the percentage of running production code that can be directly traced 
-    back to automated security and quality tests that verify the compliance of each build. 
-  primary_control_id: AIS-06
-  related_control_ids: 
-    - DCS-06
-    - GRC-05
-  rules: 
-    - >-
-        "Production code" is code deployed to the production runtime environment(s) within 
-        the scope of the Information Security Program defined in the GRC-05 control objective.
+  primaryControlId: AIS-06
+  relatedControlIds:
+  - DCS-06
+  - GRC-05
+  metricDescription: This metric measures the percentage of running production code
+    that can be directly traced back to automated security and quality tests that
+    verify the compliance of each build.
   expression:
-    result: "Percentage of compliant code"
-    formula: "100 * A/B"
-    variables:
-      - name: A
-        description: Total number of pieces of production code that have an associated verification step
-      - name: B
-        description: Total number of pieces of production code
-    notes: 
-  slo_recommentation: 
-    target: 95%
-    notes: 
-  implementation_guidelines: >-
-    There must be a software inventory of deployed production code (see DCS-06 for more information). 
-    Production code must be quantified based on the organization’s definition of deployed code running 
-    in production (e.g., microservices, builds, releases, packages, libraries, serverless functions, 
-    etc.).
-
-    This should be the same number used to measure AIS-07.
-
-    The definition of “deployed production code” used for the software inventory should be aligned with 
-    application security scanning, testing, and/or reporting methods where possible to simplify
-    measurement.
-    
-    The likelihood of standardized deployments can decrease as the number of different deployment systems 
-    increases. If the software deployment pipeline has multiple stages where change could be introduced 
-    and end-to-end validation cannot be performed, then this metric may be more suitable for an 
-    organization:
-    
-    0%<=Percentage of steps in the software deployment pipeline that have an associated verification 
-    step<=100%
-    There should be a mechanism to identity deviations and, if deviations from the standard are approved,
-    then the system should account for (and manage) the exception as approved.
-    
-    This metric should at least be aligned with an organization’s development or release cycle to 
-    provide timely input for correction in the next deployment or release. For example, if an organization
-    uses an Agile development methodology with two-week sprints, then the metric should be measured at 
-    least every two weeks to provide data for review at sprint retros.
+    formula: "(A/B)*100"
+    parameters:
+    - id: prod_apps_with_verification
+      name: A
+      description: Total number of pieces of Production Code that have an Associated
+        Verification Step
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: prod_apps_deployed
+      name: B
+      description: Total number of pieces of Production Code
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: \"Production Code\" is code deployed to the production runtime environment(s)
+    within the scope of the Information Security Program defined in the CCMv4 GRC-05
+    control objective. An \"Associated Verification Step\" is a capability in the
+    deployment process that ties production code back to a build with traceable results
+    for quality, security, and privacy tests.
+  sloRecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 30d
+  implementationGuidelines: There must be a Software Inventory of Deployed Production
+    Code (DCS-06).  Production code must be quantified based on the definition of
+    deployed code running in production (e.g. microservices, builds, releases, packages,
+    libraries, serverless functions, etc.). This should be the same number used to
+    measure AIS-07. The definition of \"deployed production code\" used for the software
+    inventory should be aligned with application security scanning, testing, and/or
+    reporting methods where possible to simplify measurement. The likelihood of standardized
+    deployments can decrease as the number of different deployment systems increases.
+    If the Software Deployment Pipeline has multiple stages where change could be
+    introduced, and end-to-end validation cannot be performed, then the metric \"Percentage
+    of steps in the Software Deployment Pipeline that have an associated verification
+    step\" may be more suitable for an organization. There should be a mechanism to
+    identify deviations, and if deviations from the standard are approved, then the
+    system should account for (and manage) the exception as approved. This metric
+    should at least be aligned with an organization's development or release cycle
+    to provide timely input for correction in the next deployment or release. For
+    example, if an organization uses an Agile development methodology with two-week
+    sprints, then the metric should be measured at least every two weeks to provide
+    data for review at sprint retros.
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
 - id: AIS-07-M3
-  description: >-
-    This metric measures the coverage for application vulnerability remediation across the production code.
-  primary_control_id: AIS-07
-  related_control_ids: 
-    - DCS-06
-    - GRC-05
-  rules: 
-    - Production Application = Applications tracked within the software inventory established in DCS-06
-    - >-
-      Acceptable level of risk from application security vulnerabilities: Vulnera- bilities categorized 
-      as medium or low risk as well as critical or high vulnera- bilities marked or identified as 
-      “Accepted” (i.e., remediation not required). Examples of accepted vulnerabilities can be false 
-      positives or vulnerabilities with compensating controls that make the residual risk of exploitation 
-      acceptable.
+  primaryControlId: AIS-07
+  relatedControlIds:
+  - AIS-02
+  - AIS-06
+  - TVM-07
+  - DCS-06
+  metricDescription: This metric measures the coverage for application vulnerability
+    remediation across the production code.
   expression:
-    result: Percentage
-    formula: "100 * A/B"
-    variables:
-      - name: A
-        description: >-
-          Number of deployed production applications with acceptable level of risk from application 
-          security vulnerabilities
-      - name: B
-        description: Total number of deployed production applications
-    notes:
-  slo_recommentation: 
-    target: 80%
-    notes: >-
-      Rationale: The 2020 Application Security Observability Report from Contrast Labs found 26% of 
-      applications had at least one serious vulner- ability, with 79% of those vulnerabilities remediated 
-      within 30 days. That leaves 20% of applications with serious vulnerabilities after 30 days, so the 
-      SLO to have 80% of production code with acceptable level of risk from application security 
-      vulnerabilities should be achievable for the average organization.
-  implementation_guidelines: >-
-      There must be a software inventory of deployed production code (see DCS-06 for more information). 
-      Production code must be quantified based on the organization’s definition of deployed code running in 
-      production (e.g., microservices, builds, releases, packages, libraries, serverless functions, etc.). 
-      This should be the same number used to measure AIS-06.
-
-      The definition of “deployed production application” used for the software inventory should be aligned 
-      with application security scanning, testing, and/or reporting methods where possible to simplify 
-      measurement.
-
-      “Acceptable Level of Risk” should be defined by the organizations vulnerability management guidelines 
-      (e.g., only “critical” and “high” vulnerabilities, or “medium vulnerabilities and higher,” etc.). 
-      Classification of vulnerabilities as “high” or “critical” risk, etc., should be defined in the 
-      vulnerability management tool based on an industry-accepted scoring system, such as the Common 
-      Vulnerability Scoring System (CVSS).8 For instance, vulnerabilities with a CVSS score of nine or higher 
-      are “critical,” and vulnerabilities with CVSS scores between seven and nine could be defined as “high” 
-      risk.
-
-
+    formula: "(A/B)*100"
+    parameters:
+    - id: prod_apps_deployed_with_acceptable_vuls
+      name: A
+      description: Number of deployed production applications with acceptable level
+        of risk from application security vulnerabilities
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: prod_apps_deployed
+      name: B
+      description: Total Number of deployed production applications
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: 'Production Application = Applications tracked within the software inventory
+    established in CCMv4 DCS-06. Acceptable level of risk from application security
+    vulnerabilities:  Vulnerabilities categorized as medium or low risk as well as
+    critical or high vulnerabilities marked or identified as \''Accepted\'' (i.e.
+    remediation not required).  Examples  of accepted vulnerabilities can be false
+    positives or vulnerabilities with compensating controls that make the residual
+    risk of exploitation acceptable.'
+  sloRecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 30d
+  implementationGuidelines: There must be a Software Inventory of Deployed Production
+    Code (see DCS-06 for more info). Production code must be quantified based on the
+    organization's definition of deployed code running in production (e.g. microservices,
+    builds, releases, packages, libraries, serverless functions, etc.). This should
+    be the same number used to measure AIS-06. The definition of deployed production
+    application used for the software inventory should be aligned with application
+    security scanning, testing, and/or reporting methods where possible to simplify
+    measurement. Acceptable Level of Risk should be defined by the organizations vulnerability
+    management guidelines (e.g. only Critical and High vulnerabilities, or Medium
+    Vulnerabilities and Higher, etc. Classification of vulnerabilities as High or
+    Critical risk, etc. should be defined in the Vulnerability Management tool based
+    on industry-accepted scoring system such as the Common Vulnerability Scoring System
+    (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss). For instance, vulnerabilities
+    with a CVSS score of 9 or higher are Critical, and vulnerabilities with CVSS scores
+    between 7 and 9 could be defined as High risk.)
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: AIS-07-M6
+  primaryControlId: AIS-07
+  relatedControlIds:
+  - AIS-03
+  - TVM-10
+  - GRC-02
+  metricDescription: This metric measures the percentage of critical vulnerabilities
+    that are not fixed or marked as accepted within the time specified by policy.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: nc_vuln_remediation_in_prod_apps
+      name: A
+      description: Number of unaccepted critical or high vulnerabilities in production
+        applications with an age greater than the policy defined maximum age
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: risky_vulns_in_prod_apps
+      name: B
+      description: Total number of critical or high vulnerabilities in production
+        applications within this period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: 'Production Application = Applications tracked within the software inventory
+    established in CCMv4 DCS-06. Acceptable level of risk from application security
+    vulnerabilities:  Vulnerabilities categorized as medium or low risk as well as
+    critical or high vulnerabilities marked or identified as Accepted (i.e. remediation
+    not required). Examples of accepted vulnerabilities can be false positives or
+    vulnerabilities with compensating controls that make the residual risk of exploitation
+    acceptable.'
+  sloRecommendations:
+  - sloRangeMin: 
+    sloPeriod: 30d
+  implementationGuidelines: '1. Classification of vulnerabilities as High or Critical
+    risk should be defined in the Vulnerability Management tool based on industry-accepted
+    scoring system such as the  Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss).
+    For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and  vulnerabilities
+    with CVSS scores between 7 and 9 could be defined as High risk. 2. Date and time
+    of vulnerability discovery could be obtained from the Vulnerability  Management
+    tool as it scans and detects vulnerabilities. 3. Date and time of vulnerability
+    remediation or acceptance could be obtained in the following ways: a) From  the
+    Vulnerability Management tool as it scans and finds that a previously detected
+    vulnerability is no longer present/detected; b) From the patch deployment tool
+    (e.g. SCCM) as it successfully deploys and installs a patch that fixes an identified
+    vulnerability; c) From the application / code release tool as it moves into production
+    the new version of the application that no longer contains the code vulnerability.
+    Frequency of evaluation should be aligned with the frequency of vulnerability
+    scans. (Scans should happen at LEAST monthly, but more frequently is recommended).
+    Vulnerability scans can be done at a predefined frequency or whenever new code
+    is built, or deployed.'
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: BCR-06-M1
+  primaryControlId: BCR-06
+  relatedControlIds:
+  - BCR-01
+  - BCR-02
+  metricDescription: This metric reports the percentage of critical systems that passed
+    BCR tests.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: bcr_tests_critical_systems
+      name: A
+      description: Number of critical systems that passed BCR tests during the sampling
+        period
+      unit: count
+      type: calculate
+      samplingPeriod: 365d
+    - id: critical_systems_count
+      name: B
+      description: Total number of critical systems operating during the sampling
+        period
+      unit: count
+      type: calculate
+      samplingPeriod: 365d
+  rules: Criteria for system criticality must be defined and there must be a list
+    of critical systems identified. Recovery Point Objective(s) and Recovery Time
+    Objective(s) must be defined for critical systems. This metric does not attempt
+    to measure the appropriateness of the recovery point or time objectives (RPOs
+    or RTOs). This metric is dependent on control BCR-02 providing reasonable assurance
+    of sufficient RPOs and RTOs for critical systems. BCR testing intervals must be
+    defined.
+  sloRecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 365
+  implementationGuidelines: Critical systems should be identified in accordance with
+    the CCMv4 implementation guidelines for BCR-02. For this metric, passed means
+    achieving the RPO(s) within the RTO(s) defined for each critical system in the
+    scope of the assessment/audit, according to the CCMv4 implementation guidelines
+    for BCR-02. The sampling period for this metric should align with the testing
+    intervals defined by the business continuity plan in accordance with the CCMv4
+    implementation guidelines for BCR-04. BCR tests should include Chaos Testing,
+    where possible. According to wikipedia, Chaos engineering is the discipline of
+    experimenting on a software system in production in order to build confidence
+    in the system's capability to withstand turbulent and unexpected conditions.
+  crontabExample: 0 0 1 1 *
+  measurementFrequency: 365d
+  samplingPeriod: 365d
+- id: CCC-03-M1
+  primaryControlId: CCC-03
+  relatedControlIds:
+  - DCS-06
+  metricDescription: Percentage of all assets that have change management technology
+    integrated
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: assets_under_change_management
+      name: A
+      description: Number of assets that have change management technology integrated
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: total_assets_count
+      name: B
+      description: Total number of assets
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: Change management technology covers release management tools that enable
+    automated deployment and rollback of software builds in production.
+  sloRecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 30d
+  implementationGuidelines: This metric requires the implementation of CCMv4 DCS-06
+    Asset Cataloging and Tracking and the capability to determine which assets or
+    asset groups are deployed using change management technology that can rollback
+    changes and/or stop deployment of risky changes based on automated test results.
+    Given the dynamic nature of cloud environments, the metric can provide more value
+    if the variations in the release management system's coverage over the population
+    of assets is reported over time. The percentage of assets that fall within an
+    accepted number of deviations provides stakeholders assurance of whether change
+    control is getting better, worse, or being maintained. Larger populations of more
+    than 1,000 assets can use 6 standard deviations as an acceptable level of change
+    over time (i.e. Six Sigma). Smaller populations of assets will need to use less
+    standard deviations as an acceptable level of change, perhaps even just 1 deviation.
+    For more information on the use of standard deviation in security metrics, see
+    this excerpt of Andrew Jaquith's Security Metrics book.
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: CCC-07-M1
+  primaryControlId: CCC-07
+  relatedControlIds:
+  - DCS-06
+  - CCC-03
+  metricDescription: This metric measures the percent of positive test results from
+    all configuration tests performed.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: config_items_passing_tests
+      name: A
+      description: Number of configuration items that were tested and passed successfully
+      unit: count
+      type: calculate
+      samplingPeriod: 7d
+    - id: total_config_items
+      name: B
+      description: Total number of configuration items that were tested
+      unit: count
+      type: calculate
+      samplingPeriod: 7d
+  rules: This metric captures the number of tests passed out of the total number of
+    tests defined. Each test is assumed to verify a configuration item which is arbitrarily
+    defined as any component for which a test can be defined.
+  sloRecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 30d
+  implementationGuidelines: This metric assumes that CCC-03 has been successfully
+    implemented and thus assumes that enough configuration items, at least in terms
+    of number of CCMv4 DCS-06 assets, have change management technology to make this
+    metric meaningful. This metric does not take into account a measure of risk for
+    the configuration tests that have failed. The resulting flat percentage may not
+    tell the full story of risk incurred from a control failure. Future work may incorporate
+    risk measures such as high and critical configuration tests. The frequency of
+    reporting this metric should tie in to the frequency of deployments/expected changes,
+    minimally once a week. This metric should be measured on an automated, continuous
+    basis. Since the scope is under the control of the organization, the metric results
+    should be relatively high. The signal from this metric is that the existing system
+    for change management is working or failing. A low percentage may not indicate
+    a significant cybersecurity risk, but it may be a leading indicator of future
+    security risk if the practice doesn't improve. This is different than IVS-04 which
+    measures the number of hardening tests against all assets.
+  crontabExample: 0 0 * * 0
+  measurementFrequency: 7d
+  samplingPeriod: 7d
+- id: CEK-03-M2
+  primaryControlId: CEK-03
+  relatedControlIds:
+  - CEK-04
+  - DCS-06
+  - CEK-01
+  metricDescription: This metric measures if the cryptographic module continues to
+    be up to approved standards.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: acvp_approved_data_assets
+      name: A
+      description: Number of assets responsible for data at-rest or in-transit where
+        the cryptographic library has passed Automated Cryptographic Validation Protocol
+        tests or equivalent tests
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: data_at_rest_in_transit_assets
+      name: B
+      description: Total number of assets responsible for data at-rest or in-transit
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 85%
+    sloPeriod: 30d
+  implementationGuidelines: 'This leverages asset management and off-the-shelf automated
+    functionalities while allowing for flexibility against policy (which has previously
+    passed CCMv4 CEK-01 audit).  See AVCP: https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing'
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: CEK-04-M1
+  primaryControlId: CEK-04
+  relatedControlIds:
+  - CEK-05
+  metricDescription: This metric measures the percentage of assets with cryptographic
+    functions that meet an organization's defined cryptographic requirements.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: compliant_crypto_assets
+      name: A
+      description: Number of assets with a cryptographic function that meets cryptographic
+        requirements
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: total_crypto_assets
+      name: B
+      description: Total number of assets with a cryptographic function
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: The specification should be reported for all the adopted cryptographic suites.
+  sloRecommendations:
+  - sloRangeMin: 90%
+    sloPeriod: 30d
+  implementationGuidelines: For a Minimum Viable Product, the scope of evaluation
+    may be limited to public-facing services, in which case a scan of all externally
+    facing assets should be made and the scanned values compared against the requirements
+    of the policy. The SLO used for this metric may need to be increased or decreased
+    based on the scope of assets covered by the metric. This metric depends on the
+    data classification tool in CCMv4 DSP-03, and requires that an organization determine
+    the appropriate level of encryption for each classification, then requires comparison
+    of the expected encryption applied versus the actual encryption applied, and reports
+    on the difference. CCMv4 IPY-03 covers a subset of this measurement.
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: DCS-06-M1
+  primaryControlId: DCS-06
+  relatedControlIds:
+  - LOG-05
+  metricDescription: This metric measures the ratio of managed assets (i.e. catalogued
+    and tracked) to detected assets. The goal is to provide a signal if the asset
+    cataloging and tracking system stops working.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of distinct assets seen in security audit logs during the
+        sampling period that are in an asset catalog
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+    - id: 
+      name: B
+      description: Number of distinct assets seen in security audit logs during the
+        sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+  rules: The assumption is that the design of the DCS-06 control process(es) was found
+    to be effective by internal or external audits.
+  sloRecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 1d
+  implementationGuidelines: This relies on the security audit logs as defined in
+    CCMv4 LOG-05 and the asset catalog defined in CCMv4 DCS-06. This assumes LOG-05
+    is inclusive of logs of a number of  events such as network traffic, network scanning,
+    physical asset inventory. It assumes that the logs include network traffic logging,
+    and logs from other assets, and  are sufficient to detect unexpected assets. We
+    assume everything that is worthy is logged. This is a dependency on the auditor
+    to ensure the logging is complete enough.  This is consistent with the metric
+    for UEM-04. Implementers may benefit from the similarities. Any 3rd party CSPs used by 
+    the organization where shared responsibility of controls resides in the organization 
+    should be included as logical assets for this catalog. This is likely dependent on the 
+    maturity of STA-01 - STA-06 and the SSRM.
+    For example if a CSP provides a microservice inherent in the operations of an
+    offering that microservice is a logical asset. This ensures that metrics  where
+    DCS numbers are used in the denominator include those micro-services. This is
+    intended to ensure the coverage is accurate and inclusive of 3rd party CSPs where
+    the  organization is responsible for the controls.
+  crontabExample: 0 0 * * *
+  measurementFrequency: 1d
+  samplingPeriod: 1d
+- id: DSP-04-M2
+  primaryControlId: DSP-04
+  relatedControlIds:
+  - DSP-01
+  - DSP-03
+  - DSP-04
+  - DSP-05
+  metricDescription: This metric measures the ratio of data assets that have been
+    classified according to data classification policies specific to each organization.
+    An organization may have a predefined list of data types (e.g. health care record,
+    payment card record, identification number, etc.) and / or data sensitivity levels
+    (e.g. Confidential, Internal Use Only, Public).
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Total number of data records classified by type and/or sensitivity
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total number of data records stored
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: Total number of records classified by type and/or sensitivity - this is a
+    count of all data assets that have a defined classification by type or sensitivity
+    level (Undefined classifications are not counted for this variable). Total number
+    of records stored - this is a count of all data assets that have been collected
+    and are stored in the system such as DSP-03. This metric measures data in terms
+    of distinct data records, not distinct data types.
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+  implementationGuidelines: All data records must have corresponding metadata related
+    to its data type and / or sensitivity. A defined list of data types and sensitivity
+    levels must be defined. Records that do not meet any of the data classification
+    types or sensitivity levels will have an undefined classification and are not
+    considered as classified for this metric.
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+- id: DSP-04-M3
+  primaryControlId: DSP-04
+  relatedControlIds:
+  - DSP-01
+  - DSP-03
+  - DSP-04
+  - DSP-05
+  - DCS-06
+  metricDescription: This metric measures the ratio of assets in the asset catalog
+    that have been classified according to data classification policies specific to
+    each organization. An organization may have a predefined list of data types (e.g.
+    health care record, payment card record, identification number, etc.) and / or
+    data sensitivity levels (e.g. Confidential, Internal Use Only, Public).
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Total number of assets in the asset catalog that are classified
+        by type and/or sensitivity of the data on that asset
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total number of assets in the organization's asset catalog
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: Total number of assets classified by type and/or sensitivity of the data
+    contained on the asset - this is a count of all assets that have a defined classification
+    by type or sensitivity level (Undefined classifications are not counted for this
+    variable). Total number of assets - this is a count of all assets that have been
+    collected and are stored in the system such as DSC-06.
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+  implementationGuidelines: All asset records must have corresponding metadata related
+    to the type and / or sensitivity of data stored on the asset. A defined list of
+    data types and sensitivity levels must be defined. Assets that do not contain
+    data of the data classification types or sensitivity levels will have an undefined
+    data classification and are not considered as classified for this metric.
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: DSP-05-M1
+  primaryControlId: DSP-05
+  relatedControlIds:
+  - DSP-03
+  metricDescription: This metric measures the percentage of records from the data
+    inventory required by control DSP-03 (CCMv4) that are included in data flow documentation.
+    Cloud service providers and their stakeholders can use this metric to determine
+    whether the volume of data covered by the data flow documentation is sufficient
+    or needs to be updated to satisfy defined business requirements.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of data records or data stores from the CCMv4 DSP-03 inventory
+        correctly included in the data flow documentation
+      unit: count
+      type: calculate
+      samplingPeriod: 15d
+    - id: 
+      name: B
+      description: Total number of data records or data stores in the CCMv4 DSP-03
+        inventory
+      unit: count
+      type: calculate
+      samplingPeriod: 15d
+  rules: 'This metric can be measured by counting the number of records in a data
+    store or by simply counting the data stores themselves. CORRECTLY INCLUDED means
+    that the data record or data store is represented in the data flow documentation
+    in accordance with the organization''s defined requirements for representing inventories
+    in the documentation. Generally, this means it exists in the documentation and
+    is properly labeled with appropriate CCMv4 DSP-04 classifications if appropriate.
+    Note: The CCMv4 DSP-03 control objective is to Create and maintain a data inventory,
+    at least for any sensitive data and personal data. The CCMv4 DSP-04 control objective
+    is to Classify data according to its type and sensitivity level.'
+  sloRecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 15d
+  implementationGuidelines: This metric supports an incomplete DSP-03 inventory so
+    long as it is a statistically significant random sampling of at least any sensitive
+    data and personal data (e.g. meets the DSP-03 control language objective). This
+    metric makes the assumption that the data flow diagram(s) is available in a machine-readable
+    format but does not measure automated creation of the data inventory or the data
+    flow documentation. The generation of the data flow document MAY be manual although
+    the result MUST be digitized in order to perform automated comparisons against
+    discovered data repositories. This metric assumes the data flow documentation
+    is in the form of a graph with nodes and edges where data stores are nodes in
+    that graph. In order to count the number of records, there needs to be metadata
+    with the number of records for each datastore. It measures the percentage of data
+    stores (and their records) that are correctly captured as nodes in the graph.
+    For reference, a data flow inventory similar to DSP-03 is required by CSA GDPR
+    Code of Conduct Control
+  crontabExample: 0 0 1,15 * *
+  measurementFrequency: 15d
+  samplingPeriod: 15d
+- id: DSP-05-M2
+  primaryControlId: DSP-05
+  relatedControlIds: 
+  metricDescription: This metric measures the percentage of data streams from the
+    data inventory required by control DSP-03 (CCMv4) that are included in the data
+    flow documentation. Cloud service providers and their stakeholders can use a metric
+    like this to determine whether the different uses of data covered by the data
+    flow documentation is sufficient or needs to be updated to satisfy defined business
+    requirements.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of data streams from the CCMv4 DSP-03 inventory correctly
+        included in the data flow documentation
+      unit: count
+      type: calculate
+      samplingPeriod: 15d
+    - id: 
+      name: B
+      description: Total number of data streams in the CCMv4 DSP-03 inventory
+      unit: count
+      type: calculate
+      samplingPeriod: 15d
+  rules: Data streams are the connections from data sources to data consumers illustrated
+    in data flow diagrams. These connections should be included in the data inventory
+    required by control DSP-03 (CCMv4). This may be a complete inventory of all data
+    streams or a reasonable sample of data streams.
+  sloRecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 15d
+  implementationGuidelines: This metric supports an incomplete inventory of data streams
+    so long as it is a reasonable sampling of streams for at least any sensitive data
+    and personal data (e.g. is intended to measure flows of data of the types that
+    meet the DSP-03 control language objective regarding data inventories). Sampled
+    data streams should be captured from live data streams of user and system activities.
+    This metric assumes the data flow documentation is available in a machine-readable
+    format. The generation of the data flow document MAY be manual although the result
+    MUST be digitized in order to perform automated comparisons against discovered
+    data flows. For reference, a data flow inventory similar to DSP-03 is required
+    by CSA GDPR Code of Conduct Control
+  crontabExample: 0 0 1,15 * *
+  measurementFrequency: 15d
+  samplingPeriod: 15d
+- id: GRC-04-M1
+  primaryControlId: GRC-04
+  relatedControlIds: AIS-07
+  metricDescription: This metric measures the effectiveness of the governance program's
+    exception handling process.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of active policy exceptions where the time to resolution
+        is within the documented timeline for resolution, during the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total number of active policy exceptions, during the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: An Exception Policy must be defined and must cover the entire lifecycle of
+    an exception. Active policy exceptions that happen during the sampling period
+    but which are not resolved yet are counted in B, not A.
+  sloRecommendations:
+  - sloRangeMin: 90%
+    sloPeriod: 30d
+  implementationGuidelines: This metric requires organizations to maintain records
+    of policy exceptions that include the approval date and resolution date for calculation
+    of mean time to resolution. The records could be as simple as entries in a spreadsheet
+    or as complex as records for exception tracking in a GRC or vulnerability management
+    system. This metric also requires organizations to define the threshold(s) for
+    acceptable resolution time(s). The definition could be as simple as a statement
+    in a policy document that applies to all exceptions, or individually-defined target
+    dates for resolution of each exception based on risk. In the case of the latter,
+    the requirements for setting the target resolution date(s) should be established
+    in a policy and the target date(s) will need to be tracked in the policy exception
+    records. For example if there is a ticketing system for remediation this tracks
+    if the close date for the ticket was met. If an org has very few exceptions then
+    slipping on even one will dramatically affect their percentage. This is inherent
+    in statistics and is not seen as a problem for now.
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: IAM-07-M1
+  primaryControlId: IAM-07
+  relatedControlIds:
+  - IAM-03
+  - IAM-06
+  - IAM-10
+  metricDescription: This metric measures the percentage of users leaving the organization
+    that were de-provisioned from the identity management system in compliance with
+    the identity and access management policies.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of terminated users deprovisioned within policy guidelines
+        during the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total number of terminated users during the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: The time lapse between a user's termination and account deactivation must
+    be measured in seconds. The time lapse between user's termination and account
+    deactivation = time stamp of account deactivation event - time stamp of employee
+    termination or role change event recorded in the HR system.
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+  implementationGuidelines: Steps to compute this may look like: 1. Account deactivation
+    timestamps can be obtained from the identity management system. 2. Employee termination
+    or change event timestamps can be obtained from the Human Capital Information
+    System (e.g. Workday). 3. Count of [(User De-Provisioning date - User Termination
+    Date) > Policy Duration)]/Total Number of Terminated Users for the period). This
+    metric only evaluates termination/deprovisioning events as an indicator of efficacy.
+    It does not measure job role change, which can be captured in IAM-08. The recommended
+    sampling period for this metric is monthly, but cloud service providers should
+    ensure the sampling period aligns and frequency of evaluation align with their
+    rate of change and risk tolerance.
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: IAM-08-M2
+  primaryControlId: IAM-08
+  relatedControlIds:
+  - IAM-03
+  - IAM-05
+  - IAM-06
+  - IAM-10
+  metricDescription: This metric measures the time elapsed since the last recertification
+    for all types of privileges (including user roles, group memberships, read/write/execute
+    permissions to files/databases/scripts/jobs, etc). The metric returns the longest
+    time identified. For example, if the longest time elapsed for a recertification
+    of a privilege is 95 days. The metric will return this number. The value returned
+    should not be greater than the frequency of privilege recertification or review
+    defined in the organization policies.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of accounts reviewed with correct access in the Last 90
+        Days
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total number of Accounts
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: Date of last Recertification is the date and time that a privilege was reviewed
+    and recertified in the most recent recertification. If a Date of last recertification
+    does not exist, this should be replaced with the Date a privilege was granted
+    or an account was created.
+  sloRecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 30d
+  implementationGuidelines: The identity management system or system used to automate
+    the account privilege recertification process (an example of this type of systems
+    is Identity IQ by SailPoint), should maintain timestamps of account creations,
+    privilege granting events (e.g. addition to user groups, granting of security
+    roles, etc). These timestamps can be used to calculate this metric. Orphaned accounts
+    (i.e. accounts that have not been terminated at the time of measurement in IAM-07)
+    should be captured by the User Access Review described in IAM-08. This captures
+    any problem in the process. For example, if a small number of accounts are reviewed then
+    the score is poor. Or, if a large number of accounts are reviewed and discovered
+    to be in error, then the score is poor. The measurement should be taken monthly to
+    align with IAM-07, even if recertifications occur on a different periodicity.
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: IAM-09-M1
+  primaryControlId: IAM-09
+  relatedControlIds:
+  - IAM-03
+  - IAM-05
+  - IAM-10
+  metricDescription: This metric measures the segregation of duties of non-production
+    staff having access to production roles and vice-versa.
+  expression:
+    formula: "((1-(A/B))*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of users with admin access to more than one of the following
+        capabilities; production data management, encryption and key management, or
+        logging
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+    - id: 
+      name: B
+      description: Number of users with access to production data management, encryption
+        and key management, or logging capabilities
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+  rules: Capabilities are privileged roles or functions. Examples of production data
+    management capabilities are the AmazonRDSFullAccess policy in AWS, the Cloud SQL
+    Admin & Cloud SQL Editor roles in the Google Cloud Platform (GCP), and db_owner
+    role for a Microsoft Azure SQL Database. Examples of encryption and key management
+    capabilities are the AWSKeyManagementServicePowerUser policy in AWS, Cloud KMS
+    Admin with Cloud KMS CryptoKey Encrypter/Decrypter roles in GCP, or Microsoft
+    Azure Key Vault Admin. Examples of logging capabilities are the AWSCloudTrail_FullAccess
+    policy in AWS, Monitoring Admin & Editor roles in GCP, or Monitoring Contributor
+    in Microsoft Azure.
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 1d
+  implementationGuidelines: 1. Identify privileged roles in an organization and map
+    to the roles identified in this metric. 2. Run the metric across all users with
+    privilege. In just-in-time (JIT) access capabilities, the audit should evaluate
+    the ability for a user to be provisioned the privilege, even if the individual
+    did not request the privilege during the measurement.
+  crontabExample: 0 0 * * *
+  measurementFrequency: 1d
+  samplingPeriod: 1d
+- id: IPY-03-M2
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Count of data flows that use an approved, standardized cryptographic
+        security function
+      unit: count
+      type: calculate
+      samplingPeriod: 1h
+    - id: 
+      name: B
+      description: Count of all data flows
+      unit: count
+      type: calculate
+      samplingPeriod: 1h
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99.99%
+    sloPeriod: 1h
+  implementationGuidelines: 
+  crontabExample: 0 * * * *
+  measurementFrequency: 1h
+  samplingPeriod: 1h
+- id: IVS-04-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of production assets that are in compliance with hardening
+        baseline
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+    - id: 
+      name: B
+      description: Total number of production assets
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99.99%
+    sloPeriod: 1d
+  implementationGuidelines: 
+  crontabExample: 0 0 * * *
+  measurementFrequency: 1d
+  samplingPeriod: 1d
+- id: LOG-03-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of Log Sources with Security Alerts configured
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+    - id: 
+      name: B
+      description: Total Number of Log Sources
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 1d
+  implementationGuidelines: 
+  crontabExample: 0 0 * * *
+  measurementFrequency: 1d
+  samplingPeriod: 1d
+- id: LOG-05-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of anomalies detected during the sampling period that were
+        reviewed and resolved within a timeframe that is in compliance with Policy
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+    - id: 
+      name: B
+      description: Total number of anomalies detected during the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 1d
+  implementationGuidelines: 
+  crontabExample: 0 0 * * *
+  measurementFrequency: 1d
+  samplingPeriod: 1d
+- id: LOG-10-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of metrics reported in the CCMv4 CEK domain
+      unit: count
+      type: calculate
+      samplingPeriod: 15d
+    - id: 
+      name: B
+      description: Total number of controls in the CCMv4 CEK domain
+      unit: count
+      type: calculate
+      samplingPeriod: 15d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 80%
+    sloPeriod: 15d
+  implementationGuidelines: 
+  crontabExample: 0 0 1,15 * *
+  measurementFrequency: 15d
+  samplingPeriod: 15d
+- id: LOG-13-M2
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of minutes of uptime during the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+    - id: 
+      name: B
+      description: Duration of the sampling period in minutes
+      unit: 
+      type: calculate
+      samplingPeriod: 1d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 1d
+  implementationGuidelines: 
+  crontabExample: 0 0 * * *
+  measurementFrequency: 1d
+  samplingPeriod: 1d
+- id: SEF-05-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of security events sourced from automated systems during
+        the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total number of security events that were recorded during the sampling
+        period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 90%
+    sloPeriod: 30d
+  implementationGuidelines: 
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: SEF-06-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of security events triaged within policy defined time limit,
+        during the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 7d
+    - id: 
+      name: B
+      description: Total number of security events Logged, during the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 7d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 7d
+  implementationGuidelines: 
+  crontabExample: 0 0 * * 0
+  measurementFrequency: 7d
+  samplingPeriod: 7d
+- id: SEF-06-M2
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: A*100
+    parameters:
+    - id: 
+      name: A
+      description: Slope of the linear regression for triage times over the sampling
+        period
+      unit: 
+      type: calculate
+      samplingPeriod: 30d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 
+    sloPeriod: 30d
+  implementationGuidelines: 
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: STA-07-M3
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Total number of third-party software components seen during the
+        sampling period, which are from authorized providers
+      unit: count
+      type: calculate
+      samplingPeriod: 15d
+    - id: 
+      name: B
+      description: Total number of third-party software components seen during the
+        sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 15d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99.9%
+    sloPeriod: 15d
+  implementationGuidelines: 
+  crontabExample: 0 0 1,15 * *
+  measurementFrequency: 15d
+  samplingPeriod: 15d
+- id: STA-07-M5
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Total number of unique providers with observed connections
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+    - id: 
+      name: B
+      description: Total Number of Unique Providers in the inventory
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 1d
+  implementationGuidelines: 
+  crontabExample: 0 0 * * *
+  measurementFrequency: 1d
+  samplingPeriod: 1d
+- id: TVM-03-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of high and critical vulnerabilities identified during the
+        sampling period and remediated within policy timeframes
+      unit: count
+      type: calculate
+      samplingPeriod: 7d
+    - id: 
+      name: B
+      description: Total Number of High and Critical Vulnerabilities identified during
+        the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 7d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 7d
+  implementationGuidelines: 
+  crontabExample: 0 0 * * 0
+  measurementFrequency: 7d
+  samplingPeriod: 7d
+- id: TVM-07-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of assets from the asset catalog scanned during the sampling
+        period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total number of assets in the asset catalog
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+  implementationGuidelines: 
+  crontabExample: 0 0 1 * *
+  samplingPeriod: 30d
+- id: TVM-10-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of high and critical vulnerabilities identified for remediation
+        within policy timeframes
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total Number of high and critical vulnerabilities identified or
+        carried over into the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 
+    sloPeriod: 30d
+  implementationGuidelines: 
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: UEM-04-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of endpoints that exist in both the audit log and asset
+        inventory
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: The total number of endpoints in the asset inventory
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 95%
+    sloPeriod: 30d
+  implementationGuidelines: 
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
+- id: UEM-05-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of unique endpoints with suitable policy enforcement tools
+        that reported compliance state within the sampling period
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+    - id: 
+      name: B
+      description: Total number of endpoints in the asset inventory
+      unit: count
+      type: calculate
+      samplingPeriod: 1d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 1d
+  implementationGuidelines: 
+  crontabExample: 0 0 * * *
+  measurementFrequency: 1d
+  samplingPeriod: 1d
+- id: UEM-09-M1
+  primaryControlId: 
+  relatedControlIds: 
+  metricDescription: 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Total number of managed endpoints for the workforce initiating
+        observed connections that passed a device check inclusive (e.g. verifying
+        malware protection)
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+    - id: 
+      name: B
+      description: Total number of managed endpoints for the workforce initiating
+        observed connections
+      unit: count
+      type: calculate
+      samplingPeriod: 30d
+  rules: 
+  sloRecommendations:
+  - sloRangeMin: 99%
+    sloPeriod: 30d
+  implementationGuidelines: 
+  crontabExample: 0 0 1 * *
+  measurementFrequency: 30d
+  samplingPeriod: 30d
