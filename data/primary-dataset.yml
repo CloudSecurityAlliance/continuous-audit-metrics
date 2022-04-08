@@ -21,33 +21,34 @@ metrics:
         Verification Step
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: prod_apps_deployed
       name: B
       description: Total number of pieces of Production Code
       unit: count
       type: calculate
-      samplingPeriod: 30d
-  rules: \"Production Code\" is code deployed to the production runtime environment(s)
+      samplingPeriod: P30D
+  rules: |
+    **Production Code** is code deployed to the production runtime environment(s)
     within the scope of the Information Security Program defined in the CCMv4 GRC-05
-    control objective. An \"Associated Verification Step\" is a capability in the
+    control objective. An **Associated Verification Step** is a capability in the
     deployment process that ties production code back to a build with traceable results
     for quality, security, and privacy tests.
   sloRecommendations:
-  - sloRangeMin: 95%
-    sloPeriod: 30d
+    sloRangeMin: 95%
+    sloPeriod: P30D
   implementationGuidelines: There must be a Software Inventory of Deployed Production
     Code (DCS-06).  Production code must be quantified based on the definition of
     deployed code running in production (e.g. microservices, builds, releases, packages,
     libraries, serverless functions, etc.). This should be the same number used to
-    measure AIS-07. The definition of \"deployed production code\" used for the software
+    measure AIS-07. The definition of **deployed production code** used for the software
     inventory should be aligned with application security scanning, testing, and/or
     reporting methods where possible to simplify measurement. The likelihood of standardized
     deployments can decrease as the number of different deployment systems increases.
     If the Software Deployment Pipeline has multiple stages where change could be
-    introduced, and end-to-end validation cannot be performed, then the metric \"Percentage
+    introduced, and end-to-end validation cannot be performed, then the metric **Percentage
     of steps in the Software Deployment Pipeline that have an associated verification
-    step\" may be more suitable for an organization. There should be a mechanism to
+    step** may be more suitable for an organization. There should be a mechanism to
     identify deviations, and if deviations from the standard are approved, then the
     system should account for (and manage) the exception as approved. This metric
     should at least be aligned with an organization's development or release cycle
@@ -57,7 +58,7 @@ metrics:
     data for review at sprint retros.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: AIS-07-M3
   primaryControlId: AIS-07
   relatedControlIds:
@@ -76,13 +77,13 @@ metrics:
         of risk from application security vulnerabilities
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: prod_apps_deployed
       name: B
       description: Total Number of deployed production applications
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 'Production Application = Applications tracked within the software inventory
     established in CCMv4 DCS-06. Acceptable level of risk from application security
     vulnerabilities:  Vulnerabilities categorized as medium or low risk as well as
@@ -91,8 +92,8 @@ metrics:
     positives or vulnerabilities with compensating controls that make the residual
     risk of exploitation acceptable.'
   sloRecommendations:
-  - sloRangeMin: 80%
-    sloPeriod: 30d
+    sloRangeMin: 80%
+    sloPeriod: P30D
   implementationGuidelines: There must be a Software Inventory of Deployed Production
     Code (see DCS-06 for more info). Production code must be quantified based on the
     organization's definition of deployed code running in production (e.g. microservices,
@@ -110,7 +111,7 @@ metrics:
     between 7 and 9 could be defined as High risk.)
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: AIS-07-M6
   primaryControlId: AIS-07
   relatedControlIds:
@@ -128,14 +129,14 @@ metrics:
         applications with an age greater than the policy defined maximum age
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: risky_vulns_in_prod_apps
       name: B
       description: Total number of critical or high vulnerabilities in production
         applications within this period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 'Production Application = Applications tracked within the software inventory
     established in CCMv4 DCS-06. Acceptable level of risk from application security
     vulnerabilities:  Vulnerabilities categorized as medium or low risk as well as
@@ -144,28 +145,22 @@ metrics:
     vulnerabilities with compensating controls that make the residual risk of exploitation
     acceptable.'
   sloRecommendations:
-  - sloRangeMin: 
-    sloPeriod: 30d
-  implementationGuidelines: '1. Classification of vulnerabilities as High or Critical
-    risk should be defined in the Vulnerability Management tool based on industry-accepted
-    scoring system such as the  Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss).
-    For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and  vulnerabilities
-    with CVSS scores between 7 and 9 could be defined as High risk. 2. Date and time
-    of vulnerability discovery could be obtained from the Vulnerability  Management
-    tool as it scans and detects vulnerabilities. 3. Date and time of vulnerability
-    remediation or acceptance could be obtained in the following ways: a) From  the
-    Vulnerability Management tool as it scans and finds that a previously detected
-    vulnerability is no longer present/detected; b) From the patch deployment tool
-    (e.g. SCCM) as it successfully deploys and installs a patch that fixes an identified
-    vulnerability; c) From the application / code release tool as it moves into production
-    the new version of the application that no longer contains the code vulnerability.
-    Frequency of evaluation should be aligned with the frequency of vulnerability
-    scans. (Scans should happen at LEAST monthly, but more frequently is recommended).
-    Vulnerability scans can be done at a predefined frequency or whenever new code
-    is built, or deployed.'
+    sloRangeMin: 
+    sloPeriod: P30D
+  implementationGuidelines: |
+    1. Classification of vulnerabilities as High or Critical risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the  Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss). For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and  vulnerabilities with CVSS scores between 7 and 9 could be defined as High risk. 
+    2. Date and time of vulnerability discovery could be obtained from the Vulnerability  Management tool as it scans and detects vulnerabilities. 
+    3. Date and time of vulnerability remediation or acceptance could be obtained in the following ways: 
+      - From the Vulnerability Management tool as it scans and finds that a previously detected vulnerability is no longer present/detected; 
+      - From the patch deployment tool (e.g. SCCM) as it successfully deploys and installs a patch that fixes an identified vulnerability; 
+      - From the application / code release tool as it moves into production the new version of the application that no longer contains the code vulnerability.
+
+    Frequency of evaluation should be aligned with the frequency of vulnerability scans. (Scans should happen at LEAST monthly, but more frequently is recommended).
+
+    Vulnerability scans can be done at a predefined frequency or whenever new code is built, or deployed.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: BCR-06-M1
   primaryControlId: BCR-06
   relatedControlIds:
@@ -182,14 +177,14 @@ metrics:
         period
       unit: count
       type: calculate
-      samplingPeriod: 365d
+      samplingPeriod: P365D
     - id: critical_systems_count
       name: B
       description: Total number of critical systems operating during the sampling
         period
       unit: count
       type: calculate
-      samplingPeriod: 365d
+      samplingPeriod: P365D
   rules: Criteria for system criticality must be defined and there must be a list
     of critical systems identified. Recovery Point Objective(s) and Recovery Time
     Objective(s) must be defined for critical systems. This metric does not attempt
@@ -198,8 +193,8 @@ metrics:
     of sufficient RPOs and RTOs for critical systems. BCR testing intervals must be
     defined.
   sloRecommendations:
-  - sloRangeMin: 80%
-    sloPeriod: 365
+    sloRangeMin: 80%
+    sloPeriod: P365D
   implementationGuidelines: Critical systems should be identified in accordance with
     the CCMv4 implementation guidelines for BCR-02. For this metric, passed means
     achieving the RPO(s) within the RTO(s) defined for each critical system in the
@@ -212,7 +207,7 @@ metrics:
     in the system's capability to withstand turbulent and unexpected conditions.
   crontabExample: 0 0 1 1 *
   measurementFrequency: 365d
-  samplingPeriod: 365d
+  samplingPeriod: P365D
 - id: CCC-03-M1
   primaryControlId: CCC-03
   relatedControlIds:
@@ -227,18 +222,18 @@ metrics:
       description: Number of assets that have change management technology integrated
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: total_assets_count
       name: B
       description: Total number of assets
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: Change management technology covers release management tools that enable
     automated deployment and rollback of software builds in production.
   sloRecommendations:
-  - sloRangeMin: 80%
-    sloPeriod: 30d
+    sloRangeMin: 80%
+    sloPeriod: P30D
   implementationGuidelines: This metric requires the implementation of CCMv4 DCS-06
     Asset Cataloging and Tracking and the capability to determine which assets or
     asset groups are deployed using change management technology that can rollback
@@ -255,7 +250,7 @@ metrics:
     this excerpt of Andrew Jaquith's Security Metrics book.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: CCC-07-M1
   primaryControlId: CCC-07
   relatedControlIds:
@@ -271,19 +266,19 @@ metrics:
       description: Number of configuration items that were tested and passed successfully
       unit: count
       type: calculate
-      samplingPeriod: 7d
+      samplingPeriod: P7D
     - id: total_config_items
       name: B
       description: Total number of configuration items that were tested
       unit: count
       type: calculate
-      samplingPeriod: 7d
+      samplingPeriod: P7D
   rules: This metric captures the number of tests passed out of the total number of
     tests defined. Each test is assumed to verify a configuration item which is arbitrarily
     defined as any component for which a test can be defined.
   sloRecommendations:
-  - sloRangeMin: 95%
-    sloPeriod: 30d
+    sloRangeMin: 95%
+    sloPeriod: P30D
   implementationGuidelines: This metric assumes that CCC-03 has been successfully
     implemented and thus assumes that enough configuration items, at least in terms
     of number of CCMv4 DCS-06 assets, have change management technology to make this
@@ -301,7 +296,7 @@ metrics:
     measures the number of hardening tests against all assets.
   crontabExample: 0 0 * * 0
   measurementFrequency: 7d
-  samplingPeriod: 7d
+  samplingPeriod: P7D
 - id: CEK-03-M2
   primaryControlId: CEK-03
   relatedControlIds:
@@ -320,23 +315,23 @@ metrics:
         tests or equivalent tests
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: data_at_rest_in_transit_assets
       name: B
       description: Total number of assets responsible for data at-rest or in-transit
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 85%
-    sloPeriod: 30d
+    sloRangeMin: 85%
+    sloPeriod: P30D
   implementationGuidelines: 'This leverages asset management and off-the-shelf automated
     functionalities while allowing for flexibility against policy (which has previously
     passed CCMv4 CEK-01 audit).  See AVCP: https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing'
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: CEK-04-M1
   primaryControlId: CEK-04
   relatedControlIds:
@@ -352,17 +347,17 @@ metrics:
         requirements
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: total_crypto_assets
       name: B
       description: Total number of assets with a cryptographic function
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: The specification should be reported for all the adopted cryptographic suites.
   sloRecommendations:
-  - sloRangeMin: 90%
-    sloPeriod: 30d
+    sloRangeMin: 90%
+    sloPeriod: P30D
   implementationGuidelines: For a Minimum Viable Product, the scope of evaluation
     may be limited to public-facing services, in which case a scan of all externally
     facing assets should be made and the scanned values compared against the requirements
@@ -374,7 +369,7 @@ metrics:
     on the difference. CCMv4 IPY-03 covers a subset of this measurement.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: DCS-06-M1
   primaryControlId: DCS-06
   relatedControlIds:
@@ -391,19 +386,19 @@ metrics:
         sampling period that are in an asset catalog
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
     - id: 
       name: B
       description: Number of distinct assets seen in security audit logs during the
         sampling period
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
   rules: The assumption is that the design of the DCS-06 control process(es) was found
     to be effective by internal or external audits.
   sloRecommendations:
-  - sloRangeMin: 95%
-    sloPeriod: 1d
+    sloRangeMin: 95%
+    sloPeriod: P1D
   implementationGuidelines: This relies on the security audit logs as defined in
     CCMv4 LOG-05 and the asset catalog defined in CCMv4 DCS-06. This assumes LOG-05
     is inclusive of logs of a number of  events such as network traffic, network scanning,
@@ -422,7 +417,7 @@ metrics:
     the  organization is responsible for the controls.
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
-  samplingPeriod: 1d
+  samplingPeriod: P1D
 - id: DSP-04-M2
   primaryControlId: DSP-04
   relatedControlIds:
@@ -443,13 +438,13 @@ metrics:
       description: Total number of data records classified by type and/or sensitivity
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total number of data records stored
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: Total number of records classified by type and/or sensitivity - this is a
     count of all data assets that have a defined classification by type or sensitivity
     level (Undefined classifications are not counted for this variable). Total number
@@ -457,8 +452,8 @@ metrics:
     and are stored in the system such as DSP-03. This metric measures data in terms
     of distinct data records, not distinct data types.
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 30d
+    sloRangeMin: 99%
+    sloPeriod: P30D
   implementationGuidelines: All data records must have corresponding metadata related
     to its data type and / or sensitivity. A defined list of data types and sensitivity
     levels must be defined. Records that do not meet any of the data classification
@@ -488,21 +483,21 @@ metrics:
         by type and/or sensitivity of the data on that asset
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total number of assets in the organization's asset catalog
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: Total number of assets classified by type and/or sensitivity of the data
     contained on the asset - this is a count of all assets that have a defined classification
     by type or sensitivity level (Undefined classifications are not counted for this
     variable). Total number of assets - this is a count of all assets that have been
     collected and are stored in the system such as DSC-06.
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 30d
+    sloRangeMin: 99%
+    sloPeriod: P30D
   implementationGuidelines: All asset records must have corresponding metadata related
     to the type and / or sensitivity of data stored on the asset. A defined list of
     data types and sensitivity levels must be defined. Assets that do not contain
@@ -510,7 +505,7 @@ metrics:
     data classification and are not considered as classified for this metric.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: DSP-05-M1
   primaryControlId: DSP-05
   relatedControlIds:
@@ -529,14 +524,14 @@ metrics:
         correctly included in the data flow documentation
       unit: count
       type: calculate
-      samplingPeriod: 15d
+      samplingPeriod: P15D
     - id: 
       name: B
       description: Total number of data records or data stores in the CCMv4 DSP-03
         inventory
       unit: count
       type: calculate
-      samplingPeriod: 15d
+      samplingPeriod: P15D
   rules: 'This metric can be measured by counting the number of records in a data
     store or by simply counting the data stores themselves. CORRECTLY INCLUDED means
     that the data record or data store is represented in the data flow documentation
@@ -547,8 +542,8 @@ metrics:
     at least for any sensitive data and personal data. The CCMv4 DSP-04 control objective
     is to Classify data according to its type and sensitivity level.'
   sloRecommendations:
-  - sloRangeMin: 80%
-    sloPeriod: 15d
+    sloRangeMin: 80%
+    sloPeriod: P15D
   implementationGuidelines: This metric supports an incomplete DSP-03 inventory so
     long as it is a statistically significant random sampling of at least any sensitive
     data and personal data (e.g. meets the DSP-03 control language objective). This
@@ -565,7 +560,7 @@ metrics:
     Code of Conduct Control
   crontabExample: 0 0 1,15 * *
   measurementFrequency: 15d
-  samplingPeriod: 15d
+  samplingPeriod: P15D
 - id: DSP-05-M2
   primaryControlId: DSP-05
   relatedControlIds: 
@@ -584,20 +579,20 @@ metrics:
         included in the data flow documentation
       unit: count
       type: calculate
-      samplingPeriod: 15d
+      samplingPeriod: P15D
     - id: 
       name: B
       description: Total number of data streams in the CCMv4 DSP-03 inventory
       unit: count
       type: calculate
-      samplingPeriod: 15d
+      samplingPeriod: P15D
   rules: Data streams are the connections from data sources to data consumers illustrated
     in data flow diagrams. These connections should be included in the data inventory
     required by control DSP-03 (CCMv4). This may be a complete inventory of all data
     streams or a reasonable sample of data streams.
   sloRecommendations:
-  - sloRangeMin: 80%
-    sloPeriod: 15d
+    sloRangeMin: 80%
+    sloPeriod: P15D
   implementationGuidelines: This metric supports an incomplete inventory of data streams
     so long as it is a reasonable sampling of streams for at least any sensitive data
     and personal data (e.g. is intended to measure flows of data of the types that
@@ -610,10 +605,11 @@ metrics:
     by CSA GDPR Code of Conduct Control
   crontabExample: 0 0 1,15 * *
   measurementFrequency: 15d
-  samplingPeriod: 15d
+  samplingPeriod: P15D
 - id: GRC-04-M1
   primaryControlId: GRC-04
-  relatedControlIds: AIS-07
+  relatedControlIds: 
+    - AIS-07
   metricDescription: This metric measures the effectiveness of the governance program's
     exception handling process.
   expression:
@@ -625,19 +621,19 @@ metrics:
         is within the documented timeline for resolution, during the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total number of active policy exceptions, during the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: An Exception Policy must be defined and must cover the entire lifecycle of
     an exception. Active policy exceptions that happen during the sampling period
     but which are not resolved yet are counted in B, not A.
   sloRecommendations:
-  - sloRangeMin: 90%
-    sloPeriod: 30d
+    sloRangeMin: 90%
+    sloPeriod: P30D
   implementationGuidelines: This metric requires organizations to maintain records
     of policy exceptions that include the approval date and resolution date for calculation
     of mean time to resolution. The records could be as simple as entries in a spreadsheet
@@ -654,7 +650,7 @@ metrics:
     in statistics and is not seen as a problem for now.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: IAM-07-M1
   primaryControlId: IAM-07
   relatedControlIds:
@@ -673,33 +669,29 @@ metrics:
         during the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total number of terminated users during the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: The time lapse between a user's termination and account deactivation must
     be measured in seconds. The time lapse between user's termination and account
     deactivation = time stamp of account deactivation event - time stamp of employee
     termination or role change event recorded in the HR system.
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 30d
-  implementationGuidelines: Steps to compute this may look like: 1. Account deactivation
-    timestamps can be obtained from the identity management system. 2. Employee termination
-    or change event timestamps can be obtained from the Human Capital Information
-    System (e.g. Workday). 3. Count of [(User De-Provisioning date - User Termination
-    Date) > Policy Duration)]/Total Number of Terminated Users for the period). This
-    metric only evaluates termination/deprovisioning events as an indicator of efficacy.
-    It does not measure job role change, which can be captured in IAM-08. The recommended
-    sampling period for this metric is monthly, but cloud service providers should
-    ensure the sampling period aligns and frequency of evaluation align with their
-    rate of change and risk tolerance.
+    sloRangeMin: 99%
+    sloPeriod: P30D
+  implementationGuidelines: >-
+    Steps to compute this may look like: 
+
+      1. Account deactivation timestamps can be obtained from the identity management system. 
+      2. Employee termination or change event timestamps can be obtained from the Human Capital Information System (e.g. Workday). 
+      3. Count of [(User De-Provisioning date - User Termination Date) > Policy Duration)]/Total Number of Terminated Users for the period). This metric only evaluates termination/deprovisioning events as an indicator of efficacy. It does not measure job role change, which can be captured in IAM-08. The recommended sampling period for this metric is monthly, but cloud service providers should ensure the sampling period aligns and frequency of evaluation align with their rate of change and risk tolerance.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: IAM-08-M2
   primaryControlId: IAM-08
   relatedControlIds:
@@ -723,20 +715,20 @@ metrics:
         Days
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total number of Accounts
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: Date of last Recertification is the date and time that a privilege was reviewed
     and recertified in the most recent recertification. If a Date of last recertification
     does not exist, this should be replaced with the Date a privilege was granted
     or an account was created.
   sloRecommendations:
-  - sloRangeMin: 95%
-    sloPeriod: 30d
+    sloRangeMin: 95%
+    sloPeriod: P30D
   implementationGuidelines: The identity management system or system used to automate
     the account privilege recertification process (an example of this type of systems
     is Identity IQ by SailPoint), should maintain timestamps of account creations,
@@ -750,7 +742,7 @@ metrics:
     align with IAM-07, even if recertifications occur on a different periodicity.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: IAM-09-M1
   primaryControlId: IAM-09
   relatedControlIds:
@@ -769,14 +761,14 @@ metrics:
         logging
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
     - id: 
       name: B
       description: Number of users with access to production data management, encryption
         and key management, or logging capabilities
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
   rules: Capabilities are privileged roles or functions. Examples of production data
     management capabilities are the AmazonRDSFullAccess policy in AWS, the Cloud SQL
     Admin & Cloud SQL Editor roles in the Google Cloud Platform (GCP), and db_owner
@@ -787,8 +779,8 @@ metrics:
     policy in AWS, Monitoring Admin & Editor roles in GCP, or Monitoring Contributor
     in Microsoft Azure.
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 1d
+    sloRangeMin: 99%
+    sloPeriod: P1D
   implementationGuidelines: 1. Identify privileged roles in an organization and map
     to the roles identified in this metric. 2. Run the metric across all users with
     privilege. In just-in-time (JIT) access capabilities, the audit should evaluate
@@ -796,7 +788,7 @@ metrics:
     did not request the privilege during the measurement.
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
-  samplingPeriod: 1d
+  samplingPeriod: P1D
 - id: IPY-03-M2
   primaryControlId: 
   relatedControlIds: 
@@ -810,21 +802,21 @@ metrics:
         security function
       unit: count
       type: calculate
-      samplingPeriod: 1h
+      samplingPeriod: PT1H
     - id: 
       name: B
       description: Count of all data flows
       unit: count
       type: calculate
-      samplingPeriod: 1h
+      samplingPeriod: PT1H
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99.99%
-    sloPeriod: 1h
+    sloRangeMin: 99.99%
+    sloPeriod: PT1H
   implementationGuidelines: 
   crontabExample: 0 * * * *
   measurementFrequency: 1h
-  samplingPeriod: 1h
+  samplingPeriod: PT1H
 - id: IVS-04-M1
   primaryControlId: 
   relatedControlIds: 
@@ -838,21 +830,21 @@ metrics:
         baseline
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
     - id: 
       name: B
       description: Total number of production assets
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99.99%
-    sloPeriod: 1d
+    sloRangeMin: 99.99%
+    sloPeriod: P1D
   implementationGuidelines: 
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
-  samplingPeriod: 1d
+  samplingPeriod: P1D
 - id: LOG-03-M1
   primaryControlId: 
   relatedControlIds: 
@@ -865,21 +857,21 @@ metrics:
       description: Number of Log Sources with Security Alerts configured
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
     - id: 
       name: B
       description: Total Number of Log Sources
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 95%
-    sloPeriod: 1d
+    sloRangeMin: 95%
+    sloPeriod: P1D
   implementationGuidelines: 
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
-  samplingPeriod: 1d
+  samplingPeriod: P1D
 - id: LOG-05-M1
   primaryControlId: 
   relatedControlIds: 
@@ -893,21 +885,21 @@ metrics:
         reviewed and resolved within a timeframe that is in compliance with Policy
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
     - id: 
       name: B
       description: Total number of anomalies detected during the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 95%
-    sloPeriod: 1d
+    sloRangeMin: 95%
+    sloPeriod: P1D
   implementationGuidelines: 
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
-  samplingPeriod: 1d
+  samplingPeriod: P1D
 - id: LOG-10-M1
   primaryControlId: 
   relatedControlIds: 
@@ -920,21 +912,21 @@ metrics:
       description: Number of metrics reported in the CCMv4 CEK domain
       unit: count
       type: calculate
-      samplingPeriod: 15d
+      samplingPeriod: P15D
     - id: 
       name: B
       description: Total number of controls in the CCMv4 CEK domain
       unit: count
       type: calculate
-      samplingPeriod: 15d
+      samplingPeriod: P15D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 80%
-    sloPeriod: 15d
+    sloRangeMin: 80%
+    sloPeriod: P15D
   implementationGuidelines: 
   crontabExample: 0 0 1,15 * *
   measurementFrequency: 15d
-  samplingPeriod: 15d
+  samplingPeriod: P15D
 - id: LOG-13-M2
   primaryControlId: 
   relatedControlIds: 
@@ -947,21 +939,21 @@ metrics:
       description: Number of minutes of uptime during the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
     - id: 
       name: B
       description: Duration of the sampling period in minutes
       unit: 
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 1d
+    sloRangeMin: 99%
+    sloPeriod: P1D
   implementationGuidelines: 
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
-  samplingPeriod: 1d
+  samplingPeriod: P1D
 - id: SEF-05-M1
   primaryControlId: 
   relatedControlIds: 
@@ -975,22 +967,22 @@ metrics:
         the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total number of security events that were recorded during the sampling
         period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 90%
-    sloPeriod: 30d
+    sloRangeMin: 90%
+    sloPeriod: P30D
   implementationGuidelines: 
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: SEF-06-M1
   primaryControlId: 
   relatedControlIds: 
@@ -1004,21 +996,21 @@ metrics:
         during the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 7d
+      samplingPeriod: P7D
     - id: 
       name: B
       description: Total number of security events Logged, during the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 7d
+      samplingPeriod: P7D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 7d
+    sloRangeMin: 99%
+    sloPeriod: P7D
   implementationGuidelines: 
   crontabExample: 0 0 * * 0
   measurementFrequency: 7d
-  samplingPeriod: 7d
+  samplingPeriod: P7D
 - id: SEF-06-M2
   primaryControlId: 
   relatedControlIds: 
@@ -1032,15 +1024,15 @@ metrics:
         period
       unit: 
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 
-    sloPeriod: 30d
+    sloRangeMin: 
+    sloPeriod: P30D
   implementationGuidelines: 
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: STA-07-M3
   primaryControlId: 
   relatedControlIds: 
@@ -1054,22 +1046,22 @@ metrics:
         sampling period, which are from authorized providers
       unit: count
       type: calculate
-      samplingPeriod: 15d
+      samplingPeriod: P15D
     - id: 
       name: B
       description: Total number of third-party software components seen during the
         sampling period
       unit: count
       type: calculate
-      samplingPeriod: 15d
+      samplingPeriod: P15D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99.9%
-    sloPeriod: 15d
+    sloRangeMin: 99.9%
+    sloPeriod: P15D
   implementationGuidelines: 
   crontabExample: 0 0 1,15 * *
   measurementFrequency: 15d
-  samplingPeriod: 15d
+  samplingPeriod: P15D
 - id: STA-07-M5
   primaryControlId: 
   relatedControlIds: 
@@ -1082,21 +1074,21 @@ metrics:
       description: Total number of unique providers with observed connections
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
     - id: 
       name: B
       description: Total Number of Unique Providers in the inventory
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 1d
+    sloRangeMin: 99%
+    sloPeriod: P1D
   implementationGuidelines: 
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
-  samplingPeriod: 1d
+  samplingPeriod: P1D
 - id: TVM-03-M1
   primaryControlId: 
   relatedControlIds: 
@@ -1110,22 +1102,22 @@ metrics:
         sampling period and remediated within policy timeframes
       unit: count
       type: calculate
-      samplingPeriod: 7d
+      samplingPeriod: P7D
     - id: 
       name: B
       description: Total Number of High and Critical Vulnerabilities identified during
         the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 7d
+      samplingPeriod: P7D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 7d
+    sloRangeMin: 99%
+    sloPeriod: P7D
   implementationGuidelines: 
   crontabExample: 0 0 * * 0
   measurementFrequency: 7d
-  samplingPeriod: 7d
+  samplingPeriod: P7D
 - id: TVM-07-M1
   primaryControlId: 
   relatedControlIds: 
@@ -1139,20 +1131,20 @@ metrics:
         period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total number of assets in the asset catalog
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 30d
+    sloRangeMin: 99%
+    sloPeriod: P30D
   implementationGuidelines: 
   crontabExample: 0 0 1 * *
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: TVM-10-M1
   primaryControlId: 
   relatedControlIds: 
@@ -1166,22 +1158,22 @@ metrics:
         within policy timeframes
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total Number of high and critical vulnerabilities identified or
         carried over into the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 
-    sloPeriod: 30d
+    sloRangeMin: 
+    sloPeriod: P30D
   implementationGuidelines: 
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: UEM-04-M1
   primaryControlId: 
   relatedControlIds: 
@@ -1195,21 +1187,21 @@ metrics:
         inventory
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: The total number of endpoints in the asset inventory
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 95%
-    sloPeriod: 30d
+    sloRangeMin: 95%
+    sloPeriod: P30D
   implementationGuidelines: 
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D
 - id: UEM-05-M1
   primaryControlId: 
   relatedControlIds: 
@@ -1223,21 +1215,21 @@ metrics:
         that reported compliance state within the sampling period
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
     - id: 
       name: B
       description: Total number of endpoints in the asset inventory
       unit: count
       type: calculate
-      samplingPeriod: 1d
+      samplingPeriod: P1D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 1d
+    sloRangeMin: 99%
+    sloPeriod: P1D
   implementationGuidelines: 
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
-  samplingPeriod: 1d
+  samplingPeriod: P1D
 - id: UEM-09-M1
   primaryControlId: 
   relatedControlIds: 
@@ -1252,19 +1244,19 @@ metrics:
         malware protection)
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
     - id: 
       name: B
       description: Total number of managed endpoints for the workforce initiating
         observed connections
       unit: count
       type: calculate
-      samplingPeriod: 30d
+      samplingPeriod: P30D
   rules: 
   sloRecommendations:
-  - sloRangeMin: 99%
-    sloPeriod: 30d
+    sloRangeMin: 99%
+    sloPeriod: P30D
   implementationGuidelines: 
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
-  samplingPeriod: 30d
+  samplingPeriod: P30D

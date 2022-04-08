@@ -1,6 +1,8 @@
 # continuous-audit-metrics
 
-Continuous Audit Metrics
+This repository contains the YAML definition of the CSA's Continuous Audit Metrics catalog in `data/primary-dataset.yml`.
+
+An HTML preview of the current state of this catalog is available [here](http://htmlpreview.github.io/?https://github.com/cloudsecurityalliance/continuous-audit-metrics/blob/main/metrics-catalog.html).
 
 # Licensing
 
