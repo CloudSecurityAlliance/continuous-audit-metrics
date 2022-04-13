@@ -781,9 +781,9 @@ metrics:
   sloRecommendations:
     sloRangeMin: 99%
     sloPeriod: P1D
-  implementationGuidelines: 1. Identify privileged roles in an organization and map
-    to the roles identified in this metric. 2. Run the metric across all users with
-    privilege. In just-in-time (JIT) access capabilities, the audit should evaluate
+  implementationGuidelines: |
+    1. Identify privileged roles in an organization and map to the roles identified in this metric. 
+    2. Run the metric across all users with privilege. In just-in-time (JIT) access capabilities, the audit should evaluate
     the ability for a user to be provisioned the privilege, even if the individual
     did not request the privilege during the measurement.
   crontabExample: 0 0 * * *
@@ -875,7 +875,8 @@ metrics:
   sloRecommendations:
     sloRangeMin: 95%
     sloPeriod: P1D
-  implementationGuidelines: This metric measures alerts based on items of interest occuring within a log. This metric requires CSPs to have an inventory of log sources or inputs for their logging pipeline(s) and the ability to determine a unique count of those log sources or inputs to the logging pipeline with anomaly detection or security alerts configured for them. An example implementation may look like this: Logs -> Log Analytics Engine -> Log Alerts Engine -> SIEM/ITSM.
+  implementationGuidelines: |
+    This metric measures alerts based on items of interest occuring within a log. This metric requires CSPs to have an inventory of log sources or inputs for their logging pipeline(s) and the ability to determine a unique count of those log sources or inputs to the logging pipeline with anomaly detection or security alerts configured for them. An example implementation may look like this: Logs -> Log Analytics Engine -> Log Alerts Engine -> SIEM/ITSM.
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
   samplingPeriod: P1D
@@ -905,7 +906,8 @@ metrics:
   sloRecommendations:
     sloRangeMin: 95%
     sloPeriod: P1D
-  implementationGuidelines: Activity *outside of typical or expected patterns* is something for the CSP to define. A common mechanism is to use Indicators of Compromise to detect anomalies, for example: https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_muftrcpnf89v. If no anomalous events are detected during the sample period, the resulting metric (a divide by zero error) is not included in the metrics reported.
+  implementationGuidelines: | 
+    Activity *outside of typical or expected patterns* is something for the CSP to define. A common mechanism is to use Indicators of Compromise to detect anomalies, for example: https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_muftrcpnf89v. If no anomalous events are detected during the sample period, the resulting metric (a divide by zero error) is not included in the metrics reported.
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
   samplingPeriod: P1D
@@ -977,19 +979,20 @@ metrics:
       unit: 
       type: calculate
       samplingPeriod: P1D
-  rules: 
-  Uptime = (total number of minutes in the sampling period - downtime in minutes during the sampling period)
-  Downtime = any minute where health checks for any component of the monitoring system failed
+  rules: | 
+    Uptime = (total number of minutes in the sampling period - downtime in minutes during the sampling period)
+    Downtime = any minute where health checks for any component of the monitoring system failed
   sloRecommendations:
     sloRangeMin: 99%
     sloPeriod: P1D
-  implementationGuidelines: *Minutes* provides sufficient granularity to measure uptime up to a target of 5 9s. It should be noted though that the recommended frequency of evaluation is daily rather than yearly and therefore five nines score during any particular day can not be extrapolated as a yearly uptime. This reflects the objective of measuring and reporting on potential failures of the monitoring system for *immediate* notification at least daily. 
+  implementationGuidelines: |
+    *Minutes* provides sufficient granularity to measure uptime up to a target of 5 9s. It should be noted though that the recommended frequency of evaluation is daily rather than yearly and therefore five nines score during any particular day can not be extrapolated as a yearly uptime. This reflects the objective of measuring and reporting on potential failures of the monitoring system for *immediate* notification at least daily. 
 
-To determine if a system is *up* a health check is expected. This metric does not mandate a specific healthcheck. Many uptime monitoring solutions exist that can be used as implementation examples or as services. A recommended level of health check is one that tests the functionality of the monitoring system during the minute of the test. For example a simple TCP/IP ping measures *uptime* but is insufficient to measure the availability of the functionality of a monitoring system. Testing that log entries are being persistently recorded during that minute is a more accurate measure of uptime availability. 
+    To determine if a system is *up* a health check is expected. This metric does not mandate a specific healthcheck. Many uptime monitoring solutions exist that can be used as implementation examples or as services. A recommended level of health check is one that tests the functionality of the monitoring system during the minute of the test. For example a simple TCP/IP ping measures *uptime* but is insufficient to measure the availability of the functionality of a monitoring system. Testing that log entries are being persistently recorded during that minute is a more accurate measure of uptime availability. 
 
-The LOG-03 monitoring and alerting objective can reasonably be met by deploying multiple monitoring and alerting systems that are responsible for different areas of a complex environment. If multiple independent monitoring systems are deployed and only one fails a health check during any given minute is the system as a whole *up* or *down* during that minute? For the purpose of this metric, if any monitoring and alerting system fails a health check during a minute then the system as a whole is considered to be *down* during that minute. This is simplistic and easy and accurately captures the increased complexity of running multiple monitoring systems.
+    The LOG-03 monitoring and alerting objective can reasonably be met by deploying multiple monitoring and alerting systems that are responsible for different areas of a complex environment. If multiple independent monitoring systems are deployed and only one fails a health check during any given minute is the system as a whole *up* or *down* during that minute? For the purpose of this metric, if any monitoring and alerting system fails a health check during a minute then the system as a whole is considered to be *down* during that minute. This is simplistic and easy and accurately captures the increased complexity of running multiple monitoring systems.
 
-This simplification does not support considerations like, ""this subset monitoring and alerting system only covers a small number of low risk elements of the infrastructure."" Future versions of this metric may include *coverage* or *risk* elements to the metric expression.
+    This simplification does not support considerations like, ""this subset monitoring and alerting system only covers a small number of low risk elements of the infrastructure."" Future versions of this metric may include *coverage* or *risk* elements to the metric expression.
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
   samplingPeriod: P1D
@@ -1018,9 +1021,10 @@ This simplification does not support considerations like, ""this subset monitori
   sloRecommendations:
     sloRangeMin: 90%
     sloPeriod: P30D
-  implementationGuidelines: Automated systems include logging and monitoring systems as well as systems that generate alerts for review, including threat intelligence systems.
+  implementationGuidelines: |
+    Automated systems include logging and monitoring systems as well as systems that generate alerts for review, including threat intelligence systems.
  
-Security events manually entered by individuals or organizations for triage are from *non-automated systems*, e.g. vulnerability disclosure emails, security event tickets created by staff or customers, etc.
+    Security events manually entered by individuals or organizations for triage are from *non-automated systems*, e.g. vulnerability disclosure emails, security event tickets created by staff or customers, etc.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: P30D
@@ -1076,13 +1080,14 @@ Security events manually entered by individuals or organizations for triage are 
   sloRecommendations:
     sloRangeMin: 
     sloPeriod: P30D
-  implementationGuidelines: Events occur and are classified as part of triage process. This can occur automatically and/or there can be manual triage steps. Once the event reaches its final categorization it is *triaged*. As long as this completes within the organizations target time period it is ""within the SLO.""
+  implementationGuidelines: |
+    Events occur and are classified as part of triage process. This can occur automatically and/or there can be manual triage steps. Once the event reaches its final categorization it is *triaged*. As long as this completes within the organizations target time period it is ""within the SLO.""
 
-The slope of time to triage indicates if the event triage process has improved, stayed the same, or increased (worsened).
+    The slope of time to triage indicates if the event triage process has improved, stayed the same, or increased (worsened).
 
-This metric does not capture if the triage time is within a specific policy target. It only captures that the organization has in fact defined, implemented, and has a process for evaluating their triage process. This meets the objective of the control.
+    This metric does not capture if the triage time is within a specific policy target. It only captures that the organization has in fact defined, implemented, and has a process for evaluating their triage process. This meets the objective of the control.
 
-This can be implemented in spreadsheets as the *SLOPE* function w/in formulas and charts (see Excel or Sheets). See for example https://support.google.com/docs/answer/3094048?hl=en.
+    This can be implemented in spreadsheets as the *SLOPE* function w/in formulas and charts (see Excel or Sheets). See for example https://support.google.com/docs/answer/3094048?hl=en.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: P30D
@@ -1113,7 +1118,8 @@ This can be implemented in spreadsheets as the *SLOPE* function w/in formulas an
   sloRecommendations:
     sloRangeMin: 99.9%
     sloPeriod: P15D
-  implementationGuidelines: A software component is a discrete unit of software, such as a library or package, with uniquely identifiable attributes such as would be supplied in a Software Bill of Materials (SBOM). A simplistic approach is to track all software libraries and ensure they are in the inventory of approved libraries. One could track by using the vendor supplied SBOM or by scanning the software components directly. The implementer should have sufficient context in the STA-07 inventory to determine if a listed component library is approved, not-approved, or unknown (e.g. new and must be evaluated). A more granular approach is to use context to determine if the software should be running on this particular asset. For example: Bastion (jumphost) software or libraries may be approved for use on a hardened bastion asset but may not be appropriate for a non-hardened asset. The use of ""seen"" allows for sampling. There is nothing currently exposed in the metric to expose how statistically significant the sampling was. It is assumed that an initial audit confirmed significant sampling was used.
+  implementationGuidelines: |
+    A software component is a discrete unit of software, such as a library or package, with uniquely identifiable attributes such as would be supplied in a Software Bill of Materials (SBOM). A simplistic approach is to track all software libraries and ensure they are in the inventory of approved libraries. One could track by using the vendor supplied SBOM or by scanning the software components directly. The implementer should have sufficient context in the STA-07 inventory to determine if a listed component library is approved, not-approved, or unknown (e.g. new and must be evaluated). A more granular approach is to use context to determine if the software should be running on this particular asset. For example: Bastion (jumphost) software or libraries may be approved for use on a hardened bastion asset but may not be appropriate for a non-hardened asset. The use of ""seen"" allows for sampling. There is nothing currently exposed in the metric to expose how statistically significant the sampling was. It is assumed that an initial audit confirmed significant sampling was used.
   crontabExample: 0 0 1,15 * *
   measurementFrequency: 15d
   samplingPeriod: P15D
@@ -1148,7 +1154,8 @@ This can be implemented in spreadsheets as the *SLOPE* function w/in formulas an
   samplingPeriod: P1D
 - id: TVM-03-M1
   primaryControlId: TVM-03
-  relatedControlIds: TVM-08
+  relatedControlIds: 
+    - TVM-08
   metricDescription: This metric measures the percentage of high and critical vulnerabilities that are remediated within the policy timeframes. This reflects the time between when a vulnerability is identified and when remediation is complete.
   expression:
     formula: "(A/B)*100"
@@ -1171,35 +1178,36 @@ This can be implemented in spreadsheets as the *SLOPE* function w/in formulas an
   sloRecommendations:
     sloRangeMin: 99%
     sloPeriod: P7D
-  implementationGuidelines: **To compute the denominator** - The *Total Number of High and Critical Vulnerabilities* are any such vulnerabilities that are still open from previous periods plus all such newly identified during the current sample period.  A minimal example framework for vulnerability prioritization is CVSS v.3.0 where *High* and *Critical* are defined as 7.0 and above.
+  implementationGuidelines: |
+    **To compute the denominator** - The *Total Number of High and Critical Vulnerabilities* are any such vulnerabilities that are still open from previous periods plus all such newly identified during the current sample period.  A minimal example framework for vulnerability prioritization is CVSS v.3.0 where *High* and *Critical* are defined as 7.0 and above.
 
-**To compute the numerator...**
-a) Fetch all Critical or High vulnerabilities newly identified during the current period
-b) Fetch all Critical or High vulnerabilities that are still Open (not Closed) from the previous period
+    **To compute the numerator...**
+    - Fetch all Critical or High vulnerabilities newly identified during the current period
+    - Fetch all Critical or High vulnerabilities that are still Open (not Closed) from the previous period
 
-For example, assume the following data sets for three example weekly periods...
+    For example, assume the following data sets for three example weekly periods...
 
-*Example period 1 is April 25 - May 01*
-(a) Number of Critical + High Vulnerabilities Created during the period = 10
-(b) Number of Critical + High Vulnerabilities still Open from previous periods *(as of the beginning of the current period-04/25)* = 3
-(c) Number of Critical + High Vulnerabilities Closed during the period within Policy = 8
-(d) Total Number of Critical + High Vulnerabilities Closed = 8
+    *Example period 1 is April 25 - May 01*
+    - Number of Critical + High Vulnerabilities Created during the period = 10
+    - Number of Critical + High Vulnerabilities still Open from previous periods *(as of the beginning of the current period-04/25)* = 3
+    - Number of Critical + High Vulnerabilities Closed during the period within Policy = 8
+    - Total Number of Critical + High Vulnerabilities Closed = 8
 
-*Example period 2 is 05/02-05/08* 
-(e) Number of Critical + High Vulnerabilities Created during the period = 15
-(f) Number of Critical + High Vulnerabilities still Open from previous period (as of the beginning of the current period - May 02) = 5 *(e.g. a+b-d, but in an actual implementation this is possibly determined with a database query)*
-(g) Number of Critical + High Vulnerabilities Closed during the period within Policy = 14
-(h) Total Number of Critical + High Vulnerabilities Closed = 20
+    *Example period 2 is 05/02-05/08* 
+    - Number of Critical + High Vulnerabilities Created during the period = 15
+    - Number of Critical + High Vulnerabilities still Open from previous period (as of the beginning of the current period - May 02) = 5 *(e.g. a+b-d, but in an actual implementation this is possibly determined with a database query)*
+    - Number of Critical + High Vulnerabilities Closed during the period within Policy = 14
+    - Total Number of Critical + High Vulnerabilities Closed = 20
 
-Metric for the period 05/02-05/08 is Numerator = (g)/[(e) + (f)] = 14/(15+5) = 70%
+    Metric for the period 05/02-05/08 is Numerator = (g)/[(e) + (f)] = 14/(15+5) = 70%
 
-*Example period 3 is May 09 - May 15*
-(i) Number of Critical + High Vulnerabilities Created during the period = 5
-(j) Number of Critical + High Vulnerabilities still Open from previous periods *(as of the beginning of the current period-05/02)* = 0 (e+f-h)
-(k) Number of Critical + High Vulnerabilities Closed during the period within Policy = 4
-(l) Total Number of Critical + High Vulnerabilities Closed = 4
+    *Example period 3 is May 09 - May 15*
+    - Number of Critical + High Vulnerabilities Created during the period = 5
+    - Number of Critical + High Vulnerabilities still Open from previous periods *(as of the beginning of the current period-05/02)* = 0 (e+f-h)
+    - Number of Critical + High Vulnerabilities Closed during the period within Policy = 4
+    - Total Number of Critical + High Vulnerabilities Closed = 4
 
-Metric for the period May 09 - May 15 is Numerator = (k)/[(i) + (j)] = 4/(5+0) = 80%
+    Metric for the period May 09 - May 15 is Numerator = (k)/[(i) + (j)] = 4/(5+0) = 80%
   crontabExample: 0 0 * * 0
   measurementFrequency: 7d
   samplingPeriod: P7D
@@ -1255,35 +1263,35 @@ Metric for the period May 09 - May 15 is Numerator = (k)/[(i) + (j)] = 4/(5+0) =
       unit: count
       type: calculate
       samplingPeriod: P30D
-  rules: To compute the NUMERATOR, determine the Total Number of Critical and High Vulnerabilities that have been identified for remediation per TVM-01 policies and procedures. In order to compute the metric, use the following logic in these rules.
-For each Critical or High Vulnerability that were Identified during the period, or carried forward from the previous period...
-a) Check the Vulnerability Publish Date. Is this date < the date on which the Asset was commissioned. If so, use the Asset Commission Date as the *from date*. If not, then use the Vulnerability Publish Date as the *from date*.
-b) Subtract the Vulnerability Identification Date from the *from date*. The Identification Date is the date that your organization has acknowledged the vulnerability to be acted upon (e.g. this may be a the ticket create date on Jira for the given vulnerability)
-c) Evaluate if b > the policy duration (in days). If so, add +1 to the count.
+  rules: |
+    To compute the NUMERATOR, determine the Total Number of Critical and High Vulnerabilities that have been identified for remediation per TVM-01 policies and procedures. In order to compute the metric, use the following logic in these rules.
+    For each Critical or High Vulnerability that were Identified during the period, or carried forward from the previous period...
+    a) Check the Vulnerability Publish Date. Is this date < the date on which the Asset was commissioned. If so, use the Asset Commission Date as the *from date*. If not, then use the Vulnerability Publish Date as the *from date*.
+    b) Subtract the Vulnerability Identification Date from the *from date*. The Identification Date is the date that your organization has acknowledged the vulnerability to be acted upon (e.g. this may be a the ticket create date on Jira for the given vulnerability)
+    c) Evaluate if b > the policy duration (in days). If so, add +1 to the count.
 
-To compute the DENOMINATOR, The *Total Number of High and Critical Vulnerabilities* are...
-a) Opened during the current period and/or
-b) Carried over from the previous period because the policy timeframe spans period. For example, let us say that we measure the control on a weekly basis from Sunday - Saturday and the policy timeframe is 3 days. Any issue identified on or after Thursday is not due, per policy, until the following period. These vulnerabilities are *carried over* into the following period.
+    To compute the DENOMINATOR, The *Total Number of High and Critical Vulnerabilities* are...
+    a) Opened during the current period and/or
+    b) Carried over from the previous period because the policy timeframe spans period. For example, let us say that we measure the control on a weekly basis from Sunday - Saturday and the policy timeframe is 3 days. Any issue identified on or after Thursday is not due, per policy, until the following period. These vulnerabilities are *carried over* into the following period.
   sloRecommendations:
     sloRangeMin: 
     sloPeriod: P30D
-  implementationGuidelines: 
-  1. Classification of vulnerabilities as *High* or *Critical* risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss) or risk-based vulnerability management system (see https://tinyurl.com/what-is-rbvm). For instance, vulnerabilities with a CVSS score of 9 or higher are *Critical* and vulnerabilities with CVSS scores between 7 and 9 could be defined as *High* risk.
+  implementationGuidelines: | 
+    1. Classification of vulnerabilities as *High* or *Critical* risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss) or risk-based vulnerability management system (see https://tinyurl.com/what-is-rbvm). For instance, vulnerabilities with a CVSS score of 9 or higher are *Critical* and vulnerabilities with CVSS scores between 7 and 9 could be defined as *High* risk.
+    2. Date and time of vulnerability discovery could be obtained from the Vulnerability Management tool as it scans and detects high and critical vulnerabilities for remediation.
+    3. Date and time of vulnerability remediation could be obtained in the ways listed below.
+      a) From the Vulnerability Management tool as it scans and finds that a previously detected vulnerability is no longer present/detected.
+      b) From the patch deployment tool (e.g. SCCM) as it successfully deploys and installs a patch that fixes an identified vulnerability.
+      c) From the application / code release tool as it moves into production the new version of the application that no longer contains the code vulnerability.
 
-  2. Date and time of vulnerability discovery could be obtained from the Vulnerability Management tool as it scans and detects high and critical vulnerabilities for remediation.
-
-3. Date and time of vulnerability remediation could be obtained in the ways listed below.
-  a) From the Vulnerability Management tool as it scans and finds that a previously detected vulnerability is no longer present/detected.
-  b) From the patch deployment tool (e.g. SCCM) as it successfully deploys and installs a patch that fixes an identified vulnerability.
-  c) From the application / code release tool as it moves into production the new version of the application that no longer contains the code vulnerability.
-
-This metric depends on a policy timeline target for the identification (completion of the triage process) for known vulnerabilities. 
+    This metric depends on a policy timeline target for the identification (completion of the triage process) for known vulnerabilities. 
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: P30D
 - id: UEM-04-M1
   primaryControlId: UEM-04
-  relatedControlIds: LOG-05
+  relatedControlIds: 
+    - LOG-05
   metricDescription: This metric provides an indication of endpoints that are actively maintained in the Asset Inventory.
   expression:
     formula: "(A/B)*100"
@@ -1301,27 +1309,30 @@ This metric depends on a policy timeline target for the identification (completi
       unit: count
       type: calculate
       samplingPeriod: P30D
-  rules: The data used in the expression is all data from the control period.
+  rules: |
+    The data used in the expression is all data from the control period.
 
-This metric assumes that the two CCMv4 controls listed below are in place (or an equivalent).
-  - LOG-05 - Monitor security audit logs to detect activity outside of typical or expected patterns. 
-  - UEM-04 - Maintain an inventory of all endpoints used to store and access company data.
+    This metric assumes that the two CCMv4 controls listed below are in place (or an equivalent).
+    - LOG-05 - Monitor security audit logs to detect activity outside of typical or expected patterns. 
+    - UEM-04 - Maintain an inventory of all endpoints used to store and access company data.
   sloRecommendations:
     sloRangeMin: 95%
     sloPeriod: P30D
-  implementationGuidelines: The data used in the expression is all data from the control period.
+  implementationGuidelines: |
+    The data used in the expression is all data from the control period.
 
-This assumes the LOG-05 logs (i.e. ""security audit logs to detect activity outside of typical or expected patterns"") are inclusive of endpoint identities. 
+    This assumes the LOG-05 logs (i.e. ""security audit logs to detect activity outside of typical or expected patterns"") are inclusive of endpoint identities. 
 
-The frequency of evaluation for UEM-04 has to match the log data retention period. 
+    The frequency of evaluation for UEM-04 has to match the log data retention period. 
 
-Examples of endpoints which store or access company data include end-user devices, point of sale systems, databases, IoT systems, and data integration systems.
+    Examples of endpoints which store or access company data include end-user devices, point of sale systems, databases, IoT systems, and data integration systems.
   crontabExample: 0 0 1 * *
   measurementFrequency: 30d
   samplingPeriod: P30D
 - id: UEM-05-M1
   primaryControlId: UEM-05
-  relatedControlIds: UEM-04
+  relatedControlIds: 
+    - UEM-04
   metricDescription: This metric describes the ability of an organization to control the configuration and behaviour of assets which directly create, read, write, or delete organizational data.
   expression:
     formula: "(A/B)*100"
@@ -1339,24 +1350,26 @@ Examples of endpoints which store or access company data include end-user device
       unit: count
       type: calculate
       samplingPeriod: P1D
-  rules: This metric assumes the CCMv4 control listed below is in place (or an equivalent).
-  > UEM-04 - Maintain an inventory of all endpoints used to store and access company data.
+  rules: |
+    This metric assumes the CCMv4 control listed below is in place (or an equivalent).
+    > UEM-04 - Maintain an inventory of all endpoints used to store and access company data.
 
-The capability to measure and enforce Desired Configuration and/or Policy must be a discrete, measureable entity, such as an agent, an implementation constraint (for example containers or read-only filesystems), or an external control (such as network authentication and access policies or software defined networking).
+    The capability to measure and enforce Desired Configuration and/or Policy must be a discrete, measureable entity, such as an agent, an implementation constraint (for example containers or read-only filesystems), or an external control (such as network authentication and access policies or software defined networking).
 
-In order to provide this measurement the discrete capability must be an approved mechanism or mechanisms whose implementation is mandated by policy.
+    In order to provide this measurement the discrete capability must be an approved mechanism or mechanisms whose implementation is mandated by policy.
 
-In order for this measurement to be meaningful, UEM-04 must have a measurement greater than 95%.
+    In order for this measurement to be meaningful, UEM-04 must have a measurement greater than 95%.
   sloRecommendations:
     sloRangeMin: 99%
     sloPeriod: P1D
-  implementationGuidelines: If there are devices that are in an exception group they still count as a policy control being applied for the purposes of this metric. 
+  implementationGuidelines: |
+    If there are devices that are in an exception group they still count as a policy control being applied for the purposes of this metric. 
 
-This metric does not differentiate between partial reporting and full reporting of all of the policies from a given system, but only the capability of that system to report.
+    This metric does not differentiate between partial reporting and full reporting of all of the policies from a given system, but only the capability of that system to report.
 
-See UEM-04 for examples of systems which access or store organizational data.
+    See UEM-04 for examples of systems which access or store organizational data.
 
-Technical measures to enforce policies and controls for endpoints include API tools such as OSQuery, DCM tools, MDM tools, VPN Access Policy Controls, etc.
+    Technical measures to enforce policies and controls for endpoints include API tools such as OSQuery, DCM tools, MDM tools, VPN Access Policy Controls, etc.
   crontabExample: 0 0 * * *
   measurementFrequency: 1d
   samplingPeriod: P1D
@@ -1386,11 +1399,12 @@ Technical measures to enforce policies and controls for endpoints include API to
       unit: count
       type: calculate
       samplingPeriod: P30D
-  rules: *Device check* is some form of posture assessment during connection or path establishment. Some examples are listed below.
-  - Trusted Platform Module posture assessment 
-  - VPN posture assessment
-  - Zero Trust Network Architecture (ZTNA) posture assessment
-  - Out-of-band checks that correlate connection log information with independent posture assessment monitoring
+  rules: |
+    *Device check* is some form of posture assessment during connection or path establishment. Some examples are listed below.
+    - Trusted Platform Module posture assessment 
+    - VPN posture assessment
+    - Zero Trust Network Architecture (ZTNA) posture assessment
+    - Out-of-band checks that correlate connection log information with independent posture assessment monitoring
   sloRecommendations:
     sloRangeMin: 99%
     sloPeriod: P30D
