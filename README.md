@@ -1,24 +1,24 @@
-# The continuous audit metrics catalog
+# The Continuous Audit Metrics Catalog
 
-The Cloud Security Alliance (CSA) has launched an initiative to create a [continuous assessment framework for cloud security](https://cloudsecurityalliance.org/research/working-groups/continuous-audit-metrics/). As part of that work, CSA is building a **Continuous Audit Metrics catalog** for the cloud to help organizations assess the security of information systems on a near-continuous basis. 
+The Cloud Security Alliance (CSA) has launched an initiative to create a [continuous assessment framework for cloud security](https://cloudsecurityalliance.org/research/working-groups/continuous-audit-metrics/). As part of that work, CSA is building a **Continuous Audit Metrics Catalog** for the cloud to help organizations assess the security of information systems on a near-continuous basis. 
 
 A [version 1.0 of the continuous audit metrics catalog](https://cloudsecurityalliance.org/artifacts/the-continuous-audit-metrics-catalog/) was released 10/19/2021. That document provides background on security metrics and continuous auditing, the use of metrics to increase the maturity of an organization's governance and risk management, a basic description of the metric format, and the initial catalog of 34 continuous audit metrics addressing controls from the [CSA CCMv4](https://cloudsecurityalliance.org/research/cloud-controls-matrix/).
 
-This repository contains the [YAML](https://en.wikipedia.org/wiki/YAML) definition of the CSA's **Continuous Audit Metrics catalog** in `data/primary-dataset.yml`, which will serve as a basis for the next release of this catalog. This work is hosted on GitHub to encourage everyone in the security community to contribute by directly proposing _pull requests_ or by creating _github issues_.
+This repository contains the [YAML](https://en.wikipedia.org/wiki/YAML) definition of the CSA's **Continuous Audit Metrics Catalog** in `data/primary-dataset.yml`, which will serve as a basis for the next release of this catalog. This work is hosted on GitHub to encourage everyone in the security community to contribute by directly proposing _pull requests_ or by creating _github issues_.
 
 An HTML preview of the current state of this catalog is available [here](http://htmlpreview.github.io/?https://github.com/cloudsecurityalliance/continuous-audit-metrics/blob/main/metrics-catalog.html). 
 
-In addition to the **Continuous Audit Metrics catalog**, this repository also hosts Auditing guidelines for continuous audit metrics.
+In addition to the **Continuous Audit Metrics Catalog**, this repository also hosts Auditing guidelines for continuous audit metrics.
 
 To engage with this work, please also consider joining the [CSA Continuous Audit Metrics working group](https://cloudsecurityalliance.org/research/working-groups/continuous-audit-metrics/) for real-time discussions.
 
 ## How to contribute 
 
-### Adding new metrics to the catalog
+### Adding new metrics to the Catalog
 
 The structure of a metric is detailed [here](https://github.com/cloudsecurityalliance/continuous-audit-metrics/wiki/Content-of-a-metric).
 
-There are two ways to contribute new metrics to the catalog. 
+There are two ways to contribute new metrics to the Catalog. 
 
 #### 1. With a pull-request
 
@@ -37,7 +37,7 @@ Second, if you are not comfortable with YAML or pull-request, you can also propo
 
 These fields are detailed [here](https://github.com/cloudsecurityalliance/continuous-audit-metrics/wiki/Content-of-a-metric).
 
-### Suggestion changes or corrections to existing metrics
+### Suggesting changes or corrections to existing metrics
 
 To suggest changes or corrections to existing metrics in the catalog, please follow the same process as for new metrics: either create a pull request or a GitHub issue.
 
