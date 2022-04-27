@@ -3,7 +3,7 @@ name: Continuous Audit Metrics Catalog
 version: 1.0.0
 url: https://cloudsecurityalliance.org/artifacts/the-continuous-audit-metrics-catalog/
 ccm_version: 4.0.5
-copyright: Cloud Security Alliance, 2022.
+copyright: (c) Cloud Security Alliance, 2022.
 metrics:
 - id: AIS-06-M1
   primaryControlId: AIS-06
