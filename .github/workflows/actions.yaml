@@ -21,7 +21,7 @@ jobs:
           bundle install
       - name: Generate metrics-catalog.html
         working-directory: tools
-        run: ruby metrics_validator.rb ../data/primary-dataset.yml ../metrics-catalog.html
+        run: ruby metrics_validator.rb ../data/primary-dataset.yml ../data/front-matter.md ../metrics-catalog.html
       - name: Push metrics-catalog.html to the repo
         uses: test-room-7/action-update-file@v1
         with:
