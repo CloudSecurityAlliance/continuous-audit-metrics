@@ -73,12 +73,13 @@ class Markdown
   end
 end
 
-if ARGV.length!=2
-  puts "Usage: #{__FILE__} <source_yaml_file> <html_rending>"
+if ARGV.length!=3
+  puts "Usage: #{__FILE__} <source_yaml_file> <souce_makrdown_front_matter> <html_rending>"
   exit false
 end
 yaml_source = ARGV[0]
-html_render = ARGV[1]
+md_source   = ARGV[1]
+html_render = ARGV[2]
 
 begin
   data = YAML.load_file(yaml_source)
@@ -162,6 +163,7 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
 
 **The content of this repository, including this file, is (c) Cloud Security Alliance, 2022**. See the LICENSE file for details.
                         ')
+        markdown.render(doc, File.read(md_source)) 
       end
       data['metrics'].each do |metric|
         
