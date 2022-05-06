@@ -1,0 +1,1829 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+          font-family: "Montserrat", sans-serif;
+          width: 1250px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .metric {
+          display: grid;
+          grid-template-columns: 25% auto;
+          gap: 5px;
+          background: #eee;
+          padding: 10px;
+          border-radius: 5px;
+        }
+        .metric .key {
+          font-weight: bold;
+          padding: 12px;
+          color: white;
+        }
+        .metric .value {
+          padding: 12px;
+          background: white;
+        }
+
+        .green {
+          background: #3ba573;
+          border-left: solid 14px #29895c;
+        }
+        .orange {
+          background: #ff9b1a;
+          border-left: solid 14px #fa8526;
+        }
+        .blue {
+          background: #0372c7;
+          border-left: solid 14px #00549e;
+        }
+        code {
+          color: #700;
+          font-size: 125%;
+        }
+        </style>
+</head>
+<body>
+<h1>Continuous Audit Metrics Catalog, version 1.0.0</h1>
+<p>Generated on 2022-04-27 13:56:28 UTC</p>
+<div>
+<p>This document has been automatically generated from the YAML source file at <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml">https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml</a></p>
+
+<p>To make changes to the catalog, please <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/edit/main/data/primary-dataset.yml">make changes</a> to the YAML file or <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/issues">create an issue</a> on github describing your requested changes.</p>
+
+<p><strong>The content of this repository, including this file, is (c) Cloud Security Alliance, 2022</strong>. See the LICENSE file for details.</p>
+<h2>Acknowledgments</h2>
+
+<h3>Authors:</h3>
+
+<ul>
+<li>Jonathan Lewis Christopherson </li>
+<li>Willy Fabritius</li>
+<li>Raj Krishnamurthy</li>
+<li>Daniele Catteddu</li>
+<li>Kevin Murphy </li>
+<li>Alain Pannetrat </li>
+<li>Chris Pedigo </li>
+<li>Mosi Platt</li>
+<li>Max Pritikin (co-chair) </li>
+<li>Anthony Scarfe </li>
+<li>Carlos Victoria</li>
+</ul>
+
+<h3>Contributors:</h3>
+
+<ul>
+<li>Christian Banse </li>
+<li>Michael Bently </li>
+<li>James Condon </li>
+<li>John DiMaria </li>
+<li>Tinsae Erkailo </li>
+<li>Alexandre Higuchi </li>
+<li>Michaela Iorga </li>
+<li>Amanda King </li>
+<li>Julien Mauvieux </li>
+<li>Brian Milbier</li>
+<li>Dili Origbo</li>
+<li>Judy Owen </li>
+<li>Massimiliano Rak </li>
+<li>Louis Seefried </li>
+<li>Jonathan Villa</li>
+</ul>
+
+<h2>Context</h2>
+
+<p>The Cloud Security Alliance (CSA) has launched an initiative to create a <a href="https://cloudsecurityalliance.org/research/working-groups/continuous-audit-metrics/">continuous assessment framework for cloud security</a>. As part of that work, CSA is building a <strong>Continuous Audit Metrics Catalog</strong> for the cloud to help organizations assess the security of information systems on a near-continuous basis. </p>
+
+<p>For a detailed description of the context, purpose and terminology used in this work, we refer the reader to sections 1, 2 and 3 of <a href="https://cloudsecurityalliance.org/artifacts/the-continuous-audit-metrics-catalog/">version 1.0 of the continuous audit metrics catalog</a>.</p>
+</div>
+<h2>Metric AIS-06-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">AIS-06</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DCS-06, GRC-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>AIS-06-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of running production code that can be directly traced back to automated security and quality tests that verify the compliance of each build.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of pieces of Production Code that have an Associated Verification Step<ul>
+<li>ID: prod_apps_with_verification</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of pieces of Production Code<ul>
+<li>ID: prod_apps_deployed</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p><strong>Production Code</strong> is code deployed to the production runtime environment(s)
+within the scope of the Information Security Program defined in the CCMv4 GRC-05
+control objective. An <strong>Associated Verification Step</strong> is a capability in the
+deployment process that ties production code back to a build with traceable results
+for quality, security, and privacy tests.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 95%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>There must be a Software Inventory of Deployed Production Code (DCS-06).  Production code must be quantified based on the definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-07. The definition of <strong>deployed production code</strong> used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. The likelihood of standardized deployments can decrease as the number of different deployment systems increases. If the Software Deployment Pipeline has multiple stages where change could be introduced, and end-to-end validation cannot be performed, then the metric <strong>Percentage of steps in the Software Deployment Pipeline that have an associated verification step</strong> may be more suitable for an organization. There should be a mechanism to identify deviations, and if deviations from the standard are approved, then the system should account for (and manage) the exception as approved. This metric should at least be aligned with an organization's development or release cycle to provide timely input for correction in the next deployment or release. For example, if an organization uses an Agile development methodology with two-week sprints, then the metric should be measured at least every two weeks to provide data for review at sprint retros.</p>
+</div>
+<h2>Metric AIS-07-M3</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">AIS-07</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">AIS-02, AIS-06, TVM-07, DCS-06</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>AIS-07-M3</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the coverage for application vulnerability remediation across the production code.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of deployed production applications with acceptable level of risk from application security vulnerabilities<ul>
+<li>ID: prod_apps_deployed_with_acceptable_vuls</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total Number of deployed production applications<ul>
+<li>ID: prod_apps_deployed</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Production Application = Applications tracked within the software inventory established in CCMv4 DCS-06. Acceptable level of risk from application security vulnerabilities:  Vulnerabilities categorized as medium or low risk as well as critical or high vulnerabilities marked or identified as \'Accepted\' (i.e. remediation not required).  Examples  of accepted vulnerabilities can be false positives or vulnerabilities with compensating controls that make the residual risk of exploitation acceptable.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 80%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>There must be a Software Inventory of Deployed Production Code (see DCS-06 for more info). Production code must be quantified based on the organization's definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-06. The definition of deployed production application used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. Acceptable Level of Risk should be defined by the organizations vulnerability management guidelines (e.g. only Critical and High vulnerabilities, or Medium Vulnerabilities and Higher, etc. Classification of vulnerabilities as High or Critical risk, etc. should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (<a href="https://nvd.nist.gov/vuln-metrics/cvss">https://nvd.nist.gov/vuln-metrics/cvss</a>). For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and vulnerabilities with CVSS scores between 7 and 9 could be defined as High risk.)</p>
+</div>
+<h2>Metric AIS-07-M6</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">AIS-07</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">AIS-03, TVM-10, GRC-02</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>AIS-07-M6</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of critical vulnerabilities that are not fixed or marked as accepted within the time specified by policy.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of unaccepted critical or high vulnerabilities in production applications with an age greater than the policy defined maximum age<ul>
+<li>ID: nc_vuln_remediation_in_prod_apps</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of critical or high vulnerabilities in production applications within this period<ul>
+<li>ID: risky_vulns_in_prod_apps</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Production Application = Applications tracked within the software inventory established in CCMv4 DCS-06. Acceptable level of risk from application security vulnerabilities:  Vulnerabilities categorized as medium or low risk as well as critical or high vulnerabilities marked or identified as Accepted (i.e. remediation not required). Examples of accepted vulnerabilities can be false positives or vulnerabilities with compensating controls that make the residual risk of exploitation acceptable.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"><div>SLO Period: 30 days</div></div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<ol>
+<li>Classification of vulnerabilities as High or Critical risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the  Common Vulnerability Scoring System (CVSS) (<a href="https://nvd.nist.gov/vuln-metrics/cvss">https://nvd.nist.gov/vuln-metrics/cvss</a>). For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and  vulnerabilities with CVSS scores between 7 and 9 could be defined as High risk. </li>
+<li>Date and time of vulnerability discovery could be obtained from the Vulnerability  Management tool as it scans and detects vulnerabilities. </li>
+<li>Date and time of vulnerability remediation or acceptance could be obtained in the following ways: 
+
+<ul>
+<li>From the Vulnerability Management tool as it scans and finds that a previously detected vulnerability is no longer present/detected; </li>
+<li>From the patch deployment tool (e.g. SCCM) as it successfully deploys and installs a patch that fixes an identified vulnerability; </li>
+<li>From the application / code release tool as it moves into production the new version of the application that no longer contains the code vulnerability.</li>
+</ul>
+</li>
+</ol>
+
+<p>Frequency of evaluation should be aligned with the frequency of vulnerability scans. (Scans should happen at LEAST monthly, but more frequently is recommended).</p>
+
+<p>Vulnerability scans can be done at a predefined frequency or whenever new code is built, or deployed.</p>
+</div>
+<h2>Metric BCR-06-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">BCR-06</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">BCR-01, BCR-02</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>BCR-06-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric reports the percentage of critical systems that passed BCR tests.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of critical systems that passed BCR tests during the sampling period<ul>
+<li>ID: bcr_tests_critical_systems</li>
+<li>Sampling period: 365 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of critical systems operating during the sampling period<ul>
+<li>ID: critical_systems_count</li>
+<li>Sampling period: 365 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Criteria for system criticality must be defined and there must be a list of critical systems identified. Recovery Point Objective(s) and Recovery Time Objective(s) must be defined for critical systems. This metric does not attempt to measure the appropriateness of the recovery point or time objectives (RPOs or RTOs). This metric is dependent on control BCR-02 providing reasonable assurance of sufficient RPOs and RTOs for critical systems. BCR testing intervals must be defined.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">365 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 80%</div>
+<div>SLO Period: 365 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>Critical systems should be identified in accordance with the CCMv4 implementation guidelines for BCR-02. For this metric, passed means achieving the RPO(s) within the RTO(s) defined for each critical system in the scope of the assessment/audit, according to the CCMv4 implementation guidelines for BCR-02. The sampling period for this metric should align with the testing intervals defined by the business continuity plan in accordance with the CCMv4 implementation guidelines for BCR-04. BCR tests should include Chaos Testing, where possible. According to wikipedia, Chaos engineering is the discipline of experimenting on a software system in production in order to build confidence in the system's capability to withstand turbulent and unexpected conditions.</p>
+</div>
+<h2>Metric CCC-03-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">CCC-03</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DCS-06</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>CCC-03-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">Percentage of all assets that have change management technology integrated</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of assets that have change management technology integrated<ul>
+<li>ID: assets_under_change_management</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of assets<ul>
+<li>ID: total_assets_count</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Change management technology covers release management tools that enable automated deployment and rollback of software builds in production.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 80%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This metric requires the implementation of CCMv4 DCS-06 Asset Cataloging and Tracking and the capability to determine which assets or asset groups are deployed using change management technology that can rollback changes and/or stop deployment of risky changes based on automated test results. Given the dynamic nature of cloud environments, the metric can provide more value if the variations in the release management system's coverage over the population of assets is reported over time. The percentage of assets that fall within an accepted number of deviations provides stakeholders assurance of whether change control is getting better, worse, or being maintained. Larger populations of more than 1,000 assets can use 6 standard deviations as an acceptable level of change over time (i.e. Six Sigma). Smaller populations of assets will need to use less standard deviations as an acceptable level of change, perhaps even just 1 deviation. For more information on the use of standard deviation in security metrics, see this excerpt of Andrew Jaquith's Security Metrics book.</p>
+</div>
+<h2>Metric CCC-07-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">CCC-07</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DCS-06, CCC-03</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>CCC-07-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percent of positive test results from all configuration tests performed.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of configuration items that were tested and passed successfully<ul>
+<li>ID: config_items_passing_tests</li>
+<li>Sampling period: 7 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of configuration items that were tested<ul>
+<li>ID: total_config_items</li>
+<li>Sampling period: 7 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>This metric captures the number of tests passed out of the total number of tests defined. Each test is assumed to verify a configuration item which is arbitrarily defined as any component for which a test can be defined.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">7 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 95%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This metric assumes that CCC-03 has been successfully implemented and thus assumes that enough configuration items, at least in terms of number of CCMv4 DCS-06 assets, have change management technology to make this metric meaningful. This metric does not take into account a measure of risk for the configuration tests that have failed. The resulting flat percentage may not tell the full story of risk incurred from a control failure. Future work may incorporate risk measures such as high and critical configuration tests. The frequency of reporting this metric should tie in to the frequency of deployments/expected changes, minimally once a week. This metric should be measured on an automated, continuous basis. Since the scope is under the control of the organization, the metric results should be relatively high. The signal from this metric is that the existing system for change management is working or failing. A low percentage may not indicate a significant cybersecurity risk, but it may be a leading indicator of future security risk if the practice doesn't improve. This is different than IVS-04 which measures the number of hardening tests against all assets.</p>
+</div>
+<h2>Metric CEK-03-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">CEK-03</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">CEK-04, DCS-06, CEK-01</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>CEK-03-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures if the cryptographic module continues to be up to approved standards.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of assets responsible for data at-rest or in-transit where the cryptographic library has passed Automated Cryptographic Validation Protocol tests or equivalent tests<ul>
+<li>ID: acvp_approved_data_assets</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of assets responsible for data at-rest or in-transit<ul>
+<li>ID: data_at_rest_in_transit_assets</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value"></div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 85%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This leverages asset management and off-the-shelf automated functionalities while allowing for flexibility against policy (which has previously passed CCMv4 CEK-01 audit).  See AVCP: <a href="https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing">https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing</a></p>
+</div>
+<h2>Metric CEK-04-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">CEK-04</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">CEK-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>CEK-04-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of assets with cryptographic functions that meet an organization's defined cryptographic requirements.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of assets with a cryptographic function that meets cryptographic requirements<ul>
+<li>ID: compliant_crypto_assets</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of assets with a cryptographic function<ul>
+<li>ID: total_crypto_assets</li>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>The specification should be reported for all the adopted cryptographic suites.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 90%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>For a Minimum Viable Product, the scope of evaluation may be limited to public-facing services, in which case a scan of all externally facing assets should be made and the scanned values compared against the requirements of the policy. The SLO used for this metric may need to be increased or decreased based on the scope of assets covered by the metric. This metric depends on the data classification tool in CCMv4 DSP-03, and requires that an organization determine the appropriate level of encryption for each classification, then requires comparison of the expected encryption applied versus the actual encryption applied, and reports on the difference. CCMv4 IPY-03 covers a subset of this measurement.</p>
+</div>
+<h2>Metric DCS-06-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">DCS-06</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">LOG-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>DCS-06-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the ratio of managed assets (i.e. catalogued and tracked) to detected assets. The goal is to provide a signal if the asset cataloging and tracking system stops working.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of distinct assets seen in security audit logs during the sampling period that are in an asset catalog<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Number of distinct assets seen in security audit logs during the sampling period<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>The assumption is that the design of the DCS-06 control process(es) was found to be effective by internal or external audits.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 day</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 95%</div>
+<div>SLO Period: 1 day</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This relies on the security audit logs as defined in CCMv4 LOG-05 and the asset catalog defined in CCMv4 DCS-06. This assumes LOG-05 is inclusive of logs of a number of  events such as network traffic, network scanning, physical asset inventory. It assumes that the logs include network traffic logging, and logs from other assets, and  are sufficient to detect unexpected assets. We assume everything that is worthy is logged. This is a dependency on the auditor to ensure the logging is complete enough.  This is consistent with the metric for UEM-04. Implementers may benefit from the similarities. Any 3rd party CSPs used by the organization where shared responsibility of controls resides in the organization should be included as logical assets for this catalog. This is likely dependent on the maturity of STA-01 - STA-06 and the SSRM. For example if a CSP provides a microservice inherent in the operations of an offering that microservice is a logical asset. This ensures that metrics  where DCS numbers are used in the denominator include those micro-services. This is intended to ensure the coverage is accurate and inclusive of 3rd party CSPs where the  organization is responsible for the controls.</p>
+</div>
+<h2>Metric DSP-04-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">DSP-04</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DSP-01, DSP-03, DSP-04, DSP-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>DSP-04-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the ratio of data assets that have been classified according to data classification policies specific to each organization. An organization may have a predefined list of data types (e.g. health care record, payment card record, identification number, etc.) and / or data sensitivity levels (e.g. Confidential, Internal Use Only, Public).</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of data records classified by type and/or sensitivity<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of data records stored<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Total number of records classified by type and/or sensitivity - this is a count of all data assets that have a defined classification by type or sensitivity level (Undefined classifications are not counted for this variable). Total number of records stored - this is a count of all data assets that have been collected and are stored in the system such as DSP-03. This metric measures data in terms of distinct data records, not distinct data types.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>All data records must have corresponding metadata related to its data type and / or sensitivity. A defined list of data types and sensitivity levels must be defined. Records that do not meet any of the data classification types or sensitivity levels will have an undefined classification and are not considered as classified for this metric.</p>
+</div>
+<h2>Metric DSP-04-M3</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">DSP-04</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DSP-01, DSP-03, DSP-04, DSP-05, DCS-06</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>DSP-04-M3</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the ratio of assets in the asset catalog that have been classified according to data classification policies specific to each organization. An organization may have a predefined list of data types (e.g. health care record, payment card record, identification number, etc.) and / or data sensitivity levels (e.g. Confidential, Internal Use Only, Public).</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of assets in the asset catalog that are classified by type and/or sensitivity of the data on that asset<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of assets in the organization's asset catalog<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Total number of assets classified by type and/or sensitivity of the data contained on the asset - this is a count of all assets that have a defined classification by type or sensitivity level (Undefined classifications are not counted for this variable). Total number of assets - this is a count of all assets that have been collected and are stored in the system such as DSC-06.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>All asset records must have corresponding metadata related to the type and / or sensitivity of data stored on the asset. A defined list of data types and sensitivity levels must be defined. Assets that do not contain data of the data classification types or sensitivity levels will have an undefined data classification and are not considered as classified for this metric.</p>
+</div>
+<h2>Metric DSP-05-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">DSP-05</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DSP-03</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>DSP-05-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of records from the data inventory required by control DSP-03 (CCMv4) that are included in data flow documentation. Cloud service providers and their stakeholders can use this metric to determine whether the volume of data covered by the data flow documentation is sufficient or needs to be updated to satisfy defined business requirements.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of data records or data stores from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul>
+<li>Sampling period: 15 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of data records or data stores in the CCMv4 DSP-03 inventory<ul>
+<li>Sampling period: 15 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>This metric can be measured by counting the number of records in a data store or by simply counting the data stores themselves. CORRECTLY INCLUDED means that the data record or data store is represented in the data flow documentation in accordance with the organization's defined requirements for representing inventories in the documentation. Generally, this means it exists in the documentation and is properly labeled with appropriate CCMv4 DSP-04 classifications if appropriate. Note: The CCMv4 DSP-03 control objective is to Create and maintain a data inventory, at least for any sensitive data and personal data. The CCMv4 DSP-04 control objective is to Classify data according to its type and sensitivity level.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">15 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 80%</div>
+<div>SLO Period: 15 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This metric supports an incomplete DSP-03 inventory so long as it is a statistically significant random sampling of at least any sensitive data and personal data (e.g. meets the DSP-03 control language objective). This metric makes the assumption that the data flow diagram(s) is available in a machine-readable format but does not measure automated creation of the data inventory or the data flow documentation. The generation of the data flow document MAY be manual although the result MUST be digitized in order to perform automated comparisons against discovered data repositories. This metric assumes the data flow documentation is in the form of a graph with nodes and edges where data stores are nodes in that graph. In order to count the number of records, there needs to be metadata with the number of records for each datastore. It measures the percentage of data stores (and their records) that are correctly captured as nodes in the graph. For reference, a data flow inventory similar to DSP-03 is required by CSA GDPR Code of Conduct Control</p>
+</div>
+<h2>Metric DSP-05-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">DSP-05</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value"></div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>DSP-05-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of data streams from the data inventory required by control DSP-03 (CCMv4) that are included in the data flow documentation. Cloud service providers and their stakeholders can use a metric like this to determine whether the different uses of data covered by the data flow documentation is sufficient or needs to be updated to satisfy defined business requirements.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of data streams from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul>
+<li>Sampling period: 15 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of data streams in the CCMv4 DSP-03 inventory<ul>
+<li>Sampling period: 15 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Data streams are the connections from data sources to data consumers illustrated in data flow diagrams. These connections should be included in the data inventory required by control DSP-03 (CCMv4). This may be a complete inventory of all data streams or a reasonable sample of data streams.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">15 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 80%</div>
+<div>SLO Period: 15 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This metric supports an incomplete inventory of data streams so long as it is a reasonable sampling of streams for at least any sensitive data and personal data (e.g. is intended to measure flows of data of the types that meet the DSP-03 control language objective regarding data inventories). Sampled data streams should be captured from live data streams of user and system activities. This metric assumes the data flow documentation is available in a machine-readable format. The generation of the data flow document MAY be manual although the result MUST be digitized in order to perform automated comparisons against discovered data flows. For reference, a data flow inventory similar to DSP-03 is required by CSA GDPR Code of Conduct Control</p>
+</div>
+<h2>Metric GRC-04-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">GRC-04</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">AIS-07</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>GRC-04-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the effectiveness of the governance program's exception handling process.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of active policy exceptions where the time to resolution is within the documented timeline for resolution, during the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of active policy exceptions, during the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>An Exception Policy must be defined and must cover the entire lifecycle of an exception. Active policy exceptions that happen during the sampling period but which are not resolved yet are counted in B, not A.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 90%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This metric requires organizations to maintain records of policy exceptions that include the approval date and resolution date for calculation of mean time to resolution. The records could be as simple as entries in a spreadsheet or as complex as records for exception tracking in a GRC or vulnerability management system. This metric also requires organizations to define the threshold(s) for acceptable resolution time(s). The definition could be as simple as a statement in a policy document that applies to all exceptions, or individually-defined target dates for resolution of each exception based on risk. In the case of the latter, the requirements for setting the target resolution date(s) should be established in a policy and the target date(s) will need to be tracked in the policy exception records. For example if there is a ticketing system for remediation this tracks if the close date for the ticket was met. If an org has very few exceptions then slipping on even one will dramatically affect their percentage. This is inherent in statistics and is not seen as a problem for now.</p>
+</div>
+<h2>Metric IAM-07-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">IAM-07</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">IAM-03, IAM-06, IAM-10</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>IAM-07-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of users leaving the organization that were de-provisioned from the identity management system in compliance with the identity and access management policies.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of terminated users deprovisioned within policy guidelines during the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of terminated users during the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>The time lapse between a user's termination and account deactivation must be measured in seconds. The time lapse between user's termination and account deactivation = time stamp of account deactivation event - time stamp of employee termination or role change event recorded in the HR system.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>Steps to compute this may look like: </p>
+
+<ol>
+<li>Account deactivation timestamps can be obtained from the identity management system. </li>
+<li>Employee termination or change event timestamps can be obtained from the Human Capital Information System (e.g. Workday). </li>
+<li>Count of [(User De-Provisioning date - User Termination Date) &gt; Policy Duration)]/Total Number of Terminated Users for the period). This metric only evaluates termination/deprovisioning events as an indicator of efficacy. It does not measure job role change, which can be captured in IAM-08. The recommended sampling period for this metric is monthly, but cloud service providers should ensure the sampling period aligns and frequency of evaluation align with their rate of change and risk tolerance.</li>
+</ol>
+</div>
+<h2>Metric IAM-08-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">IAM-08</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">IAM-03, IAM-05, IAM-06, IAM-10</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>IAM-08-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the time elapsed since the last recertification for all types of privileges (including user roles, group memberships, read/write/execute permissions to files/databases/scripts/jobs, etc). The metric returns the longest time identified. For example, if the longest time elapsed for a recertification of a privilege is 95 days. The metric will return this number. The value returned should not be greater than the frequency of privilege recertification or review defined in the organization policies.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of accounts reviewed with correct access in the Last 90 Days<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of Accounts<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Date of last Recertification is the date and time that a privilege was reviewed and recertified in the most recent recertification. If a Date of last recertification does not exist, this should be replaced with the Date a privilege was granted or an account was created.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 95%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>The identity management system or system used to automate the account privilege recertification process (an example of this type of systems is Identity IQ by SailPoint), should maintain timestamps of account creations, privilege granting events (e.g. addition to user groups, granting of security roles, etc). These timestamps can be used to calculate this metric. Orphaned accounts (i.e. accounts that have not been terminated at the time of measurement in IAM-07) should be captured by the User Access Review described in IAM-08. This captures any problem in the process. For example, if a small number of accounts are reviewed then the score is poor. Or, if a large number of accounts are reviewed and discovered to be in error, then the score is poor. The measurement should be taken monthly to align with IAM-07, even if recertifications occur on a different periodicity.</p>
+</div>
+<h2>Metric IAM-09-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">IAM-09</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">IAM-03, IAM-05, IAM-10</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>IAM-09-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the segregation of duties of non-production staff having access to production roles and vice-versa.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>((1-(A/B))*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of users with admin access to more than one of the following capabilities; production data management, encryption and key management, or logging<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Number of users with access to production data management, encryption and key management, or logging capabilities<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Capabilities are privileged roles or functions. Examples of production data management capabilities are the AmazonRDSFullAccess policy in AWS, the Cloud SQL Admin &amp; Cloud SQL Editor roles in the Google Cloud Platform (GCP), and db_owner role for a Microsoft Azure SQL Database. Examples of encryption and key management capabilities are the AWSKeyManagementServicePowerUser policy in AWS, Cloud KMS Admin with Cloud KMS CryptoKey Encrypter/Decrypter roles in GCP, or Microsoft Azure Key Vault Admin. Examples of logging capabilities are the AWSCloudTrail_FullAccess policy in AWS, Monitoring Admin &amp; Editor roles in GCP, or Monitoring Contributor in Microsoft Azure.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 day</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 1 day</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<ol>
+<li>Identify privileged roles in an organization and map to the roles identified in this metric. </li>
+<li>Run the metric across all users with privilege. In just-in-time (JIT) access capabilities, the audit should evaluate
+the ability for a user to be provisioned the privilege, even if the individual
+did not request the privilege during the measurement.</li>
+</ol>
+</div>
+<h2>Metric IPY-03-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">IPY-03</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">CEK, IVS-02, IPY-02, DSP-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>IPY-03-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of data flows that use an approved, standardized cryptographic security function for interoperable transmissions of data.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Count of data flows that use an approved, standardized cryptographic security function<ul>
+<li>Sampling period: 1 hour</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Count of all data flows<ul>
+<li>Sampling period: 1 hour</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>This metric depends on a known inventory of data flows such as us required by DSP-05. This inventory may be built from IPY-02 and/or DSP-05 (see DSP-05-M2), or other options could exist (e.g. in some implementations a data flow might be counted as an asset type in a DCS-06 asset inventory). The count of all data flows is the count of items in the inventory used to satisfy DSP-05. Approved cryptographic security functions should be established by an organization policy or standard, as required by CEK-01. Determining which data flows use an approved cryptographic security function can occur using analytics on the encrypted traffic flows or could occur by examining the associated configurations using the tooling from AIS-06 or from the CCC domain.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 hour</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99.99%</div>
+<div>SLO Period: 1 hour</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>NIST 140-2 Annex A is a plausible set of interoperability-specific policy choices for standard cryptographic security functions. Other regions might drive different choices. This metric should be a continuous measure over the previous hour. For example over the previous 1hr 86% of protocol flows were detected to be TLS 1.3 with selected cipher suites, or gRPC, or remote access VPN, or other types within the current policy set and listed in an interoperability specific policy to ensure interoperability.</p>
+</div>
+<h2>Metric IVS-04-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">IVS-04</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DCS-06, CCC-03, CCC-07</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>IVS-04-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of assets in compliance with the provider configuration security policy and hardening baselines derived from accepted industry sources, e.g. NIST, Vendor Recommendations, Center for Internet Security Benchmarks, etc.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of production assets that are in compliance with hardening baseline<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of production assets<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Examples of hardening baselines include Center for Internet Security Benchmarks, DISA STIGs, vendor recommended best practices, NIST security guidance, etc.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 day</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99.99%</div>
+<div>SLO Period: 1 day</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This metric of <em>assets that are in compliance</em> is inclusive of assets that have failed an initial test and where remediation is still within the SLA timeframe. If an asset is not fixed within the timeframe then it impacts the metric. Hardening baselines derived from accepted industry sources (e.g., NIST, Vendor Recommendations, Center for Internet Security Benchmarks, etc) and in compliance with the provider configuration security policy are expressed in test code which is run against the targeted asset on a regular basis. If an asset fails these tests then an alert is generated and the team is expected to fix the problem within a policy defined SLA timeframe (likely inclusive of risk thresholds for various timeframes).</p>
+</div>
+<h2>Metric LOG-03-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">LOG-03</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value"></div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>LOG-03-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of logs configured to generate security alerts for anomalous activity across control domains such as Application &amp; Interface Security, Business Continuity Management, Change Control &amp; Configuration Management, Identity &amp; Access Management, Infrastructure &amp; Virtualization Security, Threat &amp; Vulnerability Management, and Endpoint Management.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of Log Sources with Security Alerts configured<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total Number of Log Sources<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Log sources can be the system log(s) or input(s) to the logging pipeline(s). Security alerts include traditional alerts triggered when a log records events in a control domain above a specified threshold as well as alerts generated by anomaly detection using machine learning.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 day</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 95%</div>
+<div>SLO Period: 1 day</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This metric measures alerts based on items of interest occuring within a log. This metric requires CSPs to have an inventory of log sources or inputs for their logging pipeline(s) and the ability to determine a unique count of those log sources or inputs to the logging pipeline with anomaly detection or security alerts configured for them. An example implementation may look like this: Logs -&gt; Log Analytics Engine -&gt; Log Alerts Engine -&gt; SIEM/ITSM.</p>
+</div>
+<h2>Metric LOG-05-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">LOG-05</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">LOG-01, LOG-03</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>LOG-05-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric reports the effectiveness of the log monitoring and response process by measuring the percentage of discovered anomalies resolved within required timelines.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of anomalies detected during the sampling period that were reviewed and resolved within a timeframe that is in compliance with Policy<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of anomalies detected during the sampling period<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Anomalies that have been detected during the sampling period, but have not been reviewed and resolved during the sampling period are not counted in A. An anomaly is any event happening outside of typical or expected patterns.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 day</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 95%</div>
+<div>SLO Period: 1 day</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>Activity <em>outside of typical or expected patterns</em> is something for the CSP to define. A common mechanism is to use Indicators of Compromise to detect anomalies, for example: <a href="https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_muftrcpnf89v">https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_muftrcpnf89v</a>. If no anomalous events are detected during the sample period, the resulting metric (a divide by zero error) is not included in the metrics reported.</p>
+</div>
+<h2>Metric LOG-10-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">LOG-10</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">CEK-03, CEK-04, CEK-05, CEK-06, CEK-07, CEK-08, CEK-09, CEK-10, CEK-11, CEK-12, CEK-13, CEK-14, CEK-15, CEK-16, CEK-17, CEK-18, CEK-19, CEK-20, CEK-21</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>LOG-10-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of cryptography, encryption and key management controls with defined metrics.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of metrics reported in the CCMv4 CEK domain<ul>
+<li>Sampling period: 15 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of controls in the CCMv4 CEK domain<ul>
+<li>Sampling period: 15 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value"></div>
+<div class="key orange">Sampling period</div>
+<div class="value">15 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 80%</div>
+<div>SLO Period: 15 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This requires defining metrics beyond the minimal set currently defined in order to meet the recommended SLO. Metrics for all CEK controls may not be easily automated, for example CEK-01, CEK-02, CEK-06, CEK-07, and CEK-08. This is against the total number of controls in the CEK domain, rather than the number of controls asserted as met in the last audit. This simplifies the metric as the implementers do not need programmatic access to the previous audit results. Generally, the recommended frequency should be the maximum frequency recommended for CEK metrics.</p>
+</div>
+<h2>Metric LOG-13-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">LOG-13</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">LOG-03, LOG-08, SEF-06</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>LOG-13-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures *failures [e.g. uptime] of the monitoring system*. The other aspects of this control such as *reporting of anomalies* and *immediate notification to the accountable party* are to be measured using other metrics.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of minutes of uptime during the sampling period<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Duration of the sampling period in minutes<ul>
+<li>Sampling period: 1 day</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Uptime = (total number of minutes in the sampling period - downtime in minutes during the sampling period)
+Downtime = any minute where health checks for any component of the monitoring system failed</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 day</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 1 day</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p><em>Minutes</em> provides sufficient granularity to measure uptime up to a target of 5 9s. It should be noted though that the recommended frequency of evaluation is daily rather than yearly and therefore five nines score during any particular day can not be extrapolated as a yearly uptime. This reflects the objective of measuring and reporting on potential failures of the monitoring system for <em>immediate</em> notification at least daily. </p>
+
+<p>To determine if a system is <em>up</em> a health check is expected. This metric does not mandate a specific healthcheck. Many uptime monitoring solutions exist that can be used as implementation examples or as services. A recommended level of health check is one that tests the functionality of the monitoring system during the minute of the test. For example a simple TCP/IP ping measures <em>uptime</em> but is insufficient to measure the availability of the functionality of a monitoring system. Testing that log entries are being persistently recorded during that minute is a more accurate measure of uptime availability. </p>
+
+<p>The LOG-03 monitoring and alerting objective can reasonably be met by deploying multiple monitoring and alerting systems that are responsible for different areas of a complex environment. If multiple independent monitoring systems are deployed and only one fails a health check during any given minute is the system as a whole <em>up</em> or <em>down</em> during that minute? For the purpose of this metric, if any monitoring and alerting system fails a health check during a minute then the system as a whole is considered to be <em>down</em> during that minute. This is simplistic and easy and accurately captures the increased complexity of running multiple monitoring systems.</p>
+
+<p>This simplification does not support considerations like, ""this subset monitoring and alerting system only covers a small number of low risk elements of the infrastructure."" Future versions of this metric may include <em>coverage</em> or <em>risk</em> elements to the metric expression.</p>
+</div>
+<h2>Metric SEF-05-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">SEF-05</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value"></div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>SEF-05-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of security events sourced from automated systems.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of security events sourced from automated systems during the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of security events that were recorded during the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>The log sources configured with security alerts for the LOG-03-M1 metric are examples of automated systems.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 90%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>Automated systems include logging and monitoring systems as well as systems that generate alerts for review, including threat intelligence systems.</p>
+
+<p>Security events manually entered by individuals or organizations for triage are from <em>non-automated systems</em>, e.g. vulnerability disclosure emails, security event tickets created by staff or customers, etc.</p>
+</div>
+<h2>Metric SEF-06-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">SEF-06</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">LOG-03, SEF-01, SEF-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>SEF-06-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of security events triaged within policy timeframe targets.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of security events triaged within policy defined time limit, during the sampling period<ul>
+<li>Sampling period: 7 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of security events Logged, during the sampling period<ul>
+<li>Sampling period: 7 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Policy targets as established in CCMv4 SEF-01 are used here as a proxy for ""within a reasonable time"". This metrics is manipulatable by selecting an easy to achieve policy target but doing so should create friction during the initial audit.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">7 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 7 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>Events occur and are classified as part of triage process. This can occur automatically and/or there can be manual triage steps. Once the event reaches its final categorization it is <em>triaged</em>. As long as this completes within the target time period it is ""within the SLO."" It may be aggressive for a small organization that does not have a lot of events to report this metric frequently.</p>
+</div>
+<h2>Metric SEF-06-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">SEF-06</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">LOG-03, SEF-01, SEF-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>SEF-06-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric indicates if security event triage process times are stable, improving, or worsening.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>A*100</code>
+</div>
+<p>Where: <ul><li>
+<code>A</code>: Slope of the linear regression for triage times over the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Type: calculate</li>
+</ul>
+</li></ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>The SLOPE is the representation of the linear regression of the triage times as graphed against the dates (or sequence numbers) for security events within the time period.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"><div>SLO Period: 30 days</div></div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>Events occur and are classified as part of triage process. This can occur automatically and/or there can be manual triage steps. Once the event reaches its final categorization it is <em>triaged</em>. As long as this completes within the organizations target time period it is ""within the SLO.""</p>
+
+<p>The slope of time to triage indicates if the event triage process has improved, stayed the same, or increased (worsened).</p>
+
+<p>This metric does not capture if the triage time is within a specific policy target. It only captures that the organization has in fact defined, implemented, and has a process for evaluating their triage process. This meets the objective of the control.</p>
+
+<p>This can be implemented in spreadsheets as the <em>SLOPE</em> function w/in formulas and charts (see Excel or Sheets). See for example <a href="https://support.google.com/docs/answer/3094048?hl=en">https://support.google.com/docs/answer/3094048?hl=en</a>.</p>
+</div>
+<h2>Metric STA-07-M3</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">STA-07</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DCS-06, LOG-03</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>STA-07-M3</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">The percent of third-party software components seen in production assets that are sourced from an approved supplier in the software inventory.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of third-party software components seen during the sampling period, which are from authorized providers<ul>
+<li>Sampling period: 15 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of third-party software components seen during the sampling period<ul>
+<li>Sampling period: 15 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value"></div>
+<div class="key orange">Sampling period</div>
+<div class="value">15 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99.9%</div>
+<div>SLO Period: 15 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>A software component is a discrete unit of software, such as a library or package, with uniquely identifiable attributes such as would be supplied in a Software Bill of Materials (SBOM). A simplistic approach is to track all software libraries and ensure they are in the inventory of approved libraries. One could track by using the vendor supplied SBOM or by scanning the software components directly. The implementer should have sufficient context in the STA-07 inventory to determine if a listed component library is approved, not-approved, or unknown (e.g. new and must be evaluated). A more granular approach is to use context to determine if the software should be running on this particular asset. For example: Bastion (jumphost) software or libraries may be approved for use on a hardened bastion asset but may not be appropriate for a non-hardened asset. The use of ""seen"" allows for sampling. There is nothing currently exposed in the metric to expose how statistically significant the sampling was. It is assumed that an initial audit confirmed significant sampling was used.</p>
+</div>
+<h2>Metric STA-07-M5</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">STA-07</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">LOG-03, LOG-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>STA-07-M5</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">The percent of approved supply chain, Upstream Cloud Services relationships that are not recorded in logged data connections.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of unique providers with observed connections<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total Number of Unique Providers in the inventory<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value"></div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 day</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 1 day</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This measurement requires a list of Cloud Service Provider Connections that are Approved and Expected and an ability to log all connections to expected endpoints of those providers.</p>
+</div>
+<h2>Metric TVM-03-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">TVM-03</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">TVM-08</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>TVM-03-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of high and critical vulnerabilities that are remediated within the policy timeframes. This reflects the time between when a vulnerability is identified and when remediation is complete.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of high and critical vulnerabilities identified during the sampling period and remediated within policy timeframes<ul>
+<li>Sampling period: 7 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total Number of High and Critical Vulnerabilities identified during the sampling period<ul>
+<li>Sampling period: 7 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>High and critical Vulnerabilities are defined consistent with the implementation of TVM-08. If a vulnerability is identified but not remediated yet when the measurement is made, the measurement date is used as the remediation date in order to evaluate if the vulnerability has been mitigated within the defined policy timeframe, as expected for the calculation of A.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">7 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 7 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p><strong>To compute the denominator</strong> - The <em>Total Number of High and Critical Vulnerabilities</em> are any such vulnerabilities that are still open from previous periods plus all such newly identified during the current sample period.  A minimal example framework for vulnerability prioritization is CVSS v.3.0 where <em>High</em> and <em>Critical</em> are defined as 7.0 and above.</p>
+
+<p><strong>To compute the numerator...</strong></p>
+
+<ul>
+<li>Fetch all Critical or High vulnerabilities newly identified during the current period</li>
+<li>Fetch all Critical or High vulnerabilities that are still Open (not Closed) from the previous period</li>
+</ul>
+
+<p>For example, assume the following data sets for three example weekly periods...</p>
+
+<p><em>Example period 1 is April 25 - May 01</em></p>
+
+<ul>
+<li>Number of Critical + High Vulnerabilities Created during the period = 10</li>
+<li>Number of Critical + High Vulnerabilities still Open from previous periods <em>(as of the beginning of the current period-04/25)</em> = 3</li>
+<li>Number of Critical + High Vulnerabilities Closed during the period within Policy = 8</li>
+<li>Total Number of Critical + High Vulnerabilities Closed = 8</li>
+</ul>
+
+<p><em>Example period 2 is 05/02-05/08</em> </p>
+
+<ul>
+<li>Number of Critical + High Vulnerabilities Created during the period = 15</li>
+<li>Number of Critical + High Vulnerabilities still Open from previous period (as of the beginning of the current period - May 02) = 5 <em>(e.g. a+b-d, but in an actual implementation this is possibly determined with a database query)</em>
+</li>
+<li>Number of Critical + High Vulnerabilities Closed during the period within Policy = 14</li>
+<li>Total Number of Critical + High Vulnerabilities Closed = 20</li>
+</ul>
+
+<p>Metric for the period 05/02-05/08 is Numerator = (g)/[(e) + (f)] = 14/(15+5) = 70%</p>
+
+<p><em>Example period 3 is May 09 - May 15</em></p>
+
+<ul>
+<li>Number of Critical + High Vulnerabilities Created during the period = 5</li>
+<li>Number of Critical + High Vulnerabilities still Open from previous periods <em>(as of the beginning of the current period-05/02)</em> = 0 (e+f-h)</li>
+<li>Number of Critical + High Vulnerabilities Closed during the period within Policy = 4</li>
+<li>Total Number of Critical + High Vulnerabilities Closed = 4</li>
+</ul>
+
+<p>Metric for the period May 09 - May 15 is Numerator = (k)/[(i) + (j)] = 4/(5+0) = 80%</p>
+</div>
+<h2>Metric TVM-07-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">TVM-07</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DCS-06, UEM-14</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>TVM-07-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of managed assets scanned monthly.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of assets from the asset catalog scanned during the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of assets in the asset catalog<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>the <em>asset catalog</em> refers to the cataloging requirements of CCMv4 DCS-06, which requires organizations to, ""Catalogue and track all relevant physical and logical assets located at all of the CSP sites within a secured system.""</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This metric requires organization-managed assets to be maintained in the catalog required by control DCS-06 in CCMv4. The asset catalog must be integrated with the vulnerability management process to track when assets in the catalog are scanned.</p>
+</div>
+<h2>Metric TVM-10-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">TVM-10</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">AIS-07, TVM-08</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>TVM-10-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of publicly known vulnerabilities that are identified for organizational assets within the required organizational timeframes. The purpose of this metric is to determine how long it takes an organization to start tracking vulnerabilities for triage. This measure is important because Palo Alto Networks reported that Internet assets are scanned once every 15 minutes or less after CVEs are published. This metric does not include the time to remediation (which is measured by TVM-03-M1).</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of high and critical vulnerabilities identified for remediation within policy timeframes<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total Number of high and critical vulnerabilities identified or carried over into the sampling period<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>To compute the NUMERATOR, determine the Total Number of Critical and High Vulnerabilities that have been identified for remediation per TVM-01 policies and procedures. In order to compute the metric, use the following logic in these rules.
+For each Critical or High Vulnerability that were Identified during the period, or carried forward from the previous period...
+a) Check the Vulnerability Publish Date. Is this date &lt; the date on which the Asset was commissioned. If so, use the Asset Commission Date as the <em>from date</em>. If not, then use the Vulnerability Publish Date as the <em>from date</em>.
+b) Subtract the Vulnerability Identification Date from the <em>from date</em>. The Identification Date is the date that your organization has acknowledged the vulnerability to be acted upon (e.g. this may be a the ticket create date on Jira for the given vulnerability)
+c) Evaluate if b &gt; the policy duration (in days). If so, add +1 to the count.</p>
+
+<p>To compute the DENOMINATOR, The <em>Total Number of High and Critical Vulnerabilities</em> are...
+a) Opened during the current period and/or
+b) Carried over from the previous period because the policy timeframe spans period. For example, let us say that we measure the control on a weekly basis from Sunday - Saturday and the policy timeframe is 3 days. Any issue identified on or after Thursday is not due, per policy, until the following period. These vulnerabilities are <em>carried over</em> into the following period.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"><div>SLO Period: 30 days</div></div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<ol>
+<li>Classification of vulnerabilities as <em>High</em> or <em>Critical</em> risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (<a href="https://nvd.nist.gov/vuln-metrics/cvss">https://nvd.nist.gov/vuln-metrics/cvss</a>) or risk-based vulnerability management system (see <a href="https://tinyurl.com/what-is-rbvm">https://tinyurl.com/what-is-rbvm</a>). For instance, vulnerabilities with a CVSS score of 9 or higher are <em>Critical</em> and vulnerabilities with CVSS scores between 7 and 9 could be defined as <em>High</em> risk.</li>
+<li>Date and time of vulnerability discovery could be obtained from the Vulnerability Management tool as it scans and detects high and critical vulnerabilities for remediation.</li>
+<li>Date and time of vulnerability remediation could be obtained in the ways listed below.
+a) From the Vulnerability Management tool as it scans and finds that a previously detected vulnerability is no longer present/detected.
+b) From the patch deployment tool (e.g. SCCM) as it successfully deploys and installs a patch that fixes an identified vulnerability.
+c) From the application / code release tool as it moves into production the new version of the application that no longer contains the code vulnerability.</li>
+</ol>
+
+<p>This metric depends on a policy timeline target for the identification (completion of the triage process) for known vulnerabilities. </p>
+</div>
+<h2>Metric UEM-04-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">UEM-04</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">LOG-05</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>UEM-04-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric provides an indication of endpoints that are actively maintained in the Asset Inventory.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of endpoints that exist in both the audit log and asset inventory<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: The total number of endpoints in the asset inventory<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>The data used in the expression is all data from the control period.</p>
+
+<p>This metric assumes that the two CCMv4 controls listed below are in place (or an equivalent).</p>
+
+<ul>
+<li>LOG-05 - Monitor security audit logs to detect activity outside of typical or expected patterns. </li>
+<li>UEM-04 - Maintain an inventory of all endpoints used to store and access company data.</li>
+</ul>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 95%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>The data used in the expression is all data from the control period.</p>
+
+<p>This assumes the LOG-05 logs (i.e. ""security audit logs to detect activity outside of typical or expected patterns"") are inclusive of endpoint identities. </p>
+
+<p>The frequency of evaluation for UEM-04 has to match the log data retention period. </p>
+
+<p>Examples of endpoints which store or access company data include end-user devices, point of sale systems, databases, IoT systems, and data integration systems.</p>
+</div>
+<h2>Metric UEM-05-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">UEM-05</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">UEM-04</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>UEM-05-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric describes the ability of an organization to control the configuration and behaviour of assets which directly create, read, write, or delete organizational data.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of unique endpoints with suitable policy enforcement tools that reported compliance state within the sampling period<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of endpoints in the asset inventory<ul>
+<li>Sampling period: 1 day</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>This metric assumes the CCMv4 control listed below is in place (or an equivalent).</p>
+
+<blockquote>
+<p>UEM-04 - Maintain an inventory of all endpoints used to store and access company data.</p>
+</blockquote>
+
+<p>The capability to measure and enforce Desired Configuration and/or Policy must be a discrete, measureable entity, such as an agent, an implementation constraint (for example containers or read-only filesystems), or an external control (such as network authentication and access policies or software defined networking).</p>
+
+<p>In order to provide this measurement the discrete capability must be an approved mechanism or mechanisms whose implementation is mandated by policy.</p>
+
+<p>In order for this measurement to be meaningful, UEM-04 must have a measurement greater than 95%.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">1 day</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 1 day</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>If there are devices that are in an exception group they still count as a policy control being applied for the purposes of this metric. </p>
+
+<p>This metric does not differentiate between partial reporting and full reporting of all of the policies from a given system, but only the capability of that system to report.</p>
+
+<p>See UEM-04 for examples of systems which access or store organizational data.</p>
+
+<p>Technical measures to enforce policies and controls for endpoints include API tools such as OSQuery, DCM tools, MDM tools, VPN Access Policy Controls, etc.</p>
+</div>
+<h2>Metric UEM-09-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">UEM-09</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">DCS-05, DCS-06, DSP-01, TVM-02</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>UEM-09-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of instances which are an running anti-malware/virus service.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of managed endpoints for the workforce initiating observed connections that passed a device check inclusive (e.g. verifying malware protection)<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+<li>
+<code>B</code>: Total number of managed endpoints for the workforce initiating observed connections<ul>
+<li>Sampling period: 30 days</li>
+<li>Unit: count</li>
+<li>Type: calculate</li>
+</ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p><em>Device check</em> is some form of posture assessment during connection or path establishment. Some examples are listed below.</p>
+
+<ul>
+<li>Trusted Platform Module posture assessment </li>
+<li>VPN posture assessment</li>
+<li>Zero Trust Network Architecture (ZTNA) posture assessment</li>
+<li>Out-of-band checks that correlate connection log information with independent posture assessment monitoring</li>
+</ul>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">30 days</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value">
+<div>Minimum: 99%</div>
+<div>SLO Period: 30 days</div>
+</div>
+</div>
+<h3>Implementation guidelines</h3>
+<div>
+<p>This depends on an Asset Database such as from CCMv4 DCS-06.  The targeted classifications of assets in scope must be identified in CCMv4 DCS-05 (e.g. employee devices).</p>
+</div>
+</body>
+</html>

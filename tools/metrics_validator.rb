@@ -74,7 +74,7 @@ class Markdown
 end
 
 if ARGV.length!=3
-  puts "Usage: #{__FILE__} <source_yaml_file> <souce_makrdown_front_matter> <html_rending>"
+  puts "Usage: #{__FILE__} <source_yaml_file> <souce_markdown_front_matter> <html_rending>"
   exit false
 end
 yaml_source = ARGV[0]
