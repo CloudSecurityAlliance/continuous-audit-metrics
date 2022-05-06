@@ -846,7 +846,6 @@ metrics:
   rules: 
   sloRecommendations:
     sloRangeMin: 80%
-    sloPeriod: P15D
   implementationGuidelines: This requires defining metrics beyond the minimal set currently defined in order to meet the recommended SLO. Metrics for all CEK controls may not be easily automated, for example CEK-01, CEK-02, CEK-06, CEK-07, and CEK-08. This is against the total number of controls in the CEK domain, rather than the number of controls asserted as met in the last audit. This simplifies the metric as the implementers do not need programmatic access to the previous audit results. Generally, the recommended frequency should be the maximum frequency recommended for CEK metrics.
   samplingPeriod: P15D
 - id: LOG-13-M2
