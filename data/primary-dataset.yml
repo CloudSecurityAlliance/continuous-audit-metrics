@@ -612,7 +612,7 @@ metrics:
     termination or role change event recorded in the HR system.
   sloRecommendations:
     sloRangeMin: 99%
-  implementationGuidelines: >-
+  implementationGuidelines: |
     Steps to compute this may look like: 
 
       1. Account deactivation timestamps can be obtained from the identity management system. 
