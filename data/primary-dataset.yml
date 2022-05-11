@@ -20,13 +20,9 @@ metrics:
       name: A
       description: Total number of pieces of Production Code that have an Associated
         Verification Step
-      unit: count
-      type: calculate
     - id: prod_apps_deployed
       name: B
       description: Total number of pieces of Production Code
-      unit: count
-      type: calculate
   rules: |
     **Production Code** is code deployed to the production runtime environment(s)
     within the scope of the Information Security Program defined in the CCMv4 GRC-05
@@ -71,13 +67,9 @@ metrics:
       name: A
       description: Number of deployed production applications with acceptable level
         of risk from application security vulnerabilities
-      unit: count
-      type: calculate
     - id: prod_apps_deployed
       name: B
       description: Total Number of deployed production applications
-      unit: count
-      type: calculate
   rules: 'Production Application = Applications tracked within the software inventory
     established in CCMv4 DCS-06. Acceptable level of risk from application security
     vulnerabilities:  Vulnerabilities categorized as medium or low risk as well as
@@ -118,14 +110,10 @@ metrics:
       name: A
       description: Number of unaccepted critical or high vulnerabilities in production
         applications with an age greater than the policy defined maximum age
-      unit: count
-      type: calculate
     - id: risky_vulns_in_prod_apps
       name: B
       description: Total number of critical or high vulnerabilities in production
         applications within this period
-      unit: count
-      type: calculate
   rules: 'Production Application = Applications tracked within the software inventory
     established in CCMv4 DCS-06. Acceptable level of risk from application security
     vulnerabilities:  Vulnerabilities categorized as medium or low risk as well as
@@ -161,14 +149,10 @@ metrics:
       name: A
       description: Number of critical systems that passed BCR tests during the sampling
         period
-      unit: count
-      type: calculate
     - id: critical_systems_count
       name: B
       description: Total number of critical systems operating during the sampling
         period
-      unit: count
-      type: calculate
   rules: Criteria for system criticality must be defined and there must be a list
     of critical systems identified. Recovery Point Objective(s) and Recovery Time
     Objective(s) must be defined for critical systems. This metric does not attempt
@@ -201,13 +185,9 @@ metrics:
     - id: assets_under_change_management
       name: A
       description: Number of assets that have change management technology integrated
-      unit: count
-      type: calculate
     - id: total_assets_count
       name: B
       description: Total number of assets
-      unit: count
-      type: calculate
   rules: Change management technology covers release management tools that enable
     automated deployment and rollback of software builds in production.
   sloRecommendations:
@@ -240,13 +220,9 @@ metrics:
     - id: config_items_passing_tests
       name: A
       description: Number of configuration items that were tested and passed successfully
-      unit: count
-      type: calculate
     - id: total_config_items
       name: B
       description: Total number of configuration items that were tested
-      unit: count
-      type: calculate
   rules: This metric captures the number of tests passed out of the total number of
     tests defined. Each test is assumed to verify a configuration item which is arbitrarily
     defined as any component for which a test can be defined.
@@ -284,13 +260,9 @@ metrics:
       description: Number of assets responsible for data at-rest or in-transit where
         the cryptographic library has passed Automated Cryptographic Validation Protocol
         tests or equivalent tests
-      unit: count
-      type: calculate
     - id: data_at_rest_in_transit_assets
       name: B
       description: Total number of assets responsible for data at-rest or in-transit
-      unit: count
-      type: calculate
   rules: 
   sloRecommendations:
     sloRangeMin: 85%
@@ -311,13 +283,9 @@ metrics:
       name: A
       description: Number of assets with a cryptographic function that meets cryptographic
         requirements
-      unit: count
-      type: calculate
     - id: total_crypto_assets
       name: B
       description: Total number of assets with a cryptographic function
-      unit: count
-      type: calculate
   rules: The specification should be reported for all the adopted cryptographic suites.
   sloRecommendations:
     sloRangeMin: 90%
@@ -345,14 +313,10 @@ metrics:
       name: A
       description: Number of distinct assets seen in security audit logs during the
         sampling period that are in an asset catalog
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Number of distinct assets seen in security audit logs during the
         sampling period
-      unit: count
-      type: calculate
   rules: The assumption is that the design of the DCS-06 control process(es) was found
     to be effective by internal or external audits.
   sloRecommendations:
@@ -392,13 +356,9 @@ metrics:
     - id: 
       name: A
       description: Total number of data records classified by type and/or sensitivity
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of data records stored
-      unit: count
-      type: calculate
   rules: Total number of records classified by type and/or sensitivity - this is a
     count of all data assets that have a defined classification by type or sensitivity
     level (Undefined classifications are not counted for this variable). Total number
@@ -433,13 +393,9 @@ metrics:
       name: A
       description: Total number of assets in the asset catalog that are classified
         by type and/or sensitivity of the data on that asset
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of assets in the organization's asset catalog
-      unit: count
-      type: calculate
   rules: Total number of assets classified by type and/or sensitivity of the data
     contained on the asset - this is a count of all assets that have a defined classification
     by type or sensitivity level (Undefined classifications are not counted for this
@@ -469,14 +425,10 @@ metrics:
       name: A
       description: Number of data records or data stores from the CCMv4 DSP-03 inventory
         correctly included in the data flow documentation
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of data records or data stores in the CCMv4 DSP-03
         inventory
-      unit: count
-      type: calculate
   rules: 'This metric can be measured by counting the number of records in a data
     store or by simply counting the data stores themselves. CORRECTLY INCLUDED means
     that the data record or data store is represented in the data flow documentation
@@ -519,13 +471,9 @@ metrics:
       name: A
       description: Number of data streams from the CCMv4 DSP-03 inventory correctly
         included in the data flow documentation
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of data streams in the CCMv4 DSP-03 inventory
-      unit: count
-      type: calculate
   rules: Data streams are the connections from data sources to data consumers illustrated
     in data flow diagrams. These connections should be included in the data inventory
     required by control DSP-03 (CCMv4). This may be a complete inventory of all data
@@ -556,13 +504,9 @@ metrics:
       name: A
       description: Number of active policy exceptions where the time to resolution
         is within the documented timeline for resolution, during the sampling period
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of active policy exceptions, during the sampling period
-      unit: count
-      type: calculate
   rules: An Exception Policy must be defined and must cover the entire lifecycle of
     an exception. Active policy exceptions that happen during the sampling period
     but which are not resolved yet are counted in B, not A.
@@ -599,13 +543,9 @@ metrics:
       name: A
       description: Number of terminated users deprovisioned within policy guidelines
         during the sampling period
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of terminated users during the sampling period
-      unit: count
-      type: calculate
   rules: The time lapse between a user's termination and account deactivation must
     be measured in seconds. The time lapse between user's termination and account
     deactivation = time stamp of account deactivation event - time stamp of employee
@@ -640,13 +580,9 @@ metrics:
       name: A
       description: Number of accounts reviewed with correct access in the Last 90
         Days
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of Accounts
-      unit: count
-      type: calculate
   rules: Date of last Recertification is the date and time that a privilege was reviewed
     and recertified in the most recent recertification. If a Date of last recertification
     does not exist, this should be replaced with the Date a privilege was granted
@@ -681,14 +617,10 @@ metrics:
       description: Number of users with admin access to more than one of the following
         capabilities; production data management, encryption and key management, or
         logging
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Number of users with access to production data management, encryption
         and key management, or logging capabilities
-      unit: count
-      type: calculate
   rules: Capabilities are privileged roles or functions. Examples of production data
     management capabilities are the AmazonRDSFullAccess policy in AWS, the Cloud SQL
     Admin & Cloud SQL Editor roles in the Google Cloud Platform (GCP), and db_owner
@@ -721,13 +653,9 @@ metrics:
       name: A
       description: Count of data flows that use an approved, standardized cryptographic
         security function
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Count of all data flows
-      unit: count
-      type: calculate
   rules: This metric depends on a known inventory of data flows such as us required by DSP-05. This inventory may be built from IPY-02 and/or DSP-05 (see DSP-05-M2), or other options could exist (e.g. in some implementations a data flow might be counted as an asset type in a DCS-06 asset inventory). The count of all data flows is the count of items in the inventory used to satisfy DSP-05. Approved cryptographic security functions should be established by an organization policy or standard, as required by CEK-01. Determining which data flows use an approved cryptographic security function can occur using analytics on the encrypted traffic flows or could occur by examining the associated configurations using the tooling from AIS-06 or from the CCC domain.
   sloRecommendations:
     sloRangeMin: 99.99%
@@ -747,13 +675,9 @@ metrics:
       name: A
       description: Number of production assets that are in compliance with hardening
         baseline
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of production assets
-      unit: count
-      type: calculate
   rules: Examples of hardening baselines include Center for Internet Security Benchmarks, DISA STIGs, vendor recommended best practices, NIST security guidance, etc.
   sloRecommendations:
     sloRangeMin: 99.99%
@@ -769,13 +693,9 @@ metrics:
     - id: 
       name: A
       description: Number of Log Sources with Security Alerts configured
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total Number of Log Sources
-      unit: count
-      type: calculate
   rules: Log sources can be the system log(s) or input(s) to the logging pipeline(s). Security alerts include traditional alerts triggered when a log records events in a control domain above a specified threshold as well as alerts generated by anomaly detection using machine learning.
   sloRecommendations:
     sloRangeMin: 95%
@@ -795,13 +715,9 @@ metrics:
       name: A
       description: Number of anomalies detected during the sampling period that were
         reviewed and resolved within a timeframe that is in compliance with Policy
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of anomalies detected during the sampling period
-      unit: count
-      type: calculate
   rules: Anomalies that have been detected during the sampling period, but have not been reviewed and resolved during the sampling period are not counted in A. An anomaly is any event happening outside of typical or expected patterns.
   sloRecommendations:
     sloRangeMin: 95%
@@ -837,13 +753,9 @@ metrics:
     - id: 
       name: A
       description: Number of metrics reported in the CCMv4 CEK domain
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of controls in the CCMv4 CEK domain
-      unit: count
-      type: calculate
   rules: 
   sloRecommendations:
     sloRangeMin: 80%
@@ -862,13 +774,9 @@ metrics:
     - id: 
       name: A
       description: Number of minutes of uptime during the sampling period
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Duration of the sampling period in minutes
-      unit: 
-      type: calculate
   rules: | 
     Uptime = (total number of minutes in the sampling period - downtime in minutes during the sampling period)
     Downtime = any minute where health checks for any component of the monitoring system failed
@@ -894,14 +802,10 @@ metrics:
       name: A
       description: Number of security events sourced from automated systems during
         the sampling period
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of security events that were recorded during the sampling
         period
-      unit: count
-      type: calculate
   rules: The log sources configured with security alerts for the LOG-03-M1 metric are examples of automated systems.
   sloRecommendations:
     sloRangeMin: 90%
@@ -924,13 +828,9 @@ metrics:
       name: A
       description: Number of security events triaged within policy defined time limit,
         during the sampling period
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of security events Logged, during the sampling period
-      unit: count
-      type: calculate
   rules: Policy targets as established in CCMv4 SEF-01 are used here as a proxy for ""within a reasonable time"". This metrics is manipulatable by selecting an easy to achieve policy target but doing so should create friction during the initial audit.
   sloRecommendations:
     sloRangeMin: 99%
@@ -950,8 +850,6 @@ metrics:
       name: A
       description: Slope of the linear regression for triage times over the sampling
         period
-      unit: 
-      type: calculate
   rules: The SLOPE is the representation of the linear regression of the triage times as graphed against the dates (or sequence numbers) for security events within the time period.
   sloRecommendations:
     sloRangeMin: 
@@ -977,14 +875,10 @@ metrics:
       name: A
       description: Total number of third-party software components seen during the
         sampling period, which are from authorized providers
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of third-party software components seen during the
         sampling period
-      unit: count
-      type: calculate
   rules: 
   sloRecommendations:
     sloRangeMin: 99.9%
@@ -1003,13 +897,9 @@ metrics:
     - id: 
       name: A
       description: Total number of unique providers with observed connections
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total Number of Unique Providers in the inventory
-      unit: count
-      type: calculate
   rules: 
   sloRecommendations:
     sloRangeMin: 99%
@@ -1027,14 +917,10 @@ metrics:
       name: A
       description: Number of high and critical vulnerabilities identified during the
         sampling period and remediated within policy timeframes
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total Number of High and Critical Vulnerabilities identified during
         the sampling period
-      unit: count
-      type: calculate
   rules: High and critical Vulnerabilities are defined consistent with the implementation of TVM-08. If a vulnerability is identified but not remediated yet when the measurement is made, the measurement date is used as the remediation date in order to evaluate if the vulnerability has been mitigated within the defined policy timeframe, as expected for the calculation of A.
   sloRecommendations:
     sloRangeMin: 99%
@@ -1082,13 +968,9 @@ metrics:
       name: A
       description: Number of assets from the asset catalog scanned during the sampling
         period
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of assets in the asset catalog
-      unit: count
-      type: calculate
   rules: the *asset catalog* refers to the cataloging requirements of CCMv4 DCS-06, which requires organizations to, ""Catalogue and track all relevant physical and logical assets located at all of the CSP sites within a secured system.""
   sloRecommendations:
     sloRangeMin: 99%
@@ -1107,14 +989,10 @@ metrics:
       name: A
       description: Number of high and critical vulnerabilities identified for remediation
         within policy timeframes
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total Number of high and critical vulnerabilities identified or
         carried over into the sampling period
-      unit: count
-      type: calculate
   rules: |
     To compute the NUMERATOR, determine the Total Number of Critical and High Vulnerabilities that have been identified for remediation per TVM-01 policies and procedures. In order to compute the metric, use the following logic in these rules.
     For each Critical or High Vulnerability that were Identified during the period, or carried forward from the previous period...
@@ -1149,13 +1027,9 @@ metrics:
       name: A
       description: Number of endpoints that exist in both the audit log and asset
         inventory
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: The total number of endpoints in the asset inventory
-      unit: count
-      type: calculate
   rules: |
     The data used in the expression is all data from the control period.
 
@@ -1185,13 +1059,9 @@ metrics:
       name: A
       description: Number of unique endpoints with suitable policy enforcement tools
         that reported compliance state within the sampling period
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of endpoints in the asset inventory
-      unit: count
-      type: calculate
   rules: |
     This metric assumes the CCMv4 control listed below is in place (or an equivalent).
     > UEM-04 - Maintain an inventory of all endpoints used to store and access company data.
@@ -1228,14 +1098,10 @@ metrics:
       description: Total number of managed endpoints for the workforce initiating
         observed connections that passed a device check inclusive (e.g. verifying
         malware protection)
-      unit: count
-      type: calculate
     - id: 
       name: B
       description: Total number of managed endpoints for the workforce initiating
         observed connections
-      unit: count
-      type: calculate
   rules: |
     *Device check* is some form of posture assessment during connection or path establishment. Some examples are listed below.
     - Trusted Platform Module posture assessment 
