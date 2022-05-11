@@ -49,7 +49,7 @@
 </head>
 <body>
 <h1>Continuous Audit Metrics Catalog, version 1.0.0</h1>
-<p>Generated on 2022-05-11 15:33:47 UTC</p>
+<p>Generated on 2022-05-11 15:47:52 UTC</p>
 <div>
 <p>This document has been automatically generated from the YAML source file at <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml">https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml</a></p>
 
@@ -119,16 +119,12 @@
 <code>A</code>: Total number of pieces of Production Code that have an Associated Verification Step<ul>
 <li>ID: prod_apps_with_verification</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 <li>
 <code>B</code>: Total number of pieces of Production Code<ul>
 <li>ID: prod_apps_deployed</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 </ul></p>
@@ -169,16 +165,12 @@ for quality, security, and privacy tests.</p>
 <code>A</code>: Number of deployed production applications with acceptable level of risk from application security vulnerabilities<ul>
 <li>ID: prod_apps_deployed_with_acceptable_vuls</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 <li>
 <code>B</code>: Total Number of deployed production applications<ul>
 <li>ID: prod_apps_deployed</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 </ul></p>
@@ -215,16 +207,12 @@ for quality, security, and privacy tests.</p>
 <code>A</code>: Number of unaccepted critical or high vulnerabilities in production applications with an age greater than the policy defined maximum age<ul>
 <li>ID: nc_vuln_remediation_in_prod_apps</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 <li>
 <code>B</code>: Total number of critical or high vulnerabilities in production applications within this period<ul>
 <li>ID: risky_vulns_in_prod_apps</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 </ul></p>
@@ -276,16 +264,12 @@ for quality, security, and privacy tests.</p>
 <code>A</code>: Number of critical systems that passed BCR tests during the sampling period<ul>
 <li>ID: bcr_tests_critical_systems</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 <li>
 <code>B</code>: Total number of critical systems operating during the sampling period<ul>
 <li>ID: critical_systems_count</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 </ul></p>
@@ -322,16 +306,12 @@ for quality, security, and privacy tests.</p>
 <code>A</code>: Number of assets that have change management technology integrated<ul>
 <li>ID: assets_under_change_management</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 <li>
 <code>B</code>: Total number of assets<ul>
 <li>ID: total_assets_count</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 </ul></p>
@@ -368,16 +348,12 @@ for quality, security, and privacy tests.</p>
 <code>A</code>: Number of configuration items that were tested and passed successfully<ul>
 <li>ID: config_items_passing_tests</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 <li>
 <code>B</code>: Total number of configuration items that were tested<ul>
 <li>ID: total_config_items</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 </ul></p>
@@ -414,16 +390,12 @@ for quality, security, and privacy tests.</p>
 <code>A</code>: Number of assets responsible for data at-rest or in-transit where the cryptographic library has passed Automated Cryptographic Validation Protocol tests or equivalent tests<ul>
 <li>ID: acvp_approved_data_assets</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 <li>
 <code>B</code>: Total number of assets responsible for data at-rest or in-transit<ul>
 <li>ID: data_at_rest_in_transit_assets</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 </ul></p>
@@ -458,16 +430,12 @@ for quality, security, and privacy tests.</p>
 <code>A</code>: Number of assets with a cryptographic function that meets cryptographic requirements<ul>
 <li>ID: compliant_crypto_assets</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 <li>
 <code>B</code>: Total number of assets with a cryptographic function<ul>
 <li>ID: total_crypto_assets</li>
 <li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
 </ul>
 </li>
 </ul></p>
@@ -501,18 +469,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of distinct assets seen in security audit logs during the sampling period that are in an asset catalog<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of distinct assets seen in security audit logs during the sampling period that are in an asset catalog<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Number of distinct assets seen in security audit logs during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Number of distinct assets seen in security audit logs during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -545,18 +505,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of data records classified by type and/or sensitivity<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Total number of data records classified by type and/or sensitivity<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of data records stored<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of data records stored<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -589,18 +541,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of assets in the asset catalog that are classified by type and/or sensitivity of the data on that asset<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Total number of assets in the asset catalog that are classified by type and/or sensitivity of the data on that asset<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of assets in the organization's asset catalog<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of assets in the organization's asset catalog<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -633,18 +577,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of data records or data stores from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of data records or data stores from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of data records or data stores in the CCMv4 DSP-03 inventory<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of data records or data stores in the CCMv4 DSP-03 inventory<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -677,18 +613,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of data streams from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of data streams from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of data streams in the CCMv4 DSP-03 inventory<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of data streams in the CCMv4 DSP-03 inventory<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -721,18 +649,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of active policy exceptions where the time to resolution is within the documented timeline for resolution, during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of active policy exceptions where the time to resolution is within the documented timeline for resolution, during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of active policy exceptions, during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of active policy exceptions, during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -765,18 +685,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of terminated users deprovisioned within policy guidelines during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of terminated users deprovisioned within policy guidelines during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of terminated users during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of terminated users during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -815,18 +727,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of accounts reviewed with correct access in the Last 90 Days<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of accounts reviewed with correct access in the Last 90 Days<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of Accounts<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of Accounts<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -859,18 +763,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of users with admin access to more than one of the following capabilities; production data management, encryption and key management, or logging<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of users with admin access to more than one of the following capabilities; production data management, encryption and key management, or logging<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Number of users with access to production data management, encryption and key management, or logging capabilities<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Number of users with access to production data management, encryption and key management, or logging capabilities<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -908,18 +804,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Count of data flows that use an approved, standardized cryptographic security function<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Count of data flows that use an approved, standardized cryptographic security function<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Count of all data flows<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Count of all data flows<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -952,18 +840,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of production assets that are in compliance with hardening baseline<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of production assets that are in compliance with hardening baseline<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of production assets<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of production assets<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -996,18 +876,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of Log Sources with Security Alerts configured<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of Log Sources with Security Alerts configured<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total Number of Log Sources<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total Number of Log Sources<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1040,18 +912,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of anomalies detected during the sampling period that were reviewed and resolved within a timeframe that is in compliance with Policy<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of anomalies detected during the sampling period that were reviewed and resolved within a timeframe that is in compliance with Policy<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of anomalies detected during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of anomalies detected during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1084,18 +948,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of metrics reported in the CCMv4 CEK domain<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of metrics reported in the CCMv4 CEK domain<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of controls in the CCMv4 CEK domain<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of controls in the CCMv4 CEK domain<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1126,17 +982,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of minutes of uptime during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of minutes of uptime during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Duration of the sampling period in minutes<ul>
-<li>Sampling period: None</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Duration of the sampling period in minutes<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1176,18 +1025,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of security events sourced from automated systems during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of security events sourced from automated systems during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of security events that were recorded during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of security events that were recorded during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1222,18 +1063,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of security events triaged within policy defined time limit, during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of security events triaged within policy defined time limit, during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of security events Logged, during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of security events Logged, during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1265,10 +1098,7 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div>Formula: <code>A*100</code>
 </div>
 <p>Where: <ul><li>
-<code>A</code>: Slope of the linear regression for triage times over the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Slope of the linear regression for triage times over the sampling period<ul><li>Sampling period: None</li></ul>
 </li></ul></p>
 </div>
 <div class="key orange">Rules</div>
@@ -1306,18 +1136,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of third-party software components seen during the sampling period, which are from authorized providers<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Total number of third-party software components seen during the sampling period, which are from authorized providers<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of third-party software components seen during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of third-party software components seen during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1348,18 +1170,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of unique providers with observed connections<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Total number of unique providers with observed connections<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total Number of Unique Providers in the inventory<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total Number of Unique Providers in the inventory<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1390,18 +1204,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of high and critical vulnerabilities identified during the sampling period and remediated within policy timeframes<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of high and critical vulnerabilities identified during the sampling period and remediated within policy timeframes<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total Number of High and Critical Vulnerabilities identified during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total Number of High and Critical Vulnerabilities identified during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1475,18 +1281,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of assets from the asset catalog scanned during the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of assets from the asset catalog scanned during the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of assets in the asset catalog<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of assets in the asset catalog<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1519,18 +1317,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of high and critical vulnerabilities identified for remediation within policy timeframes<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of high and critical vulnerabilities identified for remediation within policy timeframes<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total Number of high and critical vulnerabilities identified or carried over into the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total Number of high and critical vulnerabilities identified or carried over into the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1580,18 +1370,10 @@ c) From the application / code release tool as it moves into production the new 
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of endpoints that exist in both the audit log and asset inventory<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of endpoints that exist in both the audit log and asset inventory<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: The total number of endpoints in the asset inventory<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: The total number of endpoints in the asset inventory<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1637,18 +1419,10 @@ c) From the application / code release tool as it moves into production the new 
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of unique endpoints with suitable policy enforcement tools that reported compliance state within the sampling period<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Number of unique endpoints with suitable policy enforcement tools that reported compliance state within the sampling period<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of endpoints in the asset inventory<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of endpoints in the asset inventory<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
@@ -1697,18 +1471,10 @@ c) From the application / code release tool as it moves into production the new 
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of managed endpoints for the workforce initiating observed connections that passed a device check inclusive (e.g. verifying malware protection)<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>A</code>: Total number of managed endpoints for the workforce initiating observed connections that passed a device check inclusive (e.g. verifying malware protection)<ul><li>Sampling period: None</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of managed endpoints for the workforce initiating observed connections<ul>
-<li>Sampling period: None</li>
-<li>Unit: count</li>
-<li>Type: calculate</li>
-</ul>
+<code>B</code>: Total number of managed endpoints for the workforce initiating observed connections<ul><li>Sampling period: None</li></ul>
 </li>
 </ul></p>
 </div>
