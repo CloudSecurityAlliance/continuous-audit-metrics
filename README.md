@@ -8,7 +8,7 @@ This repository contains the [YAML](https://en.wikipedia.org/wiki/YAML) definiti
 
 An HTML preview of the current state of this catalog is available [here](http://htmlpreview.github.io/?https://github.com/cloudsecurityalliance/continuous-audit-metrics/blob/main/metrics-catalog.html). 
 
-Cloud Security Aliance summit in Oct 2021 included a presentation on the Continuous Audit Metrics catalog work. The full presentation can be watched as part of the summit material on [brightTALK](https://www.brighttalk.com/webcast/10415/511360) and the [PDF](https://github.com/cloudsecurityalliance/continuous-audit-metrics/blob/main/docs/v2ContinuousAuditBrightTALK.pdf) is available for download. 
+Cloud Security Aliance summit in Oct 2021 included a presentation on the Continuous Audit Metrics catalog work. The full presentation can be watched as part of the summit material on [brightTALK](https://www.brighttalk.com/webcast/10415/511360) and the [PDF](https://github.com/cloudsecurityalliance/continuous-audit-metrics/blob/main/docs/v2ContinuousAuditBrightTALK.pdf) is available for download in /docs. 
 
 In addition to the **Continuous Audit Metrics Catalog**, this repository also hosts Auditing guidelines for continuous audit metrics.
 
