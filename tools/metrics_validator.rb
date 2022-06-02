@@ -245,6 +245,12 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
         doc.div do
           markdown.render(doc,metric['implementationGuidelines'])
         end
+        if metric['auditGuidelines']
+          doc.h3 "Implementation guidelines"
+          doc.div do
+            markdown.render(doc,metric['implementationGuidelines'])
+          end
+        end
       end
     end
   end
