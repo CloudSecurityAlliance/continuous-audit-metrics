@@ -6,6 +6,9 @@ on:
   pull_request:
     paths:
       - data/primary-dataset.yml
+  workflow_dispatch:
+    paths:
+      - data/primary-dataset.yml
 jobs:
   generate-html:
     permissions: write-all
