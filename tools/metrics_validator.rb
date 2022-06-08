@@ -74,7 +74,7 @@ class Markdown
 end
 
 if ARGV.length!=3
-  puts "Usage: #{__FILE__} <source_yaml_file> <souce_markdown_front_matter> <html_rending>"
+  puts "Usage: #{__FILE__} <source_yaml_file> <source_markdown_front_matter> <html_output>"
   exit false
 end
 yaml_source = ARGV[0]
@@ -97,6 +97,10 @@ def table_line(doc, key, value, color)
   else
     doc.div value, class: 'value'
   end
+end
+
+def metric_id(text)
+  'metric-' + text.tr('^[\-.A-Z0-9]','_')
 end
 
 markdown = Markdown.new
@@ -149,7 +153,64 @@ builder = Nokogiri::HTML::Builder.new do |doc|
           color: #700;
           font-size: 125%;
         }
+        .collapsible {
+          border-radius: 5px 5px 0 0;
+          margin-top: 1em;
+          background-color: #eee;
+          font-weight: bold;
+          color: black;
+          cursor: pointer;
+          padding: 1em;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 125%;
+        }
+        .active, .collapsible:hover {
+          background-color: #aaa;
+        }
+        .collapsible:after {
+          content: "\002B";
+          color: black;
+          font-weight: bold;
+          float: right;
+          margin-left: 5px;
+        }
+        .active:after {
+          content: "\2212";
+        }
+        .content {
+          padding: 0 18px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.2s ease-out;
+          background-color: #f7f7f7;
+          border-radius: 0 0 5px 5px;
+        }
+        @media print {
+          .content {
+            max-height: none;
+          }
+        }
         '
+      end
+      doc.script do
+        doc.text '
+        window.addEventListener("load", (event) => {
+          const coll = document.querySelectorAll(".collapsible");
+          coll.forEach(function(item) {
+            item.addEventListener("click", function() {
+              this.classList.toggle("active");
+              let content = this.nextElementSibling;
+              if (content.style.maxHeight){
+                content.style.maxHeight = null;
+              } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+              } 
+            });
+          });
+        });'
       end
     end
     doc.body do
@@ -165,6 +226,17 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
                         ')
         markdown.render(doc, File.read(md_source)) 
       end
+      doc.div do
+        doc.h3 "Table of content"
+        data['metrics'].each do |metric|
+          doc.ul do
+            doc.li do
+              doc.a "Metric #{metric['id']}", href: "##{metric_id(metric['id'])}"
+            end
+          end
+        end
+      end
+
       data['metrics'].each do |metric|
         
         unless metric['relatedControlIds'].nil? || metric['relatedControlIds'].kind_of?(Array)
@@ -173,7 +245,7 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
         end
 
 
-        doc.h2 "Metric #{metric['id']}"
+        doc.h2 "Metric #{metric['id']}", id: metric_id(metric['id']) 
         doc.div class: 'metric' do
           table_line doc, "Primary CCMv4 Control ID", metric['primaryControlId'], 'green'
           table_line doc, "Related CCMv4 Control IDs", (metric['relatedControlIds'].join(', ') if metric['relatedControlIds']), 'green'
@@ -241,8 +313,8 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
             end
           end
         end
-        doc.h3 "Implementation guidelines"
-        doc.div do
+        doc.button "Implementation guidelines", class: 'collapsible'
+        doc.div class: 'content' do
           markdown.render(doc,metric['implementationGuidelines'])
         end
       end
