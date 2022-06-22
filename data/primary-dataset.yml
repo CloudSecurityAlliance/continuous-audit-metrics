@@ -5,6 +5,38 @@ url: https://cloudsecurityalliance.org/artifacts/the-continuous-audit-metrics-ca
 ccm_version: 4.0.5
 copyright: (C) Cloud Security Alliance, 2022.
 metrics:
+- id: AIS-05-M1 
+  primaryControlId: AIS-05
+  relatedControlIds:
+  - Missing
+  metricDescription: This metric measures the percentage of running production code
+    that passed static application security testing.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: prod_apps_with_sast
+      name: A
+      description: Total number of units of production code that have successfully
+        passed static application security testing.
+    - id: prod_apps_deployed
+      name: B
+      description: Total number of units of code that are deployed in production.
+  rules: |
+    **Production Code** is code deployed to the production runtime environment(s)
+    within the scope of the Information Security Program defined in the CCMv4 GRC-05
+    control objective. A static application security test of a unit of code is 
+    considered **successfully passed** if:
+    * the testing tools are defined by the organization's security policy.
+    * the testing tools follow the organization's minimum coverage requirements.
+    * the testing tools are up-to-date and reflect industry best practices.
+    * the testing tools do not report any issues, with the exception of issues that
+      have been accepted by the organization (i.e. false-positives or accepted risks).
+
+    _Question: do we want to focus on the percentage of code that 'passes' tests vs the 
+    percentage that simply undergoes tests (passing or not)?_
+  sloRecommendations:
+    sloRangeMin: 100%
+  implementationGuidelines: See implementaionGuidelines for AIS-06-M1.
 - id: AIS-06-M1
   primaryControlId: AIS-06
   relatedControlIds:

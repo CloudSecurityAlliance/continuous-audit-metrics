@@ -277,7 +277,7 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
                     doc.text ': ' + params['description']
                     doc.ul do
                       doc.li "ID: #{params['id']}" if params['id']
-                      doc.li "Sampling period: #{duration.humanize}"
+                      # doc.li "Sampling period: #{duration.humanize}"
                       doc.li "Unit: #{params['unit']}" if params['unit']
                       doc.li "Type: #{params['type']}" if params['type']
                     end
