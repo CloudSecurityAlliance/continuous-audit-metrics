@@ -31,12 +31,69 @@ metrics:
     * the testing tools are up-to-date and reflect industry best practices.
     * the testing tools do not report any issues, with the exception of issues that
       have been accepted by the organization (i.e. false-positives or accepted risks).
-
-    _Question: do we want to focus on the percentage of code that 'passes' tests vs the 
-    percentage that simply undergoes tests (passing or not)?_
   sloRecommendations:
     sloRangeMin: 100%
   implementationGuidelines: See implementaionGuidelines for AIS-06-M1.
+- id: AIS-05-M2 
+  primaryControlId: AIS-05
+  relatedControlIds:
+  - Missing
+  metricDescription: This metric measures the percentage of running production code
+    that has been tested to show that it adheres to its desired behavior or specification.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: prod_apps_with_testing
+      name: A
+      description: Total number of units of production code that have successfully
+        been tested to show that they adhere to their desired behavior or specification.
+    - id: prod_apps_deployed
+      name: B
+      description: Total number of units of code that are deployed in production.
+  rules: |
+    **Production Code** is code deployed to the production runtime environment(s)
+    within the scope of the Information Security Program defined in the CCMv4 GRC-05
+    control objective. 
+    Testing may be applied at the unit, system, integration or functional level, or any
+    combination thereof. Testing requirements and coberage should be be pre-defined in 
+    the organization's software development policy.  
+  sloRecommendations:
+    sloRangeMin: 100%
+  implementationGuidelines: |
+    Software bugs in code represent an opportunity for the introduction of security 
+    vulnerabilities. The goal of this metric is to measure how extensively code is
+    tested in order to reduce the likelyhood of introducing such vulnerabilities.
+    See implementaionGuidelines for AIS-06-M1.
+- id: AIS-05-M3 
+  primaryControlId: AIS-05
+  relatedControlIds:
+  - Missing
+  metricDescription: This metric measures the percentage of running production 
+    applications that have passed dynamic application security testing. 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: prod_apps_with_dast
+      name: A
+      description: Total number of production applications that have successfully
+         passed static application security testing.
+    - id: prod_apps_deployed_integrated
+      name: B
+      description: Total number of deployed applications in production.
+  rules: |
+    **Production Code** is code deployed to the production runtime environment(s)
+    within the scope of the Information Security Program defined in the CCMv4 GRC-05
+    control objective. 
+    A dynamic application security test is considered **successfully passed** if:
+    * the testing tools are defined by the organization's security policy.
+    * the testing tools follow the organization's minimum coverage requirements.
+    * the testing tools are up-to-date and reflect industry best practices.
+    * the testing tools do not report any issues, with the exception of issues that
+      have been accepted by the organization (i.e. false-positives or accepted risks).
+  sloRecommendations:
+    sloRangeMin: 100%
+  implementationGuidelines: |
+    See implementaionGuidelines for AIS-06-M1.
 - id: AIS-06-M1
   primaryControlId: AIS-06
   relatedControlIds:

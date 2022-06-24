@@ -104,7 +104,7 @@
 </head>
 <body>
 <h1>Continuous Audit Metrics Catalog, version 1.0.0</h1>
-<p>Generated on 2022-06-22 15:24:03 UTC</p>
+<p>Generated on 2022-06-24 15:50:56 UTC</p>
 <div>
 <p>This document has been automatically generated from the YAML source file at <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml">https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml</a></p>
 
@@ -158,6 +158,8 @@
 <div>
 <h3>Table of content</h3>
 <ul><li><a href="#metric-AIS-05-M1">Metric AIS-05-M1</a></li></ul>
+<ul><li><a href="#metric-AIS-05-M2">Metric AIS-05-M2</a></li></ul>
+<ul><li><a href="#metric-AIS-05-M3">Metric AIS-05-M3</a></li></ul>
 <ul><li><a href="#metric-AIS-06-M1">Metric AIS-06-M1</a></li></ul>
 <ul><li><a href="#metric-AIS-07-M3">Metric AIS-07-M3</a></li></ul>
 <ul><li><a href="#metric-AIS-07-M6">Metric AIS-07-M6</a></li></ul>
@@ -230,9 +232,95 @@ considered <strong>successfully passed</strong> if:</p>
 <li>the testing tools do not report any issues, with the exception of issues that
 have been accepted by the organization (i.e. false-positives or accepted risks).</li>
 </ul>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"><div>Minimum: 100%</div></div>
+</div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
+<p>See implementaionGuidelines for AIS-06-M1.</p>
+</div>
+<h2 id="metric-AIS-05-M2">Metric AIS-05-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">AIS-05</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">Missing</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>AIS-05-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of running production code that has been tested to show that it adheres to its desired behavior or specification.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of units of production code that have successfully been tested to show that they adhere to their desired behavior or specification.<ul><li>ID: prod_apps_with_testing</li></ul>
+</li>
+<li>
+<code>B</code>: Total number of units of code that are deployed in production.<ul><li>ID: prod_apps_deployed</li></ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p><strong>Production Code</strong> is code deployed to the production runtime environment(s)
+within the scope of the Information Security Program defined in the CCMv4 GRC-05
+control objective. 
+Testing may be applied at the unit, system, integration or functional level, or any
+combination thereof. Testing requirements and coberage should be be pre-defined in 
+the organization's software development policy.  </p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"><div>Minimum: 100%</div></div>
+</div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
+<p>Software bugs in code represent an opportunity for the introduction of security 
+vulnerabilities. The goal of this metric is to measure how extensively code is
+tested in order to reduce the likelyhood of introducing such vulnerabilities.
+See implementaionGuidelines for AIS-06-M1.</p>
+</div>
+<h2 id="metric-AIS-05-M3">Metric AIS-05-M3</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">AIS-05</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">Missing</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>AIS-05-M3</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of running production applications that have passed dynamic application security testing.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of production applications that have successfully passed static application security testing.<ul><li>ID: prod_apps_with_dast</li></ul>
+</li>
+<li>
+<code>B</code>: Total number of deployed applications in production.<ul><li>ID: prod_apps_deployed_integrated</li></ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p><strong>Production Code</strong> is code deployed to the production runtime environment(s)
+within the scope of the Information Security Program defined in the CCMv4 GRC-05
+control objective. 
+A dynamic application security test is considered <strong>successfully passed</strong> if:</p>
 
-<p><em>Question: do we want to focus on the percentage of code that 'passes' tests vs the 
-percentage that simply undergoes tests (passing or not)?</em></p>
+<ul>
+<li>the testing tools are defined by the organization's security policy.</li>
+<li>the testing tools follow the organization's minimum coverage requirements.</li>
+<li>the testing tools are up-to-date and reflect industry best practices.</li>
+<li>the testing tools do not report any issues, with the exception of issues that
+have been accepted by the organization (i.e. false-positives or accepted risks).</li>
+</ul>
 </div>
 <div class="key orange">Sampling period</div>
 <div class="value">None</div>
