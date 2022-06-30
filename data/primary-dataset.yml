@@ -1201,3 +1201,171 @@ metrics:
     sloRangeMin: 99%
   implementationGuidelines: This depends on an Asset Database such as from CCMv4 DCS-06.  The targeted classifications of assets in scope must be identified in CCMv4 DCS-05 (e.g. employee devices).
   samplingPeriod: P30D
+ccm_references:
+- id: AIS-05
+  title: Automated Application Security Testing
+  specification: |
+    Implement a testing strategy, including criteria for acceptance of
+    new information systems, upgrades and new versions, which provides application
+    security assurance and maintains compliance while enabling organizational speed
+    of delivery goals. Automate when applicable and possible.
+- id: AIS-06
+  title: Automated Secure Application Deployment
+  specification: |
+    Establish and implement strategies and capabilities for secure, standardized,
+    and compliant application deployment. Automate where possible.
+- id: AIS-07
+  title: Application Vulnerability Remediation
+  specification: |
+    Define and implement a process to remediate application security
+    vulnerabilities, automating remediation when possible.
+- id: BCR-06
+  title: Business Continuity Exercises
+  specification: |
+    Exercise and test business continuity and operational resilience
+    plans at least annually or upon significant changes.
+- id: CCC-03
+  title: Change Management Technology
+  specification: |
+    Manage the risks associated with applying changes to organization
+    assets, including application, systems, infrastructure, configuration, etc.,
+    regardless of whether the assets are managed internally or externally (i.e.,
+    outsourced).
+- id: CCC-07
+  title: Detection of Baseline Deviation
+  specification: |
+    Implement detection measures with proactive notification in case
+    of changes deviating from the established baseline.
+- id: CEK-03
+  title: Data Encryption
+  specification: |
+    Provide cryptographic protection to data at-rest and in-transit,
+    using cryptographic libraries certified to approved standards.
+- id: CEK-04
+  title: Encryption Algorithm
+  specification: |
+    Use encryption algorithms that are appropriate for data protection,
+    considering the classification of data, associated risks, and usability of the
+    encryption technology.
+- id: DCS-06
+  title: Assets Cataloguing and Tracking
+  specification: |
+    Catalogue and track all relevant physical and logical assets located
+    at all of the CSP's sites within a secured system.
+- id: DSP-04
+  title: Data Classification
+  specification: 'Classify data according to its type and sensitivity level.
+
+'
+- id: DSP-05
+  title: Data Flow Documentation
+  specification: |
+    Create data flow documentation to identify what data is processed,
+    stored or transmitted where. Review data flow documentation at defined intervals,
+    at least annually, and after any change.
+- id: GRC-04
+  title: Policy Exception Process
+  specification: |
+    Establish and follow an approved exception process as mandated by
+    the governance program whenever a deviation from an established policy occurs.
+- id: IAM-07
+  title: User Access Changes and Revocation
+  specification: |
+    De-provision or respectively modify access of movers / leavers or
+    system identity changes in a timely manner in order to effectively adopt and
+    communicate identity and access management policies.
+- id: IAM-08
+  title: User Access Review
+  specification: |
+    Review and revalidate user access for least privilege and separation
+    of duties with a frequency that is commensurate with organizational risk tolerance.
+- id: IAM-09
+  title: Segregation of Privileged Access Roles
+  specification: |
+    Define, implement and evaluate processes, procedures and technical
+    measures for the segregation of privileged access roles such that administrative
+    access to data, encryption and key management capabilities and logging capabilities
+    are distinct and separated.
+- id: IPY-03
+  title: Secure Interoperability and Portability Management
+  specification: |
+    Implement cryptographically secure and standardized network protocols
+    for the management, import and export of data.
+- id: IVS-04
+  title: OS Hardening and Base Controls
+  specification: |
+    Harden host and guest OS, hypervisor or infrastructure control plane
+    according to their respective best practices, and supported by technical controls,
+    as part of a security baseline.
+- id: LOG-03
+  title: Security Monitoring and Alerting
+  specification: |
+    Identify and monitor security-related events within applications
+    and the underlying infrastructure. Define and implement a system to generate
+    alerts to responsible stakeholders based on such events and corresponding metrics.
+- id: LOG-05
+  title: Audit Logs Monitoring and Response
+  specification: |
+    Monitor security audit logs to detect activity outside of typical
+    or expected patterns. Establish and follow a defined process to review and take
+    appropriate and timely actions on detected anomalies.
+- id: LOG-10
+  title: Encryption Monitoring and Reporting
+  specification: |
+    Establish and maintain a monitoring and internal reporting capability
+    over the operations of cryptographic, encryption and key management policies,
+    processes, procedures, and controls.
+- id: LOG-13
+  title: Failures and Anomalies Reporting
+  specification: |
+    Define, implement and evaluate processes, procedures and technical
+    measures for the reporting of anomalies and failures of the monitoring system
+    and provide immediate notification to the accountable party.
+- id: SEF-05
+  title: Incident Response Metrics
+  specification: 'Establish and monitor information security incident metrics.
+
+'
+- id: SEF-06
+  title: Event Triage Processes
+  specification: |
+    Define, implement and evaluate processes, procedures and technical
+    measures supporting business processes to triage security-related events.
+- id: STA-07
+  title: Supply Chain Inventory
+  specification: 'Develop and maintain an inventory of all supply chain relationships.
+
+'
+- id: TVM-03
+  title: Vulnerability Remediation Schedule
+  specification: |
+    Define, implement and evaluate processes, procedures and technical
+    measures to enable both scheduled and emergency responses to vulnerability identifications,
+    based on the identified risk.
+- id: TVM-07
+  title: Vulnerability Identification
+  specification: |
+    Define, implement and evaluate processes, procedures and technical
+    measures for the detection of vulnerabilities on organizationally managed assets
+    at least monthly.
+- id: TVM-10
+  title: Vulnerability Management Metrics
+  specification: |
+    Establish, monitor and report metrics for vulnerability identification
+    and remediation at defined intervals.
+- id: UEM-04
+  title: Endpoint Inventory
+  specification: |
+    Maintain an inventory of all endpoints used to store and access company
+    data.
+- id: UEM-05
+  title: Endpoint Management
+  specification: |
+    Define, implement and evaluate processes, procedures and technical
+    measures to enforce policies and controls for all endpoints permitted to access
+    systems and/or store, transmit, or process organizational data.
+- id: UEM-09
+  title: Anti-Malware Detection and Prevention
+  specification: |
+    Configure managed endpoints with anti-malware detection and prevention
+    technology and services.
