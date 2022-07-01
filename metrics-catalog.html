@@ -45,11 +45,66 @@
           color: #700;
           font-size: 125%;
         }
+        .collapsible {
+          border-radius: 5px 5px 0 0;
+          margin-top: 1em;
+          background-color: #eee;
+          font-weight: bold;
+          color: black;
+          cursor: pointer;
+          padding: 1em;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 125%;
+        }
+        .active, .collapsible:hover {
+          background-color: #aaa;
+        }
+        .collapsible:after {
+          content: "\002B";
+          color: black;
+          font-weight: bold;
+          float: right;
+          margin-left: 5px;
+        }
+        .active:after {
+          content: "\2212";
+        }
+        .content {
+          padding: 0 18px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.2s ease-out;
+          background-color: #f7f7f7;
+          border-radius: 0 0 5px 5px;
+        }
+        @media print {
+          .content {
+            max-height: none;
+          }
+        }
         </style>
+<script>
+        window.addEventListener("load", (event) => {
+          const coll = document.querySelectorAll(".collapsible");
+          coll.forEach(function(item) {
+            item.addEventListener("click", function() {
+              this.classList.toggle("active");
+              let content = this.nextElementSibling;
+              if (content.style.maxHeight){
+                content.style.maxHeight = null;
+              } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+              } 
+            });
+          });
+        });</script>
 </head>
 <body>
 <h1>Continuous Audit Metrics Catalog, version 1.0.0</h1>
-<p>Generated on 2022-05-11 15:47:52 UTC</p>
+<p>Generated on 2022-06-08 15:46:53 UTC</p>
 <div>
 <p>This document has been automatically generated from the YAML source file at <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml">https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml</a></p>
 
@@ -100,7 +155,44 @@
 
 <p>For a detailed description of the context, purpose and terminology used in this work, we refer the reader to sections 1, 2 and 3 of <a href="https://cloudsecurityalliance.org/artifacts/the-continuous-audit-metrics-catalog/">version 1.0 of the continuous audit metrics catalog</a>.</p>
 </div>
-<h2>Metric AIS-06-M1</h2>
+<div>
+<h3>Table of content</h3>
+<ul><li><a href="#metric-AIS-06-M1">Metric AIS-06-M1</a></li></ul>
+<ul><li><a href="#metric-AIS-07-M3">Metric AIS-07-M3</a></li></ul>
+<ul><li><a href="#metric-AIS-07-M6">Metric AIS-07-M6</a></li></ul>
+<ul><li><a href="#metric-BCR-06-M1">Metric BCR-06-M1</a></li></ul>
+<ul><li><a href="#metric-CCC-03-M1">Metric CCC-03-M1</a></li></ul>
+<ul><li><a href="#metric-CCC-07-M1">Metric CCC-07-M1</a></li></ul>
+<ul><li><a href="#metric-CEK-03-M2">Metric CEK-03-M2</a></li></ul>
+<ul><li><a href="#metric-CEK-04-M1">Metric CEK-04-M1</a></li></ul>
+<ul><li><a href="#metric-DCS-06-M1">Metric DCS-06-M1</a></li></ul>
+<ul><li><a href="#metric-DSP-04-M2">Metric DSP-04-M2</a></li></ul>
+<ul><li><a href="#metric-DSP-04-M3">Metric DSP-04-M3</a></li></ul>
+<ul><li><a href="#metric-DSP-05-M1">Metric DSP-05-M1</a></li></ul>
+<ul><li><a href="#metric-DSP-05-M2">Metric DSP-05-M2</a></li></ul>
+<ul><li><a href="#metric-GRC-04-M1">Metric GRC-04-M1</a></li></ul>
+<ul><li><a href="#metric-IAM-07-M1">Metric IAM-07-M1</a></li></ul>
+<ul><li><a href="#metric-IAM-08-M2">Metric IAM-08-M2</a></li></ul>
+<ul><li><a href="#metric-IAM-09-M1">Metric IAM-09-M1</a></li></ul>
+<ul><li><a href="#metric-IPY-03-M2">Metric IPY-03-M2</a></li></ul>
+<ul><li><a href="#metric-IVS-04-M1">Metric IVS-04-M1</a></li></ul>
+<ul><li><a href="#metric-LOG-03-M1">Metric LOG-03-M1</a></li></ul>
+<ul><li><a href="#metric-LOG-05-M1">Metric LOG-05-M1</a></li></ul>
+<ul><li><a href="#metric-LOG-10-M1">Metric LOG-10-M1</a></li></ul>
+<ul><li><a href="#metric-LOG-13-M2">Metric LOG-13-M2</a></li></ul>
+<ul><li><a href="#metric-SEF-05-M1">Metric SEF-05-M1</a></li></ul>
+<ul><li><a href="#metric-SEF-06-M1">Metric SEF-06-M1</a></li></ul>
+<ul><li><a href="#metric-SEF-06-M2">Metric SEF-06-M2</a></li></ul>
+<ul><li><a href="#metric-STA-07-M3">Metric STA-07-M3</a></li></ul>
+<ul><li><a href="#metric-STA-07-M5">Metric STA-07-M5</a></li></ul>
+<ul><li><a href="#metric-TVM-03-M1">Metric TVM-03-M1</a></li></ul>
+<ul><li><a href="#metric-TVM-07-M1">Metric TVM-07-M1</a></li></ul>
+<ul><li><a href="#metric-TVM-10-M1">Metric TVM-10-M1</a></li></ul>
+<ul><li><a href="#metric-UEM-04-M1">Metric UEM-04-M1</a></li></ul>
+<ul><li><a href="#metric-UEM-05-M1">Metric UEM-05-M1</a></li></ul>
+<ul><li><a href="#metric-UEM-09-M1">Metric UEM-09-M1</a></li></ul>
+</div>
+<h2 id="metric-AIS-06-M1">Metric AIS-06-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">AIS-06</div>
@@ -142,11 +234,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 95%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>There must be a Software Inventory of Deployed Production Code (DCS-06).  Production code must be quantified based on the definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-07. The definition of <strong>deployed production code</strong> used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. The likelihood of standardized deployments can decrease as the number of different deployment systems increases. If the Software Deployment Pipeline has multiple stages where change could be introduced, and end-to-end validation cannot be performed, then the metric <strong>Percentage of steps in the Software Deployment Pipeline that have an associated verification step</strong> may be more suitable for an organization. There should be a mechanism to identify deviations, and if deviations from the standard are approved, then the system should account for (and manage) the exception as approved. This metric should at least be aligned with an organization's development or release cycle to provide timely input for correction in the next deployment or release. For example, if an organization uses an Agile development methodology with two-week sprints, then the metric should be measured at least every two weeks to provide data for review at sprint retros.</p>
 </div>
-<h2>Metric AIS-07-M3</h2>
+<h2 id="metric-AIS-07-M3">Metric AIS-07-M3</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">AIS-07</div>
@@ -184,11 +275,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 80%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>There must be a Software Inventory of Deployed Production Code (see DCS-06 for more info). Production code must be quantified based on the organization's definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-06. The definition of deployed production application used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. Acceptable Level of Risk should be defined by the organizations vulnerability management guidelines (e.g. only Critical and High vulnerabilities, or Medium Vulnerabilities and Higher, etc. Classification of vulnerabilities as High or Critical risk, etc. should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (<a href="https://nvd.nist.gov/vuln-metrics/cvss">https://nvd.nist.gov/vuln-metrics/cvss</a>). For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and vulnerabilities with CVSS scores between 7 and 9 could be defined as High risk.)</p>
 </div>
-<h2>Metric AIS-07-M6</h2>
+<h2 id="metric-AIS-07-M6">Metric AIS-07-M6</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">AIS-07</div>
@@ -226,8 +316,7 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <ol>
 <li>Classification of vulnerabilities as High or Critical risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the  Common Vulnerability Scoring System (CVSS) (<a href="https://nvd.nist.gov/vuln-metrics/cvss">https://nvd.nist.gov/vuln-metrics/cvss</a>). For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and  vulnerabilities with CVSS scores between 7 and 9 could be defined as High risk. </li>
 <li>Date and time of vulnerability discovery could be obtained from the Vulnerability  Management tool as it scans and detects vulnerabilities. </li>
@@ -245,7 +334,7 @@ for quality, security, and privacy tests.</p>
 
 <p>Vulnerability scans can be done at a predefined frequency or whenever new code is built, or deployed.</p>
 </div>
-<h2>Metric BCR-06-M1</h2>
+<h2 id="metric-BCR-06-M1">Metric BCR-06-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">BCR-06</div>
@@ -283,11 +372,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 80%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>Critical systems should be identified in accordance with the CCMv4 implementation guidelines for BCR-02. For this metric, passed means achieving the RPO(s) within the RTO(s) defined for each critical system in the scope of the assessment/audit, according to the CCMv4 implementation guidelines for BCR-02. The sampling period for this metric should align with the testing intervals defined by the business continuity plan in accordance with the CCMv4 implementation guidelines for BCR-04. BCR tests should include Chaos Testing, where possible. According to wikipedia, Chaos engineering is the discipline of experimenting on a software system in production in order to build confidence in the system's capability to withstand turbulent and unexpected conditions.</p>
 </div>
-<h2>Metric CCC-03-M1</h2>
+<h2 id="metric-CCC-03-M1">Metric CCC-03-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">CCC-03</div>
@@ -325,11 +413,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 80%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This metric requires the implementation of CCMv4 DCS-06 Asset Cataloging and Tracking and the capability to determine which assets or asset groups are deployed using change management technology that can rollback changes and/or stop deployment of risky changes based on automated test results. Given the dynamic nature of cloud environments, the metric can provide more value if the variations in the release management system's coverage over the population of assets is reported over time. The percentage of assets that fall within an accepted number of deviations provides stakeholders assurance of whether change control is getting better, worse, or being maintained. Larger populations of more than 1,000 assets can use 6 standard deviations as an acceptable level of change over time (i.e. Six Sigma). Smaller populations of assets will need to use less standard deviations as an acceptable level of change, perhaps even just 1 deviation. For more information on the use of standard deviation in security metrics, see this excerpt of Andrew Jaquith's Security Metrics book.</p>
 </div>
-<h2>Metric CCC-07-M1</h2>
+<h2 id="metric-CCC-07-M1">Metric CCC-07-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">CCC-07</div>
@@ -367,11 +454,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 95%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This metric assumes that CCC-03 has been successfully implemented and thus assumes that enough configuration items, at least in terms of number of CCMv4 DCS-06 assets, have change management technology to make this metric meaningful. This metric does not take into account a measure of risk for the configuration tests that have failed. The resulting flat percentage may not tell the full story of risk incurred from a control failure. Future work may incorporate risk measures such as high and critical configuration tests. The frequency of reporting this metric should tie in to the frequency of deployments/expected changes, minimally once a week. This metric should be measured on an automated, continuous basis. Since the scope is under the control of the organization, the metric results should be relatively high. The signal from this metric is that the existing system for change management is working or failing. A low percentage may not indicate a significant cybersecurity risk, but it may be a leading indicator of future security risk if the practice doesn't improve. This is different than IVS-04 which measures the number of hardening tests against all assets.</p>
 </div>
-<h2>Metric CEK-03-M2</h2>
+<h2 id="metric-CEK-03-M2">Metric CEK-03-M2</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">CEK-03</div>
@@ -407,11 +493,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 85%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This leverages asset management and off-the-shelf automated functionalities while allowing for flexibility against policy (which has previously passed CCMv4 CEK-01 audit).  See AVCP: <a href="https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing">https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing</a></p>
 </div>
-<h2>Metric CEK-04-M1</h2>
+<h2 id="metric-CEK-04-M1">Metric CEK-04-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">CEK-04</div>
@@ -449,11 +534,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 90%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>For a Minimum Viable Product, the scope of evaluation may be limited to public-facing services, in which case a scan of all externally facing assets should be made and the scanned values compared against the requirements of the policy. The SLO used for this metric may need to be increased or decreased based on the scope of assets covered by the metric. This metric depends on the data classification tool in CCMv4 DSP-03, and requires that an organization determine the appropriate level of encryption for each classification, then requires comparison of the expected encryption applied versus the actual encryption applied, and reports on the difference. CCMv4 IPY-03 covers a subset of this measurement.</p>
 </div>
-<h2>Metric DCS-06-M1</h2>
+<h2 id="metric-DCS-06-M1">Metric DCS-06-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DCS-06</div>
@@ -485,11 +569,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 95%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This relies on the security audit logs as defined in CCMv4 LOG-05 and the asset catalog defined in CCMv4 DCS-06. This assumes LOG-05 is inclusive of logs of a number of  events such as network traffic, network scanning, physical asset inventory. It assumes that the logs include network traffic logging, and logs from other assets, and  are sufficient to detect unexpected assets. We assume everything that is worthy is logged. This is a dependency on the auditor to ensure the logging is complete enough.  This is consistent with the metric for UEM-04. Implementers may benefit from the similarities. Any 3rd party CSPs used by the organization where shared responsibility of controls resides in the organization should be included as logical assets for this catalog. This is likely dependent on the maturity of STA-01 - STA-06 and the SSRM. For example if a CSP provides a microservice inherent in the operations of an offering that microservice is a logical asset. This ensures that metrics  where DCS numbers are used in the denominator include those micro-services. This is intended to ensure the coverage is accurate and inclusive of 3rd party CSPs where the  organization is responsible for the controls.</p>
 </div>
-<h2>Metric DSP-04-M2</h2>
+<h2 id="metric-DSP-04-M2">Metric DSP-04-M2</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DSP-04</div>
@@ -521,11 +604,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>All data records must have corresponding metadata related to its data type and / or sensitivity. A defined list of data types and sensitivity levels must be defined. Records that do not meet any of the data classification types or sensitivity levels will have an undefined classification and are not considered as classified for this metric.</p>
 </div>
-<h2>Metric DSP-04-M3</h2>
+<h2 id="metric-DSP-04-M3">Metric DSP-04-M3</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DSP-04</div>
@@ -557,11 +639,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>All asset records must have corresponding metadata related to the type and / or sensitivity of data stored on the asset. A defined list of data types and sensitivity levels must be defined. Assets that do not contain data of the data classification types or sensitivity levels will have an undefined data classification and are not considered as classified for this metric.</p>
 </div>
-<h2>Metric DSP-05-M1</h2>
+<h2 id="metric-DSP-05-M1">Metric DSP-05-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DSP-05</div>
@@ -593,11 +674,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 80%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This metric supports an incomplete DSP-03 inventory so long as it is a statistically significant random sampling of at least any sensitive data and personal data (e.g. meets the DSP-03 control language objective). This metric makes the assumption that the data flow diagram(s) is available in a machine-readable format but does not measure automated creation of the data inventory or the data flow documentation. The generation of the data flow document MAY be manual although the result MUST be digitized in order to perform automated comparisons against discovered data repositories. This metric assumes the data flow documentation is in the form of a graph with nodes and edges where data stores are nodes in that graph. In order to count the number of records, there needs to be metadata with the number of records for each datastore. It measures the percentage of data stores (and their records) that are correctly captured as nodes in the graph. For reference, a data flow inventory similar to DSP-03 is required by CSA GDPR Code of Conduct Control</p>
 </div>
-<h2>Metric DSP-05-M2</h2>
+<h2 id="metric-DSP-05-M2">Metric DSP-05-M2</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DSP-05</div>
@@ -629,11 +709,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 80%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This metric supports an incomplete inventory of data streams so long as it is a reasonable sampling of streams for at least any sensitive data and personal data (e.g. is intended to measure flows of data of the types that meet the DSP-03 control language objective regarding data inventories). Sampled data streams should be captured from live data streams of user and system activities. This metric assumes the data flow documentation is available in a machine-readable format. The generation of the data flow document MAY be manual although the result MUST be digitized in order to perform automated comparisons against discovered data flows. For reference, a data flow inventory similar to DSP-03 is required by CSA GDPR Code of Conduct Control</p>
 </div>
-<h2>Metric GRC-04-M1</h2>
+<h2 id="metric-GRC-04-M1">Metric GRC-04-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">GRC-04</div>
@@ -665,11 +744,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 90%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This metric requires organizations to maintain records of policy exceptions that include the approval date and resolution date for calculation of mean time to resolution. The records could be as simple as entries in a spreadsheet or as complex as records for exception tracking in a GRC or vulnerability management system. This metric also requires organizations to define the threshold(s) for acceptable resolution time(s). The definition could be as simple as a statement in a policy document that applies to all exceptions, or individually-defined target dates for resolution of each exception based on risk. In the case of the latter, the requirements for setting the target resolution date(s) should be established in a policy and the target date(s) will need to be tracked in the policy exception records. For example if there is a ticketing system for remediation this tracks if the close date for the ticket was met. If an org has very few exceptions then slipping on even one will dramatically affect their percentage. This is inherent in statistics and is not seen as a problem for now.</p>
 </div>
-<h2>Metric IAM-07-M1</h2>
+<h2 id="metric-IAM-07-M1">Metric IAM-07-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IAM-07</div>
@@ -701,8 +779,7 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>Steps to compute this may look like: </p>
 
 <ol>
@@ -711,7 +788,7 @@ for quality, security, and privacy tests.</p>
 <li>Count of [(User De-Provisioning date - User Termination Date) &gt; Policy Duration)]/Total Number of Terminated Users for the period). This metric only evaluates termination/deprovisioning events as an indicator of efficacy. It does not measure job role change, which can be captured in IAM-08. The recommended sampling period for this metric is monthly, but cloud service providers should ensure the sampling period aligns and frequency of evaluation align with their rate of change and risk tolerance.</li>
 </ol>
 </div>
-<h2>Metric IAM-08-M2</h2>
+<h2 id="metric-IAM-08-M2">Metric IAM-08-M2</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IAM-08</div>
@@ -743,11 +820,10 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 95%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>The identity management system or system used to automate the account privilege recertification process (an example of this type of systems is Identity IQ by SailPoint), should maintain timestamps of account creations, privilege granting events (e.g. addition to user groups, granting of security roles, etc). These timestamps can be used to calculate this metric. Orphaned accounts (i.e. accounts that have not been terminated at the time of measurement in IAM-07) should be captured by the User Access Review described in IAM-08. This captures any problem in the process. For example, if a small number of accounts are reviewed then the score is poor. Or, if a large number of accounts are reviewed and discovered to be in error, then the score is poor. The measurement should be taken monthly to align with IAM-07, even if recertifications occur on a different periodicity.</p>
 </div>
-<h2>Metric IAM-09-M1</h2>
+<h2 id="metric-IAM-09-M1">Metric IAM-09-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IAM-09</div>
@@ -779,8 +855,7 @@ for quality, security, and privacy tests.</p>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <ol>
 <li>Identify privileged roles in an organization and map to the roles identified in this metric. </li>
 <li>Run the metric across all users with privilege. In just-in-time (JIT) access capabilities, the audit should evaluate
@@ -788,7 +863,7 @@ the ability for a user to be provisioned the privilege, even if the individual
 did not request the privilege during the measurement.</li>
 </ol>
 </div>
-<h2>Metric IPY-03-M2</h2>
+<h2 id="metric-IPY-03-M2">Metric IPY-03-M2</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IPY-03</div>
@@ -820,11 +895,10 @@ did not request the privilege during the measurement.</li>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99.99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>NIST 140-2 Annex A is a plausible set of interoperability-specific policy choices for standard cryptographic security functions. Other regions might drive different choices. This metric should be a continuous measure over the previous hour. For example over the previous 1hr 86% of protocol flows were detected to be TLS 1.3 with selected cipher suites, or gRPC, or remote access VPN, or other types within the current policy set and listed in an interoperability specific policy to ensure interoperability.</p>
 </div>
-<h2>Metric IVS-04-M1</h2>
+<h2 id="metric-IVS-04-M1">Metric IVS-04-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IVS-04</div>
@@ -856,11 +930,10 @@ did not request the privilege during the measurement.</li>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99.99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This metric of <em>assets that are in compliance</em> is inclusive of assets that have failed an initial test and where remediation is still within the SLA timeframe. If an asset is not fixed within the timeframe then it impacts the metric. Hardening baselines derived from accepted industry sources (e.g., NIST, Vendor Recommendations, Center for Internet Security Benchmarks, etc) and in compliance with the provider configuration security policy are expressed in test code which is run against the targeted asset on a regular basis. If an asset fails these tests then an alert is generated and the team is expected to fix the problem within a policy defined SLA timeframe (likely inclusive of risk thresholds for various timeframes).</p>
 </div>
-<h2>Metric LOG-03-M1</h2>
+<h2 id="metric-LOG-03-M1">Metric LOG-03-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">LOG-03</div>
@@ -892,11 +965,10 @@ did not request the privilege during the measurement.</li>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 95%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This metric measures alerts based on items of interest occuring within a log. This metric requires CSPs to have an inventory of log sources or inputs for their logging pipeline(s) and the ability to determine a unique count of those log sources or inputs to the logging pipeline with anomaly detection or security alerts configured for them. An example implementation may look like this: Logs -&gt; Log Analytics Engine -&gt; Log Alerts Engine -&gt; SIEM/ITSM.</p>
 </div>
-<h2>Metric LOG-05-M1</h2>
+<h2 id="metric-LOG-05-M1">Metric LOG-05-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">LOG-05</div>
@@ -928,11 +1000,10 @@ did not request the privilege during the measurement.</li>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 95%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>Activity <em>outside of typical or expected patterns</em> is something for the CSP to define. A common mechanism is to use Indicators of Compromise to detect anomalies, for example: <a href="https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_muftrcpnf89v">https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_muftrcpnf89v</a>. If no anomalous events are detected during the sample period, the resulting metric (a divide by zero error) is not included in the metrics reported.</p>
 </div>
-<h2>Metric LOG-10-M1</h2>
+<h2 id="metric-LOG-10-M1">Metric LOG-10-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">LOG-10</div>
@@ -962,11 +1033,10 @@ did not request the privilege during the measurement.</li>
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 80%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This requires defining metrics beyond the minimal set currently defined in order to meet the recommended SLO. Metrics for all CEK controls may not be easily automated, for example CEK-01, CEK-02, CEK-06, CEK-07, and CEK-08. This is against the total number of controls in the CEK domain, rather than the number of controls asserted as met in the last audit. This simplifies the metric as the implementers do not need programmatic access to the previous audit results. Generally, the recommended frequency should be the maximum frequency recommended for CEK metrics.</p>
 </div>
-<h2>Metric LOG-13-M2</h2>
+<h2 id="metric-LOG-13-M2">Metric LOG-13-M2</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">LOG-13</div>
@@ -999,8 +1069,7 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p><em>Minutes</em> provides sufficient granularity to measure uptime up to a target of 5 9s. It should be noted though that the recommended frequency of evaluation is daily rather than yearly and therefore five nines score during any particular day can not be extrapolated as a yearly uptime. This reflects the objective of measuring and reporting on potential failures of the monitoring system for <em>immediate</em> notification at least daily. </p>
 
 <p>To determine if a system is <em>up</em> a health check is expected. This metric does not mandate a specific healthcheck. Many uptime monitoring solutions exist that can be used as implementation examples or as services. A recommended level of health check is one that tests the functionality of the monitoring system during the minute of the test. For example a simple TCP/IP ping measures <em>uptime</em> but is insufficient to measure the availability of the functionality of a monitoring system. Testing that log entries are being persistently recorded during that minute is a more accurate measure of uptime availability. </p>
@@ -1009,7 +1078,7 @@ Downtime = any minute where health checks for any component of the monitoring sy
 
 <p>This simplification does not support considerations like, ""this subset monitoring and alerting system only covers a small number of low risk elements of the infrastructure."" Future versions of this metric may include <em>coverage</em> or <em>risk</em> elements to the metric expression.</p>
 </div>
-<h2>Metric SEF-05-M1</h2>
+<h2 id="metric-SEF-05-M1">Metric SEF-05-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">SEF-05</div>
@@ -1041,13 +1110,12 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 90%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>Automated systems include logging and monitoring systems as well as systems that generate alerts for review, including threat intelligence systems.</p>
 
 <p>Security events manually entered by individuals or organizations for triage are from <em>non-automated systems</em>, e.g. vulnerability disclosure emails, security event tickets created by staff or customers, etc.</p>
 </div>
-<h2>Metric SEF-06-M1</h2>
+<h2 id="metric-SEF-06-M1">Metric SEF-06-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">SEF-06</div>
@@ -1079,11 +1147,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>Events occur and are classified as part of triage process. This can occur automatically and/or there can be manual triage steps. Once the event reaches its final categorization it is <em>triaged</em>. As long as this completes within the target time period it is ""within the SLO."" It may be aggressive for a small organization that does not have a lot of events to report this metric frequently.</p>
 </div>
-<h2>Metric SEF-06-M2</h2>
+<h2 id="metric-SEF-06-M2">Metric SEF-06-M2</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">SEF-06</div>
@@ -1110,8 +1177,7 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="key blue">SLO Recommendation</div>
 <div class="value"></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>Events occur and are classified as part of triage process. This can occur automatically and/or there can be manual triage steps. Once the event reaches its final categorization it is <em>triaged</em>. As long as this completes within the organizations target time period it is ""within the SLO.""</p>
 
 <p>The slope of time to triage indicates if the event triage process has improved, stayed the same, or increased (worsened).</p>
@@ -1120,7 +1186,7 @@ Downtime = any minute where health checks for any component of the monitoring sy
 
 <p>This can be implemented in spreadsheets as the <em>SLOPE</em> function w/in formulas and charts (see Excel or Sheets). See for example <a href="https://support.google.com/docs/answer/3094048?hl=en">https://support.google.com/docs/answer/3094048?hl=en</a>.</p>
 </div>
-<h2>Metric STA-07-M3</h2>
+<h2 id="metric-STA-07-M3">Metric STA-07-M3</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">STA-07</div>
@@ -1150,11 +1216,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99.9%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>A software component is a discrete unit of software, such as a library or package, with uniquely identifiable attributes such as would be supplied in a Software Bill of Materials (SBOM). A simplistic approach is to track all software libraries and ensure they are in the inventory of approved libraries. One could track by using the vendor supplied SBOM or by scanning the software components directly. The implementer should have sufficient context in the STA-07 inventory to determine if a listed component library is approved, not-approved, or unknown (e.g. new and must be evaluated). A more granular approach is to use context to determine if the software should be running on this particular asset. For example: Bastion (jumphost) software or libraries may be approved for use on a hardened bastion asset but may not be appropriate for a non-hardened asset. The use of ""seen"" allows for sampling. There is nothing currently exposed in the metric to expose how statistically significant the sampling was. It is assumed that an initial audit confirmed significant sampling was used.</p>
 </div>
-<h2>Metric STA-07-M5</h2>
+<h2 id="metric-STA-07-M5">Metric STA-07-M5</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">STA-07</div>
@@ -1184,11 +1249,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This measurement requires a list of Cloud Service Provider Connections that are Approved and Expected and an ability to log all connections to expected endpoints of those providers.</p>
 </div>
-<h2>Metric TVM-03-M1</h2>
+<h2 id="metric-TVM-03-M1">Metric TVM-03-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">TVM-03</div>
@@ -1220,8 +1284,7 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p><strong>To compute the denominator</strong> - The <em>Total Number of High and Critical Vulnerabilities</em> are any such vulnerabilities that are still open from previous periods plus all such newly identified during the current sample period.  A minimal example framework for vulnerability prioritization is CVSS v.3.0 where <em>High</em> and <em>Critical</em> are defined as 7.0 and above.</p>
 
 <p><strong>To compute the numerator...</strong></p>
@@ -1265,7 +1328,7 @@ Downtime = any minute where health checks for any component of the monitoring sy
 
 <p>Metric for the period May 09 - May 15 is Numerator = (k)/[(i) + (j)] = 4/(5+0) = 80%</p>
 </div>
-<h2>Metric TVM-07-M1</h2>
+<h2 id="metric-TVM-07-M1">Metric TVM-07-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">TVM-07</div>
@@ -1297,11 +1360,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This metric requires organization-managed assets to be maintained in the catalog required by control DCS-06 in CCMv4. The asset catalog must be integrated with the vulnerability management process to track when assets in the catalog are scanned.</p>
 </div>
-<h2>Metric TVM-10-M1</h2>
+<h2 id="metric-TVM-10-M1">Metric TVM-10-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">TVM-10</div>
@@ -1341,8 +1403,7 @@ b) Carried over from the previous period because the policy timeframe spans peri
 <div class="key blue">SLO Recommendation</div>
 <div class="value"></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <ol>
 <li>Classification of vulnerabilities as <em>High</em> or <em>Critical</em> risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (<a href="https://nvd.nist.gov/vuln-metrics/cvss">https://nvd.nist.gov/vuln-metrics/cvss</a>) or risk-based vulnerability management system (see <a href="https://tinyurl.com/what-is-rbvm">https://tinyurl.com/what-is-rbvm</a>). For instance, vulnerabilities with a CVSS score of 9 or higher are <em>Critical</em> and vulnerabilities with CVSS scores between 7 and 9 could be defined as <em>High</em> risk.</li>
 <li>Date and time of vulnerability discovery could be obtained from the Vulnerability Management tool as it scans and detects high and critical vulnerabilities for remediation.</li>
@@ -1354,7 +1415,7 @@ c) From the application / code release tool as it moves into production the new 
 
 <p>This metric depends on a policy timeline target for the identification (completion of the triage process) for known vulnerabilities. </p>
 </div>
-<h2>Metric UEM-04-M1</h2>
+<h2 id="metric-UEM-04-M1">Metric UEM-04-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">UEM-04</div>
@@ -1393,8 +1454,7 @@ c) From the application / code release tool as it moves into production the new 
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 95%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>The data used in the expression is all data from the control period.</p>
 
 <p>This assumes the LOG-05 logs (i.e. ""security audit logs to detect activity outside of typical or expected patterns"") are inclusive of endpoint identities. </p>
@@ -1403,7 +1463,7 @@ c) From the application / code release tool as it moves into production the new 
 
 <p>Examples of endpoints which store or access company data include end-user devices, point of sale systems, databases, IoT systems, and data integration systems.</p>
 </div>
-<h2>Metric UEM-05-M1</h2>
+<h2 id="metric-UEM-05-M1">Metric UEM-05-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">UEM-05</div>
@@ -1445,8 +1505,7 @@ c) From the application / code release tool as it moves into production the new 
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>If there are devices that are in an exception group they still count as a policy control being applied for the purposes of this metric. </p>
 
 <p>This metric does not differentiate between partial reporting and full reporting of all of the policies from a given system, but only the capability of that system to report.</p>
@@ -1455,7 +1514,7 @@ c) From the application / code release tool as it moves into production the new 
 
 <p>Technical measures to enforce policies and controls for endpoints include API tools such as OSQuery, DCM tools, MDM tools, VPN Access Policy Controls, etc.</p>
 </div>
-<h2>Metric UEM-09-M1</h2>
+<h2 id="metric-UEM-09-M1">Metric UEM-09-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">UEM-09</div>
@@ -1494,8 +1553,7 @@ c) From the application / code release tool as it moves into production the new 
 <div class="key blue">SLO Recommendation</div>
 <div class="value"><div>Minimum: 99%</div></div>
 </div>
-<h3>Implementation guidelines</h3>
-<div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This depends on an Asset Database such as from CCMv4 DCS-06.  The targeted classifications of assets in scope must be identified in CCMv4 DCS-05 (e.g. employee devices).</p>
 </div>
 </body>
