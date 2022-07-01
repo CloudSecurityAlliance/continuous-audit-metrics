@@ -248,6 +248,20 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
         doc.h2 "Metric #{metric['id']}", id: metric_id(metric['id']) 
         doc.div class: 'metric' do
           table_line doc, "Primary CCMv4 Control ID", metric['primaryControlId'], 'green'
+          table_line doc, "Primary Control Description", nil, 'green' do
+            found = false
+            data['ccm_references'].each do |con|
+              if con['id']==metric['primaryControlId']
+                doc.text con['specification']
+                found = true
+                break
+              end
+            end
+            unless found
+              puts "There is no description for CCM control #{metric['primaryControlId']} referenced by metric #{metric['id']}"
+              exit false
+            end
+          end 
           table_line doc, "Related CCMv4 Control IDs", (metric['relatedControlIds'].join(', ') if metric['relatedControlIds']), 'green'
           table_line doc, "Metric ID", nil, 'orange' do
             doc.strong metric['id']
@@ -277,7 +291,7 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
                     doc.text ': ' + params['description']
                     doc.ul do
                       doc.li "ID: #{params['id']}" if params['id']
-                      doc.li "Sampling period: #{duration.humanize}"
+                      # doc.li "Sampling period: #{duration.humanize}"
                       doc.li "Unit: #{params['unit']}" if params['unit']
                       doc.li "Type: #{params['type']}" if params['type']
                     end

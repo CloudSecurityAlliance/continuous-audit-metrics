@@ -104,7 +104,7 @@
 </head>
 <body>
 <h1>Continuous Audit Metrics Catalog, version 1.0.0</h1>
-<p>Generated on 2022-06-08 15:46:53 UTC</p>
+<p>Generated on 2022-06-30 14:14:37 UTC</p>
 <div>
 <p>This document has been automatically generated from the YAML source file at <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml">https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml</a></p>
 
@@ -157,6 +157,9 @@
 </div>
 <div>
 <h3>Table of content</h3>
+<ul><li><a href="#metric-AIS-05-M1">Metric AIS-05-M1</a></li></ul>
+<ul><li><a href="#metric-AIS-05-M2">Metric AIS-05-M2</a></li></ul>
+<ul><li><a href="#metric-AIS-05-M3">Metric AIS-05-M3</a></li></ul>
 <ul><li><a href="#metric-AIS-06-M1">Metric AIS-06-M1</a></li></ul>
 <ul><li><a href="#metric-AIS-07-M3">Metric AIS-07-M3</a></li></ul>
 <ul><li><a href="#metric-AIS-07-M6">Metric AIS-07-M6</a></li></ul>
@@ -192,10 +195,167 @@
 <ul><li><a href="#metric-UEM-05-M1">Metric UEM-05-M1</a></li></ul>
 <ul><li><a href="#metric-UEM-09-M1">Metric UEM-09-M1</a></li></ul>
 </div>
+<h2 id="metric-AIS-05-M1">Metric AIS-05-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">AIS-05</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Implement a testing strategy, including criteria for acceptance of
+new information systems, upgrades and new versions, which provides application
+security assurance and maintains compliance while enabling organizational speed
+of delivery goals. Automate when applicable and possible.
+</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">Missing</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>AIS-05-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of running production code that passed static application security testing.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of units of production code that have successfully passed static application security testing.<ul><li>ID: prod_apps_with_sast</li></ul>
+</li>
+<li>
+<code>B</code>: Total number of units of code that are deployed in production.<ul><li>ID: prod_apps_deployed</li></ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p><strong>Production Code</strong> is code deployed to the production runtime environment(s)
+within the scope of the Information Security Program defined in the CCMv4 GRC-05
+control objective. A static application security test of a unit of code is 
+considered <strong>successfully passed</strong> if:</p>
+
+<ul>
+<li>the testing tools are defined by the organization's security policy.</li>
+<li>the testing tools follow the organization's minimum coverage requirements.</li>
+<li>the testing tools are up-to-date and reflect industry best practices.</li>
+<li>the testing tools do not report any issues, with the exception of issues that
+have been accepted by the organization (i.e. false-positives or accepted risks).</li>
+</ul>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"><div>Minimum: 100%</div></div>
+</div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
+<p>See implementaionGuidelines for AIS-06-M1.</p>
+</div>
+<h2 id="metric-AIS-05-M2">Metric AIS-05-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">AIS-05</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Implement a testing strategy, including criteria for acceptance of
+new information systems, upgrades and new versions, which provides application
+security assurance and maintains compliance while enabling organizational speed
+of delivery goals. Automate when applicable and possible.
+</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">Missing</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>AIS-05-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of running production code that has been tested to show that it adheres to its desired behavior or specification.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of units of production code that have successfully been tested to show that they adhere to their desired behavior or specification.<ul><li>ID: prod_apps_with_testing</li></ul>
+</li>
+<li>
+<code>B</code>: Total number of units of code that are deployed in production.<ul><li>ID: prod_apps_deployed</li></ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p><strong>Production Code</strong> is code deployed to the production runtime environment(s)
+within the scope of the Information Security Program defined in the CCMv4 GRC-05
+control objective. 
+Testing may be applied at the unit, system, integration or functional level, or any
+combination thereof. Testing requirements and coberage should be be pre-defined in 
+the organization's software development policy.  </p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"><div>Minimum: 100%</div></div>
+</div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
+<p>Software bugs in code represent an opportunity for the introduction of security 
+vulnerabilities. The goal of this metric is to measure how extensively code is
+tested in order to reduce the likelyhood of introducing such vulnerabilities.
+See implementaionGuidelines for AIS-06-M1.</p>
+</div>
+<h2 id="metric-AIS-05-M3">Metric AIS-05-M3</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">AIS-05</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Implement a testing strategy, including criteria for acceptance of
+new information systems, upgrades and new versions, which provides application
+security assurance and maintains compliance while enabling organizational speed
+of delivery goals. Automate when applicable and possible.
+</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">Missing</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>AIS-05-M3</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric measures the percentage of running production applications that have passed dynamic application security testing.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Total number of production applications that have successfully passed static application security testing.<ul><li>ID: prod_apps_with_dast</li></ul>
+</li>
+<li>
+<code>B</code>: Total number of deployed applications in production.<ul><li>ID: prod_apps_deployed_integrated</li></ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p><strong>Production Code</strong> is code deployed to the production runtime environment(s)
+within the scope of the Information Security Program defined in the CCMv4 GRC-05
+control objective. 
+A dynamic application security test is considered <strong>successfully passed</strong> if:</p>
+
+<ul>
+<li>the testing tools are defined by the organization's security policy.</li>
+<li>the testing tools follow the organization's minimum coverage requirements.</li>
+<li>the testing tools are up-to-date and reflect industry best practices.</li>
+<li>the testing tools do not report any issues, with the exception of issues that
+have been accepted by the organization (i.e. false-positives or accepted risks).</li>
+</ul>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"><div>Minimum: 100%</div></div>
+</div>
+<button class="collapsible">Implementation guidelines</button><div class="content">
+<p>See implementaionGuidelines for AIS-06-M1.</p>
+</div>
 <h2 id="metric-AIS-06-M1">Metric AIS-06-M1</h2>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">AIS-06</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Establish and implement strategies and capabilities for secure, standardized,
+and compliant application deployment. Automate where possible.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DCS-06, GRC-05</div>
 <div class="key orange">Metric ID</div>
@@ -208,16 +368,10 @@
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of pieces of Production Code that have an Associated Verification Step<ul>
-<li>ID: prod_apps_with_verification</li>
-<li>Sampling period: None</li>
-</ul>
+<code>A</code>: Total number of pieces of Production Code that have an Associated Verification Step<ul><li>ID: prod_apps_with_verification</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of pieces of Production Code<ul>
-<li>ID: prod_apps_deployed</li>
-<li>Sampling period: None</li>
-</ul>
+<code>B</code>: Total number of pieces of Production Code<ul><li>ID: prod_apps_deployed</li></ul>
 </li>
 </ul></p>
 </div>
@@ -241,6 +395,10 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">AIS-07</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define and implement a process to remediate application security
+vulnerabilities, automating remediation when possible.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">AIS-02, AIS-06, TVM-07, DCS-06</div>
 <div class="key orange">Metric ID</div>
@@ -253,16 +411,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of deployed production applications with acceptable level of risk from application security vulnerabilities<ul>
-<li>ID: prod_apps_deployed_with_acceptable_vuls</li>
-<li>Sampling period: None</li>
-</ul>
+<code>A</code>: Number of deployed production applications with acceptable level of risk from application security vulnerabilities<ul><li>ID: prod_apps_deployed_with_acceptable_vuls</li></ul>
 </li>
 <li>
-<code>B</code>: Total Number of deployed production applications<ul>
-<li>ID: prod_apps_deployed</li>
-<li>Sampling period: None</li>
-</ul>
+<code>B</code>: Total Number of deployed production applications<ul><li>ID: prod_apps_deployed</li></ul>
 </li>
 </ul></p>
 </div>
@@ -282,6 +434,10 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">AIS-07</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define and implement a process to remediate application security
+vulnerabilities, automating remediation when possible.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">AIS-03, TVM-10, GRC-02</div>
 <div class="key orange">Metric ID</div>
@@ -294,16 +450,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of unaccepted critical or high vulnerabilities in production applications with an age greater than the policy defined maximum age<ul>
-<li>ID: nc_vuln_remediation_in_prod_apps</li>
-<li>Sampling period: None</li>
-</ul>
+<code>A</code>: Number of unaccepted critical or high vulnerabilities in production applications with an age greater than the policy defined maximum age<ul><li>ID: nc_vuln_remediation_in_prod_apps</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of critical or high vulnerabilities in production applications within this period<ul>
-<li>ID: risky_vulns_in_prod_apps</li>
-<li>Sampling period: None</li>
-</ul>
+<code>B</code>: Total number of critical or high vulnerabilities in production applications within this period<ul><li>ID: risky_vulns_in_prod_apps</li></ul>
 </li>
 </ul></p>
 </div>
@@ -338,6 +488,10 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">BCR-06</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Exercise and test business continuity and operational resilience
+plans at least annually or upon significant changes.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">BCR-01, BCR-02</div>
 <div class="key orange">Metric ID</div>
@@ -350,16 +504,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of critical systems that passed BCR tests during the sampling period<ul>
-<li>ID: bcr_tests_critical_systems</li>
-<li>Sampling period: None</li>
-</ul>
+<code>A</code>: Number of critical systems that passed BCR tests during the sampling period<ul><li>ID: bcr_tests_critical_systems</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of critical systems operating during the sampling period<ul>
-<li>ID: critical_systems_count</li>
-<li>Sampling period: None</li>
-</ul>
+<code>B</code>: Total number of critical systems operating during the sampling period<ul><li>ID: critical_systems_count</li></ul>
 </li>
 </ul></p>
 </div>
@@ -379,6 +527,12 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">CCC-03</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Manage the risks associated with applying changes to organization
+assets, including application, systems, infrastructure, configuration, etc.,
+regardless of whether the assets are managed internally or externally (i.e.,
+outsourced).
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DCS-06</div>
 <div class="key orange">Metric ID</div>
@@ -391,16 +545,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of assets that have change management technology integrated<ul>
-<li>ID: assets_under_change_management</li>
-<li>Sampling period: None</li>
-</ul>
+<code>A</code>: Number of assets that have change management technology integrated<ul><li>ID: assets_under_change_management</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of assets<ul>
-<li>ID: total_assets_count</li>
-<li>Sampling period: None</li>
-</ul>
+<code>B</code>: Total number of assets<ul><li>ID: total_assets_count</li></ul>
 </li>
 </ul></p>
 </div>
@@ -420,6 +568,10 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">CCC-07</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Implement detection measures with proactive notification in case
+of changes deviating from the established baseline.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DCS-06, CCC-03</div>
 <div class="key orange">Metric ID</div>
@@ -432,16 +584,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of configuration items that were tested and passed successfully<ul>
-<li>ID: config_items_passing_tests</li>
-<li>Sampling period: None</li>
-</ul>
+<code>A</code>: Number of configuration items that were tested and passed successfully<ul><li>ID: config_items_passing_tests</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of configuration items that were tested<ul>
-<li>ID: total_config_items</li>
-<li>Sampling period: None</li>
-</ul>
+<code>B</code>: Total number of configuration items that were tested<ul><li>ID: total_config_items</li></ul>
 </li>
 </ul></p>
 </div>
@@ -461,6 +607,10 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">CEK-03</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Provide cryptographic protection to data at-rest and in-transit,
+using cryptographic libraries certified to approved standards.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">CEK-04, DCS-06, CEK-01</div>
 <div class="key orange">Metric ID</div>
@@ -473,16 +623,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of assets responsible for data at-rest or in-transit where the cryptographic library has passed Automated Cryptographic Validation Protocol tests or equivalent tests<ul>
-<li>ID: acvp_approved_data_assets</li>
-<li>Sampling period: None</li>
-</ul>
+<code>A</code>: Number of assets responsible for data at-rest or in-transit where the cryptographic library has passed Automated Cryptographic Validation Protocol tests or equivalent tests<ul><li>ID: acvp_approved_data_assets</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of assets responsible for data at-rest or in-transit<ul>
-<li>ID: data_at_rest_in_transit_assets</li>
-<li>Sampling period: None</li>
-</ul>
+<code>B</code>: Total number of assets responsible for data at-rest or in-transit<ul><li>ID: data_at_rest_in_transit_assets</li></ul>
 </li>
 </ul></p>
 </div>
@@ -500,6 +644,11 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">CEK-04</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Use encryption algorithms that are appropriate for data protection,
+considering the classification of data, associated risks, and usability of the
+encryption technology.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">CEK-05</div>
 <div class="key orange">Metric ID</div>
@@ -512,16 +661,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of assets with a cryptographic function that meets cryptographic requirements<ul>
-<li>ID: compliant_crypto_assets</li>
-<li>Sampling period: None</li>
-</ul>
+<code>A</code>: Number of assets with a cryptographic function that meets cryptographic requirements<ul><li>ID: compliant_crypto_assets</li></ul>
 </li>
 <li>
-<code>B</code>: Total number of assets with a cryptographic function<ul>
-<li>ID: total_crypto_assets</li>
-<li>Sampling period: None</li>
-</ul>
+<code>B</code>: Total number of assets with a cryptographic function<ul><li>ID: total_crypto_assets</li></ul>
 </li>
 </ul></p>
 </div>
@@ -541,6 +684,10 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DCS-06</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Catalogue and track all relevant physical and logical assets located
+at all of the CSP's sites within a secured system.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">LOG-05</div>
 <div class="key orange">Metric ID</div>
@@ -553,10 +700,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of distinct assets seen in security audit logs during the sampling period that are in an asset catalog<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of distinct assets seen in security audit logs during the sampling period that are in an asset catalog<ul></ul>
 </li>
 <li>
-<code>B</code>: Number of distinct assets seen in security audit logs during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Number of distinct assets seen in security audit logs during the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -576,6 +723,9 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DSP-04</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Classify data according to its type and sensitivity level.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DSP-01, DSP-03, DSP-04, DSP-05</div>
 <div class="key orange">Metric ID</div>
@@ -588,10 +738,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of data records classified by type and/or sensitivity<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Total number of data records classified by type and/or sensitivity<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of data records stored<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of data records stored<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -611,6 +761,9 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DSP-04</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Classify data according to its type and sensitivity level.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DSP-01, DSP-03, DSP-04, DSP-05, DCS-06</div>
 <div class="key orange">Metric ID</div>
@@ -623,10 +776,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of assets in the asset catalog that are classified by type and/or sensitivity of the data on that asset<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Total number of assets in the asset catalog that are classified by type and/or sensitivity of the data on that asset<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of assets in the organization's asset catalog<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of assets in the organization's asset catalog<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -646,6 +799,11 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DSP-05</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Create data flow documentation to identify what data is processed,
+stored or transmitted where. Review data flow documentation at defined intervals,
+at least annually, and after any change.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DSP-03</div>
 <div class="key orange">Metric ID</div>
@@ -658,10 +816,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of data records or data stores from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of data records or data stores from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of data records or data stores in the CCMv4 DSP-03 inventory<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of data records or data stores in the CCMv4 DSP-03 inventory<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -681,6 +839,11 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">DSP-05</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Create data flow documentation to identify what data is processed,
+stored or transmitted where. Review data flow documentation at defined intervals,
+at least annually, and after any change.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value"></div>
 <div class="key orange">Metric ID</div>
@@ -693,10 +856,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of data streams from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of data streams from the CCMv4 DSP-03 inventory correctly included in the data flow documentation<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of data streams in the CCMv4 DSP-03 inventory<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of data streams in the CCMv4 DSP-03 inventory<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -716,6 +879,10 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">GRC-04</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Establish and follow an approved exception process as mandated by
+the governance program whenever a deviation from an established policy occurs.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">AIS-07</div>
 <div class="key orange">Metric ID</div>
@@ -728,10 +895,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of active policy exceptions where the time to resolution is within the documented timeline for resolution, during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of active policy exceptions where the time to resolution is within the documented timeline for resolution, during the sampling period<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of active policy exceptions, during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of active policy exceptions, during the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -751,6 +918,11 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IAM-07</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">De-provision or respectively modify access of movers / leavers or
+system identity changes in a timely manner in order to effectively adopt and
+communicate identity and access management policies.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">IAM-03, IAM-06, IAM-10</div>
 <div class="key orange">Metric ID</div>
@@ -763,10 +935,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of terminated users deprovisioned within policy guidelines during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of terminated users deprovisioned within policy guidelines during the sampling period<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of terminated users during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of terminated users during the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -792,6 +964,10 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IAM-08</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Review and revalidate user access for least privilege and separation
+of duties with a frequency that is commensurate with organizational risk tolerance.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">IAM-03, IAM-05, IAM-06, IAM-10</div>
 <div class="key orange">Metric ID</div>
@@ -804,10 +980,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of accounts reviewed with correct access in the Last 90 Days<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of accounts reviewed with correct access in the Last 90 Days<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of Accounts<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of Accounts<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -827,6 +1003,12 @@ for quality, security, and privacy tests.</p>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IAM-09</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define, implement and evaluate processes, procedures and technical
+measures for the segregation of privileged access roles such that administrative
+access to data, encryption and key management capabilities and logging capabilities
+are distinct and separated.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">IAM-03, IAM-05, IAM-10</div>
 <div class="key orange">Metric ID</div>
@@ -839,10 +1021,10 @@ for quality, security, and privacy tests.</p>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of users with admin access to more than one of the following capabilities; production data management, encryption and key management, or logging<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of users with admin access to more than one of the following capabilities; production data management, encryption and key management, or logging<ul></ul>
 </li>
 <li>
-<code>B</code>: Number of users with access to production data management, encryption and key management, or logging capabilities<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Number of users with access to production data management, encryption and key management, or logging capabilities<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -867,6 +1049,10 @@ did not request the privilege during the measurement.</li>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IPY-03</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Implement cryptographically secure and standardized network protocols
+for the management, import and export of data.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">CEK, IVS-02, IPY-02, DSP-05</div>
 <div class="key orange">Metric ID</div>
@@ -879,10 +1065,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Count of data flows that use an approved, standardized cryptographic security function<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Count of data flows that use an approved, standardized cryptographic security function<ul></ul>
 </li>
 <li>
-<code>B</code>: Count of all data flows<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Count of all data flows<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -902,6 +1088,11 @@ did not request the privilege during the measurement.</li>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">IVS-04</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Harden host and guest OS, hypervisor or infrastructure control plane
+according to their respective best practices, and supported by technical controls,
+as part of a security baseline.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DCS-06, CCC-03, CCC-07</div>
 <div class="key orange">Metric ID</div>
@@ -914,10 +1105,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of production assets that are in compliance with hardening baseline<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of production assets that are in compliance with hardening baseline<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of production assets<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of production assets<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -937,6 +1128,11 @@ did not request the privilege during the measurement.</li>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">LOG-03</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Identify and monitor security-related events within applications
+and the underlying infrastructure. Define and implement a system to generate
+alerts to responsible stakeholders based on such events and corresponding metrics.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value"></div>
 <div class="key orange">Metric ID</div>
@@ -949,10 +1145,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of Log Sources with Security Alerts configured<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of Log Sources with Security Alerts configured<ul></ul>
 </li>
 <li>
-<code>B</code>: Total Number of Log Sources<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total Number of Log Sources<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -972,6 +1168,11 @@ did not request the privilege during the measurement.</li>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">LOG-05</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Monitor security audit logs to detect activity outside of typical
+or expected patterns. Establish and follow a defined process to review and take
+appropriate and timely actions on detected anomalies.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">LOG-01, LOG-03</div>
 <div class="key orange">Metric ID</div>
@@ -984,10 +1185,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of anomalies detected during the sampling period that were reviewed and resolved within a timeframe that is in compliance with Policy<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of anomalies detected during the sampling period that were reviewed and resolved within a timeframe that is in compliance with Policy<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of anomalies detected during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of anomalies detected during the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1007,6 +1208,11 @@ did not request the privilege during the measurement.</li>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">LOG-10</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Establish and maintain a monitoring and internal reporting capability
+over the operations of cryptographic, encryption and key management policies,
+processes, procedures, and controls.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">CEK-03, CEK-04, CEK-05, CEK-06, CEK-07, CEK-08, CEK-09, CEK-10, CEK-11, CEK-12, CEK-13, CEK-14, CEK-15, CEK-16, CEK-17, CEK-18, CEK-19, CEK-20, CEK-21</div>
 <div class="key orange">Metric ID</div>
@@ -1019,10 +1225,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of metrics reported in the CCMv4 CEK domain<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of metrics reported in the CCMv4 CEK domain<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of controls in the CCMv4 CEK domain<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of controls in the CCMv4 CEK domain<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1040,6 +1246,11 @@ did not request the privilege during the measurement.</li>
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">LOG-13</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define, implement and evaluate processes, procedures and technical
+measures for the reporting of anomalies and failures of the monitoring system
+and provide immediate notification to the accountable party.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">LOG-03, LOG-08, SEF-06</div>
 <div class="key orange">Metric ID</div>
@@ -1052,10 +1263,10 @@ did not request the privilege during the measurement.</li>
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of minutes of uptime during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of minutes of uptime during the sampling period<ul></ul>
 </li>
 <li>
-<code>B</code>: Duration of the sampling period in minutes<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Duration of the sampling period in minutes<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1082,6 +1293,9 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">SEF-05</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Establish and monitor information security incident metrics.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value"></div>
 <div class="key orange">Metric ID</div>
@@ -1094,10 +1308,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of security events sourced from automated systems during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of security events sourced from automated systems during the sampling period<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of security events that were recorded during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of security events that were recorded during the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1119,6 +1333,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">SEF-06</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define, implement and evaluate processes, procedures and technical
+measures supporting business processes to triage security-related events.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">LOG-03, SEF-01, SEF-05</div>
 <div class="key orange">Metric ID</div>
@@ -1131,10 +1349,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of security events triaged within policy defined time limit, during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of security events triaged within policy defined time limit, during the sampling period<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of security events Logged, during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of security events Logged, during the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1154,6 +1372,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">SEF-06</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define, implement and evaluate processes, procedures and technical
+measures supporting business processes to triage security-related events.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">LOG-03, SEF-01, SEF-05</div>
 <div class="key orange">Metric ID</div>
@@ -1165,7 +1387,7 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div>Formula: <code>A*100</code>
 </div>
 <p>Where: <ul><li>
-<code>A</code>: Slope of the linear regression for triage times over the sampling period<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Slope of the linear regression for triage times over the sampling period<ul></ul>
 </li></ul></p>
 </div>
 <div class="key orange">Rules</div>
@@ -1190,6 +1412,9 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">STA-07</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Develop and maintain an inventory of all supply chain relationships.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DCS-06, LOG-03</div>
 <div class="key orange">Metric ID</div>
@@ -1202,10 +1427,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of third-party software components seen during the sampling period, which are from authorized providers<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Total number of third-party software components seen during the sampling period, which are from authorized providers<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of third-party software components seen during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of third-party software components seen during the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1223,6 +1448,9 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">STA-07</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Develop and maintain an inventory of all supply chain relationships.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">LOG-03, LOG-05</div>
 <div class="key orange">Metric ID</div>
@@ -1235,10 +1463,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of unique providers with observed connections<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Total number of unique providers with observed connections<ul></ul>
 </li>
 <li>
-<code>B</code>: Total Number of Unique Providers in the inventory<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total Number of Unique Providers in the inventory<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1256,6 +1484,11 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">TVM-03</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define, implement and evaluate processes, procedures and technical
+measures to enable both scheduled and emergency responses to vulnerability identifications,
+based on the identified risk.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">TVM-08</div>
 <div class="key orange">Metric ID</div>
@@ -1268,10 +1501,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of high and critical vulnerabilities identified during the sampling period and remediated within policy timeframes<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of high and critical vulnerabilities identified during the sampling period and remediated within policy timeframes<ul></ul>
 </li>
 <li>
-<code>B</code>: Total Number of High and Critical Vulnerabilities identified during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total Number of High and Critical Vulnerabilities identified during the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1332,6 +1565,11 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">TVM-07</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define, implement and evaluate processes, procedures and technical
+measures for the detection of vulnerabilities on organizationally managed assets
+at least monthly.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DCS-06, UEM-14</div>
 <div class="key orange">Metric ID</div>
@@ -1344,10 +1582,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of assets from the asset catalog scanned during the sampling period<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of assets from the asset catalog scanned during the sampling period<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of assets in the asset catalog<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of assets in the asset catalog<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1367,6 +1605,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">TVM-10</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Establish, monitor and report metrics for vulnerability identification
+and remediation at defined intervals.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">AIS-07, TVM-08</div>
 <div class="key orange">Metric ID</div>
@@ -1379,10 +1621,10 @@ Downtime = any minute where health checks for any component of the monitoring sy
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of high and critical vulnerabilities identified for remediation within policy timeframes<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of high and critical vulnerabilities identified for remediation within policy timeframes<ul></ul>
 </li>
 <li>
-<code>B</code>: Total Number of high and critical vulnerabilities identified or carried over into the sampling period<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total Number of high and critical vulnerabilities identified or carried over into the sampling period<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1419,6 +1661,10 @@ c) From the application / code release tool as it moves into production the new 
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">UEM-04</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Maintain an inventory of all endpoints used to store and access company
+data.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">LOG-05</div>
 <div class="key orange">Metric ID</div>
@@ -1431,10 +1677,10 @@ c) From the application / code release tool as it moves into production the new 
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of endpoints that exist in both the audit log and asset inventory<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of endpoints that exist in both the audit log and asset inventory<ul></ul>
 </li>
 <li>
-<code>B</code>: The total number of endpoints in the asset inventory<ul><li>Sampling period: None</li></ul>
+<code>B</code>: The total number of endpoints in the asset inventory<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1467,6 +1713,11 @@ c) From the application / code release tool as it moves into production the new 
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">UEM-05</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Define, implement and evaluate processes, procedures and technical
+measures to enforce policies and controls for all endpoints permitted to access
+systems and/or store, transmit, or process organizational data.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">UEM-04</div>
 <div class="key orange">Metric ID</div>
@@ -1479,10 +1730,10 @@ c) From the application / code release tool as it moves into production the new 
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Number of unique endpoints with suitable policy enforcement tools that reported compliance state within the sampling period<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Number of unique endpoints with suitable policy enforcement tools that reported compliance state within the sampling period<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of endpoints in the asset inventory<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of endpoints in the asset inventory<ul></ul>
 </li>
 </ul></p>
 </div>
@@ -1518,6 +1769,10 @@ c) From the application / code release tool as it moves into production the new 
 <div class="metric">
 <div class="key green">Primary CCMv4 Control ID</div>
 <div class="value">UEM-09</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Configure managed endpoints with anti-malware detection and prevention
+technology and services.
+</div>
 <div class="key green">Related CCMv4 Control IDs</div>
 <div class="value">DCS-05, DCS-06, DSP-01, TVM-02</div>
 <div class="key orange">Metric ID</div>
@@ -1530,10 +1785,10 @@ c) From the application / code release tool as it moves into production the new 
 </div>
 <p>Where: <ul>
 <li>
-<code>A</code>: Total number of managed endpoints for the workforce initiating observed connections that passed a device check inclusive (e.g. verifying malware protection)<ul><li>Sampling period: None</li></ul>
+<code>A</code>: Total number of managed endpoints for the workforce initiating observed connections that passed a device check inclusive (e.g. verifying malware protection)<ul></ul>
 </li>
 <li>
-<code>B</code>: Total number of managed endpoints for the workforce initiating observed connections<ul><li>Sampling period: None</li></ul>
+<code>B</code>: Total number of managed endpoints for the workforce initiating observed connections<ul></ul>
 </li>
 </ul></p>
 </div>
