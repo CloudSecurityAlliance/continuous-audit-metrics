@@ -331,6 +331,12 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
         doc.div class: 'content' do
           markdown.render(doc,metric['implementationGuidelines'])
         end
+        if metric['auditGuidelines']
+          doc.button "Audit guidelines", class: 'collapsible'
+          doc.div class: 'content' do
+            markdown.render(doc,metric['auditGuidelines'])
+          end
+        end
       end
     end
   end

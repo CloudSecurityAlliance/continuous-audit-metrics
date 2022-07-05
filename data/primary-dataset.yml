@@ -139,6 +139,7 @@ metrics:
     example, if an organization uses an Agile development methodology with two-week
     sprints, then the metric should be measured at least every two weeks to provide
     data for review at sprint retros.
+  auditGuidelines: this is the audit guideline for AIS-06-M1
   samplingPeriod: P30D
 - id: AIS-07-M3
   primaryControlId: AIS-07
