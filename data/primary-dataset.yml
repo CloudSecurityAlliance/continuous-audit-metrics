@@ -62,7 +62,7 @@ metrics:
   implementationGuidelines: |
     Software bugs in code represent an opportunity for the introduction of security 
     vulnerabilities. The goal of this metric is to measure how extensively code is
-    tested in order to reduce the likelyhood of introducing such vulnerabilities.
+    tested in order to reduce the likelihood of introducing such vulnerabilities.
     See implementaionGuidelines for AIS-06-M1.
 - id: AIS-05-M3 
   primaryControlId: AIS-05
