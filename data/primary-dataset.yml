@@ -1245,6 +1245,12 @@ ccm_references:
   specification: |
     Exercise and test business continuity and operational resilience
     plans at least annually or upon significant changes.
+- id: BCR-08
+  title: Backup
+  specification: |
+    Periodically backup data stored in the cloud. Ensure the confidentiality,
+    integrity and availability of the backup, and verify data restoration from backup
+    for resiliency.
 - id: CCC-03
   title: Change Management Technology
   specification: |
