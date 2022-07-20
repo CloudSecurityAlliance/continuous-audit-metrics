@@ -62,7 +62,7 @@ metrics:
   implementationGuidelines: |
     Software bugs in code represent an opportunity for the introduction of security 
     vulnerabilities. The goal of this metric is to measure how extensively code is
-    tested in order to reduce the likelihood of introducing such vulnerabilities.
+    tested in order to reduce the likelyhood of introducing such vulnerabilities.
     See implementaionGuidelines for AIS-06-M1.
 - id: AIS-05-M3 
   primaryControlId: AIS-05
@@ -1202,6 +1202,26 @@ metrics:
     sloRangeMin: 99%
   implementationGuidelines: This depends on an Asset Database such as from CCMv4 DCS-06.  The targeted classifications of assets in scope must be identified in CCMv4 DCS-05 (e.g. employee devices).
   samplingPeriod: P30D
+- id: BCR-08-M1
+  primaryControlId: BCR-08
+  relatedControlIds:
+  - BCR-02
+  - BCR-06
+  metricDescription: This metric reports the percentage of critical data storages in cloud that have backup feature enabled. For example, if customer of CSP is using S3 buckets, these must have backup enabled as mentioned in https://docs.aws.amazon.com/aws-backup/latest/devguide/s3-backups.html. All cloud resources and services that have data storing capability must ensure that data is backed up in a secure storage with proper access control in place.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of critical data storages in cloud that have backup feature enabled
+    - id: 
+      name: B
+      description: Total Number of critical data storages in cloud 
+  rules: Criteria for criticality of data storages must be defined and there must be a list of critical data storages in cloud identified.
+  auditGuidelines: |
+  1. Examine the policy for identifying data for which a backup is required.
+  2. Examine the requirements for the security of such backups.
+  3. Evaluate the effectiveness of the backup and restore.
 - id: BCR-08-M2
   primaryControlId: BCR-08
   relatedControlIds:
@@ -1241,6 +1261,12 @@ ccm_references:
   specification: |
     Exercise and test business continuity and operational resilience
     plans at least annually or upon significant changes.
+- id: BCR-08
+  title: Backup
+  specification: |
+    Periodically backup data stored in the cloud. Ensure the confidentiality,
+    integrity and availability of the backup, and verify data restoration from backup
+    for resiliency.
 - id: CCC-03
   title: Change Management Technology
   specification: |
