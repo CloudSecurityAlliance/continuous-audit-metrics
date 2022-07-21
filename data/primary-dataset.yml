@@ -1222,6 +1222,22 @@ metrics:
   1. Examine the policy for identifying data for which a backup is required.
   2. Examine the requirements for the security of such backups.
   3. Evaluate the effectiveness of the backup and restore.
+- id: BCR-08-M2
+  primaryControlId: BCR-08
+  relatedControlIds:
+  - BCR-02
+  - BCR-06
+  metricDescription: This metric reports the percentage of critical data storages in cloud that were successfully restored following a documented restoration process. By implementing this metric, SRE teams will have visibility of systems that have failed to restore and may analyze the reason why restoration is failed - if data is tampered, storage had unauthorized access, storage was not available due to CSP outage etc.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of critical data storages in cloud that could be successfully restored
+    - id: 
+      name: B
+      description: Total Number of critical data storages in cloud 
+  rules: A process for data restoration must be in place and periodically tested for all critical data storages in cloud. Number of data storages that could be successfully restored must be determined either manually or using automated process.
 ccm_references:
 - id: AIS-05
   title: Automated Application Security Testing
