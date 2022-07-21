@@ -1220,7 +1220,7 @@ metrics:
   rules: Criteria for criticality of data storages must be defined and there must be a list of critical data storages in cloud identified.
   sloRecommendations:
     sloRangeMin: 
-  auditGuidelines: | 
+  auditGuidelines: |
     1. Examine the policy for identifying data for which a backup is required.
     2. Examine the requirements for the security of such backups.
     3. Evaluate the effectiveness of the backup and restore.
