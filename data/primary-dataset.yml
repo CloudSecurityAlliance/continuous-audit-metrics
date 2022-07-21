@@ -1240,6 +1240,8 @@ metrics:
       name: B
       description: Total Number of critical data storages in cloud 
   rules: A process for data restoration must be in place and periodically tested for all critical data storages in cloud. Number of data storages that could be successfully restored must be determined either manually or using automated process.
+  sloRecommendations:
+    sloRangeMin: 
 ccm_references:
 - id: AIS-05
   title: Automated Application Security Testing
