@@ -104,7 +104,7 @@
 </head>
 <body>
 <h1>Continuous Audit Metrics Catalog, version 1.0.0</h1>
-<p>Generated on 2022-07-21 17:20:09 UTC</p>
+<p>Generated on 2022-07-21 17:37:43 UTC</p>
 <div>
 <p>This document has been automatically generated from the YAML source file at <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml">https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml</a></p>
 
@@ -195,6 +195,7 @@
 <ul><li><a href="#metric-UEM-05-M1">Metric UEM-05-M1</a></li></ul>
 <ul><li><a href="#metric-UEM-09-M1">Metric UEM-09-M1</a></li></ul>
 <ul><li><a href="#metric-BCR-08-M1">Metric BCR-08-M1</a></li></ul>
+<ul><li><a href="#metric-BCR-08-M2">Metric BCR-08-M2</a></li></ul>
 </div>
 <h2 id="metric-AIS-05-M1">Metric AIS-05-M1</h2>
 <div class="metric">
@@ -1860,5 +1861,43 @@ for resiliency.
 <li>Evaluate the effectiveness of the backup and restore.</li>
 </ol>
 </div>
+<h2 id="metric-BCR-08-M2">Metric BCR-08-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">BCR-08</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Periodically backup data stored in the cloud. Ensure the confidentiality,
+integrity and availability of the backup, and verify data restoration from backup
+for resiliency.
+</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">BCR-02, BCR-06</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>BCR-08-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric reports the percentage of critical data storages in cloud that were successfully restored following a documented restoration process. By implementing this metric, SRE teams will have visibility of systems that have failed to restore and may analyze the reason why restoration is failed - if data is tampered, storage had unauthorized access, storage was not available due to CSP outage etc.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of critical data storages in cloud that could be successfully restored<ul></ul>
+</li>
+<li>
+<code>B</code>: Total Number of critical data storages in cloud<ul></ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>A process for data restoration must be in place and periodically tested for all critical data storages in cloud. Number of data storages that could be successfully restored must be determined either manually or using automated process.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"></div>
+</div>
+<button class="collapsible">Implementation guidelines</button><div class="content"></div>
 </body>
 </html>
