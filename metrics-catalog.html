@@ -104,7 +104,7 @@
 </head>
 <body>
 <h1>Continuous Audit Metrics Catalog, version 1.0.0</h1>
-<p>Generated on 2022-06-30 14:14:37 UTC</p>
+<p>Generated on 2022-07-21 17:37:43 UTC</p>
 <div>
 <p>This document has been automatically generated from the YAML source file at <a href="https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml">https://github.com/cloudsecurityalliance/continuous-audit-metrics/tree/main/data/primary-dataset.yml</a></p>
 
@@ -194,6 +194,8 @@
 <ul><li><a href="#metric-UEM-04-M1">Metric UEM-04-M1</a></li></ul>
 <ul><li><a href="#metric-UEM-05-M1">Metric UEM-05-M1</a></li></ul>
 <ul><li><a href="#metric-UEM-09-M1">Metric UEM-09-M1</a></li></ul>
+<ul><li><a href="#metric-BCR-08-M1">Metric BCR-08-M1</a></li></ul>
+<ul><li><a href="#metric-BCR-08-M2">Metric BCR-08-M2</a></li></ul>
 </div>
 <h2 id="metric-AIS-05-M1">Metric AIS-05-M1</h2>
 <div class="metric">
@@ -390,6 +392,9 @@ for quality, security, and privacy tests.</p>
 </div>
 <button class="collapsible">Implementation guidelines</button><div class="content">
 <p>There must be a Software Inventory of Deployed Production Code (DCS-06).  Production code must be quantified based on the definition of deployed code running in production (e.g. microservices, builds, releases, packages, libraries, serverless functions, etc.). This should be the same number used to measure AIS-07. The definition of <strong>deployed production code</strong> used for the software inventory should be aligned with application security scanning, testing, and/or reporting methods where possible to simplify measurement. The likelihood of standardized deployments can decrease as the number of different deployment systems increases. If the Software Deployment Pipeline has multiple stages where change could be introduced, and end-to-end validation cannot be performed, then the metric <strong>Percentage of steps in the Software Deployment Pipeline that have an associated verification step</strong> may be more suitable for an organization. There should be a mechanism to identify deviations, and if deviations from the standard are approved, then the system should account for (and manage) the exception as approved. This metric should at least be aligned with an organization's development or release cycle to provide timely input for correction in the next deployment or release. For example, if an organization uses an Agile development methodology with two-week sprints, then the metric should be measured at least every two weeks to provide data for review at sprint retros.</p>
+</div>
+<button class="collapsible">Audit guidelines</button><div class="content">
+<p>this is the audit guideline for AIS-06-M1</p>
 </div>
 <h2 id="metric-AIS-07-M3">Metric AIS-07-M3</h2>
 <div class="metric">
@@ -1811,5 +1816,88 @@ technology and services.
 <button class="collapsible">Implementation guidelines</button><div class="content">
 <p>This depends on an Asset Database such as from CCMv4 DCS-06.  The targeted classifications of assets in scope must be identified in CCMv4 DCS-05 (e.g. employee devices).</p>
 </div>
+<h2 id="metric-BCR-08-M1">Metric BCR-08-M1</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">BCR-08</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Periodically backup data stored in the cloud. Ensure the confidentiality,
+integrity and availability of the backup, and verify data restoration from backup
+for resiliency.
+</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">BCR-02, BCR-06</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>BCR-08-M1</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric reports the percentage of critical data storages in cloud that have backup feature enabled. For example, if customer of CSP is using S3 buckets, these must have backup enabled as mentioned in https://docs.aws.amazon.com/aws-backup/latest/devguide/s3-backups.html. All cloud resources and services that have data storing capability must ensure that data is backed up in a secure storage with proper access control in place.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of critical data storages in cloud that have backup feature enabled<ul></ul>
+</li>
+<li>
+<code>B</code>: Total Number of critical data storages in cloud<ul></ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>Criteria for criticality of data storages must be defined and there must be a list of critical data storages in cloud identified.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"></div>
+</div>
+<button class="collapsible">Implementation guidelines</button><div class="content"></div>
+<button class="collapsible">Audit guidelines</button><div class="content">
+<ol>
+<li>Examine the policy for identifying data for which a backup is required.</li>
+<li>Examine the requirements for the security of such backups.</li>
+<li>Evaluate the effectiveness of the backup and restore.</li>
+</ol>
+</div>
+<h2 id="metric-BCR-08-M2">Metric BCR-08-M2</h2>
+<div class="metric">
+<div class="key green">Primary CCMv4 Control ID</div>
+<div class="value">BCR-08</div>
+<div class="key green">Primary Control Description</div>
+<div class="value">Periodically backup data stored in the cloud. Ensure the confidentiality,
+integrity and availability of the backup, and verify data restoration from backup
+for resiliency.
+</div>
+<div class="key green">Related CCMv4 Control IDs</div>
+<div class="value">BCR-02, BCR-06</div>
+<div class="key orange">Metric ID</div>
+<div class="value"><strong>BCR-08-M2</strong></div>
+<div class="key orange">Metric Description</div>
+<div class="value">This metric reports the percentage of critical data storages in cloud that were successfully restored following a documented restoration process. By implementing this metric, SRE teams will have visibility of systems that have failed to restore and may analyze the reason why restoration is failed - if data is tampered, storage had unauthorized access, storage was not available due to CSP outage etc.</div>
+<div class="key orange">Expression</div>
+<div class="value">
+<div>Formula: <code>(A/B)*100</code>
+</div>
+<p>Where: <ul>
+<li>
+<code>A</code>: Number of critical data storages in cloud that could be successfully restored<ul></ul>
+</li>
+<li>
+<code>B</code>: Total Number of critical data storages in cloud<ul></ul>
+</li>
+</ul></p>
+</div>
+<div class="key orange">Rules</div>
+<div class="value">
+<p>A process for data restoration must be in place and periodically tested for all critical data storages in cloud. Number of data storages that could be successfully restored must be determined either manually or using automated process.</p>
+</div>
+<div class="key orange">Sampling period</div>
+<div class="value">None</div>
+<div class="key blue">SLO Recommendation</div>
+<div class="value"></div>
+</div>
+<button class="collapsible">Implementation guidelines</button><div class="content"></div>
 </body>
 </html>
