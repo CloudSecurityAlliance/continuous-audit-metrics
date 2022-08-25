@@ -1,0 +1,115 @@
+type: object
+properties:
+  name:
+    type: string
+  version: 
+    type: string
+  url:
+    type: string
+    format: uri
+  ccm_version:
+    type: string
+  copyright: 
+    type: string
+  metrics:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[A-Z&]{3}-[0-9]+-[0-9A-Z]+$"
+        primaryControlId:
+          type: string
+          pattern: "^[A-Z&]{3}-[0-9]+$"
+        relatedControlIds:
+          anyOf:
+            - type: array
+              items: 
+                type: string
+                pattern: "^[A-Z&]{3}-[0-9]+$"
+            - type: null
+        metricDescription:
+          type: string
+        expression:
+          type: object
+          properties:
+            formula: 
+              type: string
+            parameters:
+              type: array
+              items: 
+                type: object
+                properties: 
+                  id:
+                    anyOf:
+                      - type: string
+                      - type: null
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  required:
+                    - name
+                    - description
+                  additionalProperties: false
+                required:
+                  - name
+                  - description
+                additionalProperties: false
+          required:
+            - formula
+          additionalProperties: false
+        rules: 
+          anyOf:
+            - type: string
+            - type: 'null'
+        sloRecommendations:
+          anyOf:
+            - type: object
+              properties:
+                sloRangeMin: 
+                  type: string
+                  pattern: "^[.0-9]+%$"
+                sloRangeMax:
+                  type: string
+                  pattern: "^[.0-9]+%$"
+            - type: 'null'
+        implementationGuidelines:
+          type: string
+        auditGuidelines:
+          type: string
+        samplingPeriod:
+          type: string
+          format: "^P([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$"
+      required:
+            - id
+            - primaryControlId
+            - metricDescription
+            - expression
+      additionalProperties: false
+  ccm_references:
+    type: array
+    items: 
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[A-Z&]{3}-[0-9]+$"
+        title:
+          type: string
+        specification:
+          type: string
+      required:
+        - id
+        - title
+        - specification
+      additionalProperties: false
+required:
+  - name
+  - version
+  - url
+  - ccm_version
+  - copyright
+additionalProperties: false
+  - metrics

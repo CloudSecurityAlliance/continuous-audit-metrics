@@ -212,7 +212,6 @@ metrics:
     vulnerabilities with compensating controls that make the residual risk of exploitation
     acceptable.'
   sloRecommendations:
-    sloRangeMin: 
   implementationGuidelines: |
     1. Classification of vulnerabilities as High or Critical risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the  Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss). For instance, vulnerabilities with a CVSS score of 9 or higher are Critical, and  vulnerabilities with CVSS scores between 7 and 9 could be defined as High risk. 
     2. Date and time of vulnerability discovery could be obtained from the Vulnerability  Management tool as it scans and detects vulnerabilities. 
@@ -962,7 +961,6 @@ metrics:
         period
   rules: The SLOPE is the representation of the linear regression of the triage times as graphed against the dates (or sequence numbers) for security events within the time period.
   sloRecommendations:
-    sloRangeMin: 
   implementationGuidelines: |
     Events occur and are classified as part of triage process. This can occur automatically and/or there can be manual triage steps. Once the event reaches its final categorization it is *triaged*. As long as this completes within the organizations target time period it is ""within the SLO.""
 
@@ -1114,7 +1112,6 @@ metrics:
     a) Opened during the current period and/or
     b) Carried over from the previous period because the policy timeframe spans period. For example, let us say that we measure the control on a weekly basis from Sunday - Saturday and the policy timeframe is 3 days. Any issue identified on or after Thursday is not due, per policy, until the following period. These vulnerabilities are *carried over* into the following period.
   sloRecommendations:
-    sloRangeMin: 
   implementationGuidelines: | 
     1. Classification of vulnerabilities as *High* or *Critical* risk should be defined in the Vulnerability Management tool based on industry-accepted scoring system such as the Common Vulnerability Scoring System (CVSS) (https://nvd.nist.gov/vuln-metrics/cvss) or risk-based vulnerability management system (see https://tinyurl.com/what-is-rbvm). For instance, vulnerabilities with a CVSS score of 9 or higher are *Critical* and vulnerabilities with CVSS scores between 7 and 9 could be defined as *High* risk.
     2. Date and time of vulnerability discovery could be obtained from the Vulnerability Management tool as it scans and detects high and critical vulnerabilities for remediation.
@@ -1239,7 +1236,6 @@ metrics:
       description: Total Number of critical data storages in cloud 
   rules: Criteria for criticality of data storages must be defined and there must be a list of critical data storages in cloud identified.
   sloRecommendations:
-    sloRangeMin: 
   auditGuidelines: |
     1. Examine the policy for identifying data for which a backup is required.
     2. Examine the requirements for the security of such backups.
@@ -1261,7 +1257,6 @@ metrics:
       description: Total Number of critical data storages in cloud 
   rules: A process for data restoration must be in place and periodically tested for all critical data storages in cloud. Number of data storages that could be successfully restored must be determined either manually or using automated process.
   sloRecommendations:
-    sloRangeMin: 
 ccm_references:
 - id: AIS-05
   title: Automated Application Security Testing
