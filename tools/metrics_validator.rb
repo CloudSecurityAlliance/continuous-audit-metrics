@@ -1,6 +1,8 @@
 require 'yaml'
 require 'nokogiri'
 require 'redcarpet'
+require 'json'
+require 'json-schema'
 
 class Duration 
   class ParseError < StandardError
@@ -80,13 +82,40 @@ end
 yaml_source = ARGV[0]
 md_source   = ARGV[1]
 html_render = ARGV[2]
+yaml_schema = File.join(File.dirname(__FILE__), 'metrics_schema.yml')
 
 begin
   data = YAML.load_file(yaml_source)
 rescue StandardError => e
-  puts "Invalid YAML file, #{e.message}"
+  puts "❌ Invalid YAML file #{yaml_source}, #{e.message}"
   exit false
 end
+puts "✔ Loaded YAML form #{yaml_source}"
+
+begin
+  frontmatter = File.read(md_source)
+rescue StandardError => e
+  puts "❌ Could not load front matter file #{md_source}, #{e.message}"
+  exit false
+end
+puts "✔ Loaded front matter from #{md_source}"
+
+begin
+  schema = YAML.load_file(yaml_schema)
+rescue StandardError => e 
+  puts "❌ Could not load YAML schema #{yaml_schema}: #{e.message}" 
+  exit false
+end
+
+errors = JSON::Validator.fully_validate(schema, data)
+if errors.count!=0
+  puts "❌ YAML dataset validation failed with #{errors.count} error(s)"
+  errors.each do |e|
+    puts " - #{e}"
+  end
+  exit false
+end
+puts "✔ Validated yaml with schema #{yaml_schema}."
 
 def table_line(doc, key, value, color)
   doc.div key, class: "key #{color}"
@@ -224,7 +253,7 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
 
 **The content of this repository, including this file, is (c) Cloud Security Alliance, 2022**. See the LICENSE file for details.
                         ')
-        markdown.render(doc, File.read(md_source)) 
+        markdown.render(doc, frontmatter) 
       end
       doc.div do
         doc.h3 "Table of content"
@@ -313,16 +342,18 @@ To make changes to the catalog, please [make changes](https://github.com/cloudse
           table_line doc, "Sampling period", duration.humanize, 'orange'
           table_line doc, "SLO Recommendation", nil, 'blue' do
             recommendations = metric['sloRecommendations']
-            if recommendations['sloRangeMin']
-              doc.div "Minimum: #{recommendations['sloRangeMin']}"
-            end
-            if recommendations['sloPeriod']
-              begin
-                duration = Duration.from_iso8601(recommendations['sloPeriod'])
-                doc.div "SLO Period: #{duration.humanize}"
-              rescue StandardError => e
-                puts "Error in YAML file for metric #{metric['id']}: sloPeriod is not in ISO8601 format"
-                exit false
+            if recommendations 
+              if recommendations['sloRangeMin']
+                doc.div "Minimum: #{recommendations['sloRangeMin']}"
+              end
+              if recommendations['sloPeriod']
+                begin
+                  duration = Duration.from_iso8601(recommendations['sloPeriod'])
+                  doc.div "SLO Period: #{duration.humanize}"
+                rescue StandardError => e
+                  puts "Error in YAML file for metric #{metric['id']}: sloPeriod is not in ISO8601 format"
+                  exit false
+                end
               end
             end
           end
@@ -345,3 +376,4 @@ end
 File.open(html_render, "w") do |file| 
   file.write(builder.to_html) 
 end
+puts "✔ Saved HTML rendering in #{html_render}"
