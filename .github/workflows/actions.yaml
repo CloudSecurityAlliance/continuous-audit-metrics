@@ -25,9 +25,12 @@ jobs:
       - name: Generate metrics-catalog.html
         working-directory: tools
         run: ruby metrics_validator.rb ../data/primary-dataset.yml ../data/front-matter.md ../metrics-catalog.html
-      - name: Push metrics-catalog.html to the repo
-        uses: test-room-7/action-update-file@v1
-        with:
-          file-path: metrics-catalog.html
-          commit-msg: Automtaed update of metrics-catalog.html
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+# current permissions block actions updating files
+# TODO: consider https://github.com/marketplace/actions/create-pull-request instead
+# (which also requires permissions)
+#      - name: Push metrics-catalog.html to the repo
+#        uses: test-room-7/action-update-file@v1
+#        with:
+#          file-path: metrics-catalog.html
+#          commit-msg: Automtaed update of metrics-catalog.html
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
