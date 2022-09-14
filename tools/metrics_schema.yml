@@ -23,12 +23,10 @@ properties:
           type: string
           pattern: "^[A-Z&]{3}-[0-9]+$"
         relatedControlIds:
-          anyOf:
-            - type: array
-              items: 
-                type: string
-                pattern: "^[A-Z&]{3}-[0-9]+$"
-            - type: null
+          type: [ 'array', 'null' ]
+          items: 
+          - type: string
+            pattern: "^[A-Z&]{3}-[0-9]+$"
         metricDescription:
           type: string
         expression:
@@ -42,9 +40,7 @@ properties:
                 type: object
                 properties: 
                   id:
-                    anyOf:
-                      - type: string
-                      - type: null
+                    type: [ 'string', 'null' ]
                   name:
                     type: string
                   description:
@@ -61,9 +57,7 @@ properties:
             - formula
           additionalProperties: false
         rules: 
-          anyOf:
-            - type: string
-            - type: 'null'
+          type: [ 'string', 'null' ]
         sloRecommendations:
           anyOf:
             - type: object
