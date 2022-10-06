@@ -1,0 +1,186 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/CSACAM",
+    "definitions": {
+        "CSACAM": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ]
+                },
+                "ccm_version": {
+                    "type": "string"
+                },
+                "copyright": {
+                    "type": "string"
+                },
+                "metrics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Metric"
+                    }
+                },
+                "ccm_references": {
+                    "type": "array", 
+                    "items": {
+                        "$ref": "#/definitions/ccm_reference"
+                    }
+                }
+            },
+            "required": [
+                "ccm_version",
+                "copyright",
+                "metrics",
+                "name",
+                "url",
+                "version"
+            ]
+        },
+        "Metric": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "primaryControlId": {
+                    "type": "string"
+                },
+                "relatedControlIds": {
+                    "anyOf": [
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "metricDescription": {
+                    "type": "string"
+                },
+                "expression": {
+                    "$ref": "#/definitions/Expression"
+                },
+                "rules": {
+                    "type": "string",
+                    "description": "rules that MUST be followed to perform a measurement"
+                },
+                "sloRecommendations": {
+                    "$ref": "#/definitions/sloRecommendations"
+                },
+                "implementationGuidelines": {
+                    "type": "string"
+                },
+                "auditGuidelines": {
+                    "type": "string"
+                },
+                "samplingPeriod": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "expression",
+                "id",
+                "implementationGuidelines",
+                "metricDescription",
+                "primaryControlId",
+                "relatedControlIds",
+                "rules",
+                "sloRecommendations"
+            ]
+        },
+        "ccm_reference": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "specification": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "specification",
+                "title"
+            ]
+        },
+        "Expression": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "formula": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Parameter"
+                    }
+                }
+            },
+            "required": [
+                "formula",
+                "parameters"
+            ]
+        },
+        "Parameter": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description",
+                "id",
+                "name"
+            ]
+        },
+        "sloRecommendations": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "sloRangeMin": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sloRangeMin"
+            ]
+        }
+    }
+}
