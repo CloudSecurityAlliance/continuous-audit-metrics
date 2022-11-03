@@ -357,6 +357,27 @@ metrics:
     functionalities while allowing for flexibility against policy (which has previously
     passed CCMv4 CEK-01 audit).  See AVCP: https://csrc.nist.gov/Projects/Automated-Cryptographic-Validation-Testing'
   samplingPeriod: P30D
+- id: CEK-03-M3
+  primaryControlId: CEK-03
+  relatedControlIds:
+  - CEK-04
+  - DCS-06
+  - CEK-01
+  metricDescription: This metrics indicates which data sources communicate their internal traffic through encrypted methods
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Is number of internal channels with encrypted communication
+    - id: 
+      name: B
+      description: Total number of internal channels
+  rules: According to organization internal policy some servers/channels can be left unencrypted. The exceptions must be documented and risks mitigated through additional controls
+  sloRecommendations:
+    sloRangeMin: 85%
+  implementationGuidelines: Total number of internal channels is to be determined from network analysis. Total number of encrypted channels is to be dtermined from network traffic analysis. These are expected to be inputs provided by commercial network analysis software deployed within the solution.
+  samplingPeriod: P30D
 - id: CEK-04-M1
   primaryControlId: CEK-04
   relatedControlIds:
