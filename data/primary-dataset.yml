@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../tools/primary-dataset.schema.json
 ---
 name: Continuous Audit Metrics Catalog
 version: 1.0.0
@@ -1313,9 +1314,7 @@ ccm_references:
     at all of the CSP's sites within a secured system.
 - id: DSP-04
   title: Data Classification
-  specification: 'Classify data according to its type and sensitivity level.
-
-'
+  specification: 'Classify data according to its type and sensitivity level.'
 - id: DSP-05
   title: Data Flow Documentation
   specification: |
@@ -1382,9 +1381,7 @@ ccm_references:
     and provide immediate notification to the accountable party.
 - id: SEF-05
   title: Incident Response Metrics
-  specification: 'Establish and monitor information security incident metrics.
-
-'
+  specification: 'Establish and monitor information security incident metrics.'
 - id: SEF-06
   title: Event Triage Processes
   specification: |
@@ -1392,9 +1389,7 @@ ccm_references:
     measures supporting business processes to triage security-related events.
 - id: STA-07
   title: Supply Chain Inventory
-  specification: 'Develop and maintain an inventory of all supply chain relationships.
-
-'
+  specification: 'Develop and maintain an inventory of all supply chain relationships.'
 - id: TVM-03
   title: Vulnerability Remediation Schedule
   specification: |
