@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.6'
       - name: Prepare the ruby environment
@@ -25,6 +25,13 @@ jobs:
       - name: Generate metrics-catalog.html
         working-directory: tools
         run: ruby metrics_validator.rb ../data/primary-dataset.yml ../data/front-matter.md ../metrics-catalog.html
+      - uses: actions/upload-artifact@v3
+        with:
+          name: metrics-catalog.html
+          path: metrics-catalog.html
+          retention-days: 5
+          # the metrics-catalog.html file can now be downloaded in the github UI, see docs for more info:
+          # https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts
 # current permissions block actions updating files
 # TODO: consider https://github.com/marketplace/actions/create-pull-request instead
 # (which also requires permissions)
