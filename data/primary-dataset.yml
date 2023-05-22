@@ -449,7 +449,6 @@ metrics:
 - id: DCS-06-M2
   primaryControlId: DCS-06
   relatedControlIds:
-  - ISO270002 A.8.1.2
   metricDescription: This metric measures the ratio of owned assets in the inventory to the total assets in the inventory. The goal is to ensure that all assets in the inventory are owned.
   expression:
     formula: "(A/B)*100"
