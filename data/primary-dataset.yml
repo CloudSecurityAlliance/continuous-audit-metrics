@@ -1215,19 +1215,18 @@ metrics:
   - DCS-06
   - DSP-01
   - TVM-02
-  metricDescription: This metric measures the percentage of instances which are an running anti-malware/virus service.
+  metricDescription: This metric measures the percentage of instances which are an running anti-malware/virus service. This focuses on the effetiveness of the organisation’s anti-malware policy with respect to ensuring anti-malware tools are deployed.
   expression:
     formula: "(A/B)*100"
     parameters:
     - id: 
       name: A
       description: Total number of managed endpoints for the workforce initiating
-        observed connections that passed a device check inclusive (e.g. verifying
-        malware protection)
+        that passed configuration management checks inclusive of verifying
+        malware protection configuration.
     - id: 
       name: B
-      description: Total number of managed endpoints for the workforce initiating
-        observed connections
+      description: Total number of managed endpoints
   rules: |
     *Device check* is some form of posture assessment during connection or path establishment. Some examples are listed below.
     - Trusted Platform Module posture assessment 
@@ -1238,6 +1237,24 @@ metrics:
     sloRangeMin: 99%
   implementationGuidelines: This depends on an Asset Database such as from CCMv4 DCS-06.  The targeted classifications of assets in scope must be identified in CCMv4 DCS-05 (e.g. employee devices).
   samplingPeriod: P30D
+- id: UEM-09-M2
+  primaryControlId: UEM-09
+  relatedControlIds:
+  - TVM-10
+  - SEF-06
+  metricDescription: This metric reports the number of security incidents involving active malware on hosts protected by the chosen anti-malware/virus services. This focuses on the effetiveness of the organisation’s anti-malware tools with respect to detecting and blocking malware.
+  auditGuidelines: (Using as notes) If this number is not zero, the control is not effective. Based on issues discussion we're setting a SLO recommendation of kinda high. From the CCMv4 Auditing guidelines, "1. Examine the organisation’s anti-malware policy. 2. Determine if such controls are in place and evaluated as effective."
+  expression:
+    formula: "(NumIncidents / NumHosts)*100" 
+    parameters:
+      - id: 
+        name: NumIncidents
+        description: Number of active malware incidents on hosts
+      - id:
+        name: NumHosts
+        description: Number of hosts protected by the organizations standard anti-malware solution
+  sloRecommendations:
+    sloRangeMin: 99% [action item: talk to some vendors and get their recommendation]. Check CIS benchmarks or DoD in search of some guidelines. 
 - id: BCR-08-M1
   primaryControlId: BCR-08
   relatedControlIds:
