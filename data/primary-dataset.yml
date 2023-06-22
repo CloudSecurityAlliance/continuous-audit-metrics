@@ -1254,7 +1254,7 @@ metrics:
         name: NumHosts
         description: Number of hosts protected by the organizations standard anti-malware solution
   sloRecommendations:
-    sloRangeMin: 99% [action item: talk to some vendors and get their recommendation]. Check CIS benchmarks or DoD in search of some guidelines. 
+    sloRangeMin: 99% 
 - id: BCR-08-M1
   primaryControlId: BCR-08
   relatedControlIds:
