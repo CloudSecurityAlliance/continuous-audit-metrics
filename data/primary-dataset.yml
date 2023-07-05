@@ -446,6 +446,26 @@ metrics:
     intended to ensure the coverage is accurate and inclusive of 3rd party CSPs where
     the  organization is responsible for the controls.
   samplingPeriod: P1D
+- id: DCS-06-M2
+  primaryControlId: DCS-06
+  relatedControlIds:
+  metricDescription: This metric measures the ratio of owned assets in the inventory to the total assets in the inventory. The goal is to ensure that all assets in the inventory are owned.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of assets in the inventory that are owned
+    - id: 
+      name: B
+      description: Total number of assets in the inventory
+  rules: The assumption is that the design of the DCS-06 control process(es) was found
+    to be effective by internal or external audits. All assets shall be owned according to the ISO 27002 control A.8.1.2.
+  sloRecommendations:
+    sloRangeMin: 100%
+  implementationGuidelines: This relies on the asset inventory as defined in
+    CCMv4 DCS-06. All assets should be owned and tracked as part of the asset inventory. Any asset that is not owned raises potential operational risks and should be investigated. Assets include both physical and logical entities, including third-party services and microservices where control responsibilities lie with the organization. Ownership should be clearly defined for each asset in the inventory, with appropriate documentation and tracking measures in place.
+  samplingPeriod: P1D
 - id: DSP-04-M2
   primaryControlId: DSP-04
   relatedControlIds:
