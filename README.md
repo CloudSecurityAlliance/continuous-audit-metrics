@@ -24,7 +24,7 @@ There are two ways to contribute new metrics to the Catalog.
 
 #### 1. With a GitHub issue
 
-Second, if you are not comfortable with YAML or pull-request, you can also propose a metric by simply creating an issue here on GitHub. As a minimum, your proposal should contain the following fields:
+First, if you are not comfortable with YAML or pull-request, you can also propose a metric by simply creating an issue here on GitHub. As a minimum, your proposal should contain the following fields:
 
 - Metric Description
 - Expression
@@ -35,7 +35,7 @@ These fields are detailed [here](https://github.com/cloudsecurityalliance/contin
 
 #### 2. With a pull-request
 
-First, you can modify the YAML file `data/primary-dataset.yml` and add the metrics you want. Then create a PR (pull-request) on this GitHub repository. 
+Next, you can modify the YAML file `data/primary-dataset.yml` and add the metrics you want. Then create a PR (pull-request) on this GitHub repository. 
 
 The community will discuss this pull request and potentially add it to the catalog.
 
