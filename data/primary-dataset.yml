@@ -655,6 +655,65 @@ metrics:
     slipping on even one will dramatically affect their percentage. This is inherent
     in statistics and is not seen as a problem for now.
   samplingPeriod: P30D
+- id: IAM-05-M1
+  primaryControlId: IAM-05
+  relatedControlIds:
+  metricDescription: This metric measures the percentage of users with access rights exceeding requirements. With a focus on system access.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of users with roles or privileges that have not been used to access systems
+        in the last samplingPeriod days
+    - id: 
+      name: B
+      description: Total number of users
+  rules: The calculation of users with unutilized roles or privileges involves analyzing data from centralized identity management systems (such as Microsoft Active Directory, AWS IAM, or Google Cloud Identity, as specified by IAM-03). This process includes determining each user's assigned roles and comparing them with system login events. These events detail the roles used for access authorization and are recorded in logging and monitoring systems (LOG-08). A role or privilege that remains unused during the designated sampling period is identified as exceeding the necessary requirements for system access.
+  sloRecommendations:
+    sloRangeMin: 80%
+  implementationGuidelines: |  
+    sloRangeMin is set arbitrarily to 80% to generate discussion.
+  samplingPeriod: P30D
+- id: IAM-05-M2
+  primaryControlId: IAM-05
+  relatedControlIds:
+  - IAM-09
+  metricDescription: Measures the proportion of users with access rights to application features that exceed their job requirements. The metric focuses specifically on the actual usage of application features versus the access granted.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: The count of users who have been granted access to specific application features but have not utilized these features within the last sampling period.
+    - id: 
+      name: B
+      description: Total number of users
+  rules: The metric is calculated by analyzing each user's role-based access to application features. This analysis involves cross-referencing the roles assigned to each user (as defined in the organization's identity management systems) with actual feature usage data. Feature usage data is obtained from logging and monitoring systems (LOG-08). A role or privilege is deemed excessive if the associated features remain unused during the sampling period. This method aims to identify privileges that grant access beyond what is necessary for a user's role within the application.
+  sloRecommendations:
+    sloRangeMin: 80%
+  implementationGuidelines: |  
+    sloRangeMin is set arbitrarily to 80% to generate discussion.
+  samplingPeriod: P30D
+- id: IAM-05-M3
+  primaryControlId: IAM-05
+  relatedControlIds:
+  metricDescription: This metric measures the percentage of users with access rights exceeding requirements. With a focus on data object access. 
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: The count of users who have data object access roles or privileges but have not utilized these privileges within the sampling period.
+    - id: 
+      name: B
+      description: The total number of users who are assigned data object access roles
+  rules: NTo determine the metric, we analyze each user's data object access privileges. This involves a review of the roles assigned to each user, focusing specifically on their access rights to data objects. We then compare these assigned roles with actual data object access instances, as recorded in the logging and monitoring systems (LOG-08). If a user's role grants access to certain data objects, but this access is not utilized during the sampling period, such privileges are deemed excessive and beyond what is necessary for the user's role. 
+  sloRecommendations:
+    sloRangeMin: 80%
+  implementationGuidelines: |  
+    sloRangeMin is set arbitrarily to 80% to generate discussion.
+  samplingPeriod: P30D
 - id: IAM-07-M1
   primaryControlId: IAM-07
   relatedControlIds:
@@ -1384,6 +1443,10 @@ ccm_references:
   specification: |
     Establish and follow an approved exception process as mandated by
     the governance program whenever a deviation from an established policy occurs.
+- id: IAM-05
+  title: Least Privilege
+  specification: |
+    Employ the least privilege principle when implementing information system access.
 - id: IAM-07
   title: User Access Changes and Revocation
   specification: |
