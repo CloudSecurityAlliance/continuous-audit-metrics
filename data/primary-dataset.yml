@@ -1313,6 +1313,132 @@ metrics:
       description: Total Number of critical data storages in cloud 
   rules: A process for data restoration must be in place and periodically tested for all critical data storages in cloud. Number of data storages that could be successfully restored must be determined either manually or using automated process.
   sloRecommendations:
+- id: A&A-06-M1
+  primaryControlId: A&A-06
+  relatedControlIds: []
+  metricDescription: This metric measures the percentage of audit findings remediated within the defined timeframe.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of audit findings remediated within the defined timeframe
+    - id: 
+      name: B
+      description: Total number of audit findings
+  rules: Timely remediation of audit findings is crucial for maintaining compliance and mitigating risks. This metric ensures that the organization is responsive to audit results and that corrective actions are implemented promptly.
+  sloRecommendations:
+    sloRangeMin: 90%
+  implementationGuidelines: Data should be collected from the audit management system, where findings and their remediation statuses are tracked.
+  samplingPeriod: P30D
+- id: AIS-05-M1
+  primaryControlId: AIS-05
+  relatedControlIds: []
+  metricDescription: This metric measures the percentage of failed application security tests remediated within the defined timeframe.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of failed application security tests remediated within the defined timeframe
+    - id: 
+      name: B
+      description: Total number of failed application security tests
+  rules: Timely remediation of failed application security tests ensures that vulnerabilities are addressed promptly, maintaining the security and integrity of applications while supporting compliance and delivery goals.
+  sloRecommendations:
+    sloRangeMin: 90%
+  implementationGuidelines: Data should be collected from the application security testing system, where the results of tests and their remediation statuses are tracked.
+  samplingPeriod: P30D
+- id: AIS-07-M1
+  primaryControlId: AIS-07
+  relatedControlIds: []
+  metricDescription: This metric measures the percentage of application security vulnerabilities remediated within the defined timeframe.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of application security vulnerabilities remediated within the defined timeframe
+    - id: 
+      name: B
+      description: Total number of identified application security vulnerabilities
+  rules: Timely remediation of application security vulnerabilities is crucial for maintaining the security and integrity of applications. Automating remediation processes when possible ensures consistent and efficient vulnerability management.
+  sloRecommendations:
+    sloRangeMin: 90%
+  implementationGuidelines: Data should be collected from the vulnerability management system, where the identification and remediation timelines of vulnerabilities are tracked.
+  samplingPeriod: P30D
+- id: CCC-07-M1
+  primaryControlId: CCC-07
+  relatedControlIds: []
+  metricDescription: This metric measures the percentage of baseline deviations remediated within the defined timeframe.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of baseline deviations remediated within the defined timeframe
+    - id: 
+      name: B
+      description: Total number of baseline deviations
+  rules: Timely remediation of baseline deviations is crucial for maintaining system integrity and ensuring that unauthorized or unexpected changes are promptly addressed. Automating remediation processes when possible ensures consistent and efficient management.
+  sloRecommendations:
+    sloRangeMin: 90%
+  implementationGuidelines: Data should be collected from the change control and configuration management system, where baseline deviations and remediation timelines are tracked.
+  samplingPeriod: P30D
+- id: LOG-13-M1
+  primaryControlId: LOG-13
+  relatedControlIds: []
+  metricDescription: This metric measures the percentage of monitoring system anomalies and failures remediated within the defined timeframe.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of anomalies and failures remediated within the defined timeframe
+    - id: 
+      name: B
+      description: Total number of reported anomalies and failures
+  rules: Timely remediation of anomalies and failures in the monitoring system ensures continuous and reliable monitoring, preventing potential security incidents and operational disruptions. Immediate notification to the accountable party facilitates prompt action.
+  sloRecommendations:
+    sloRangeMin: 90%
+  implementationGuidelines: Data should be collected from the monitoring system, where anomalies, failures, and their remediation statuses are tracked.
+  samplingPeriod: P30D
+- id: SEF-06-M1
+  primaryControlId: SEF-06
+  relatedControlIds: []
+  metricDescription: This metric measures the percentage of security-related events triaged within the defined timeframe.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of security-related events triaged within the defined timeframe
+    - id: 
+      name: B
+      description: Total number of security-related events
+  rules: Timely triage of security-related events is crucial for ensuring that potential security incidents are identified and assessed promptly, enabling appropriate response actions to mitigate risks. Defining an SLA for triage helps ensure consistent and efficient handling of security events.
+  sloRecommendations:
+    sloRangeMin: 90%
+  implementationGuidelines: Data should be collected from the incident management system, where the detection and triage statuses of security-related events are tracked.
+  samplingPeriod: P30D
+- id: SEF-07-M1
+  primaryControlId: SEF-07
+  relatedControlIds: []
+  metricDescription: This metric measures the percentage of security breaches reported within 75% of the defined SLA timeframe.
+  expression:
+    formula: "(A/B)*100"
+    parameters:
+    - id: 
+      name: A
+      description: Number of security breaches reported within 75% of the defined SLA timeframe
+    - id: 
+      name: B
+      description: Total number of security breaches
+  rules: Timely reporting of security breaches is essential for compliance with laws and regulations. Including a buffer within 75% of the SLA timeframe provides an early warning to the organization, allowing for prompt action to avoid breaches of compliance.
+  sloRecommendations:
+    sloRangeMin: 90%
+  implementationGuidelines: Data should be collected from the incident management system, where security breaches and their reporting statuses are tracked.
+  samplingPeriod: P30D
 ccm_references:
 - id: AIS-05
   title: Automated Application Security Testing
